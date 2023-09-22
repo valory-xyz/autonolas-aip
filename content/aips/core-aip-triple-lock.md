@@ -69,7 +69,7 @@ The Olas community is invited to discuss this proposal and its merits.
 
 There's a crucial element missing in implementing the triple lock: incentivised staking. To address this, we propose a roadmap that includes the deployment of the initial staking module for autonomous service on Gnosis Chain. Additionally, we are proposing a plan to enhance the existing locking and bonding mechanisms.
 
-We estimate the following roadmap to take 3-6 weeks to implement:
+We have already completed these milestones:
 
 - *Community discussion:* Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
 
@@ -78,6 +78,8 @@ We estimate the following roadmap to take 3-6 weeks to implement:
 - *Novel OLAS Top-up distribution:* Propose a new method for OLAS top-ups ([A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf)).
 
 - *Improvement of Autonolas bonding mechanism:*  Propose a dynamic discount mechanism for Autonolas bonding ([Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf))
+
+We estimate the following roadmap to take 3-6 weeks to implement:
 
 - *Temperature Check Snapshot:* Create a temperature check on all AIP-1 components.
 
