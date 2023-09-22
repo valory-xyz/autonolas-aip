@@ -10,7 +10,7 @@ updated (*optional): 2023-09-22
 
 ## Simple Summary
 
-This proposal suggests the DAO create bonding products for LP assets which pair OLAS with tokens for each chain on which Olas protocol is deployed.
+This proposal suggests implementing Triple Lock, an upgrade to the protocol that improves bonding, dev rewards and staking. Triple Lock creates and reinforces token sinks for OLAS. Furthermore, proposal suggests a bonding strategy whereby the DAO creates bonding products for LP assets which pair OLAS with tokens for each chain on which Olas protocol is deployed.
 
 ## Abstract
 
@@ -24,7 +24,7 @@ Olas’ Season 2 - the current season that started with the OLAS token launch - 
 
 To recap OLAS’ (code, capital) mechanism can be understood in two parts. To attract capital, a bonding mechanism native to Olas protocol allows useful capital, currently in the form of whitelisted LP assets, to be bonded to the protocol in return for discounted OLAS ([learn more](https://www.autonolas.network/blog/code-capital-attracting-capital-via-bonding)). In tandem, to attract code, developers can mint code NFTs (components and agents) to be used in autonomous services. When NFTs are linked in services that receive donations, these donations flow to developers and can be boosted by the protocol with OLAS ([learn more](https://www.autonolas.network/blog/code-capital-attracting-code-via-developer-rewards)).
 
-Season 2, therefore, allows Olas network to prove out the economic feasibility of its design. And so far Olas is making good progress, attracting in excess of [70 services](https://dune.com/adrian0x/autonolas-ecosystem-activity) and owning more than [65% of the liquidity in the original OLAS-ETH LP on Uni V2](https://v2.info.uniswap.org/pair/0x09d1d767edf8fa23a64c51fa559e0688e526812f).
+Season 2, therefore, allows Olas network to prove out the economic feasibility of its design. And so far Olas is making good progress, attracting in excess of [150 services](https://dune.com/adrian0x/autonolas-ecosystem-activity) and owning more than [76% of the liquidity in the original OLAS-ETH LP on Uni V2](https://v2.info.uniswap.org/pair/0x09d1d767edf8fa23a64c51fa559e0688e526812f).
 
 
 ## Token sinks
@@ -43,10 +43,11 @@ The **Governance Lock** is in place since day 1 of the DAO’s existence, in the
 - control protocol-owned services, most concretely currently the DAO’s marketing strategy via Olas’ native Contribute
 - boost dev rewards with OLAS when donating to services
 
+The governance lock can be made even more attractive by introducing extra incentives for holders to lock OLAS for veOLAS. To this end, the proposal suggests updates to the bonding mechanism and the developer reward mechanism.
 
 The **Bonding Lock** has been bootstrapped since July. Currently, all programmes use the OLAS-ETH LP as the bonding asset. 
 
-This proposal invites the community to discuss the idea that as Olas expands to new EVM chains, an OLAS-CHAIN_TOKEN LP bonding programme could be created to deepen liquidity. This would be beneficial to both the chain on which Olas is deployed and Olas network. Since Olas is already deployed on Gnosis Chain and Polygon, it makes sense to launch OLAS-GNO and OLAS-MATIC LP pairs first. The benefits of such a strategy for the Olas DAO are threefold:
+This proposal invites the community to discuss the idea that as Olas expands to new EVM chains, an OLAS-CHAIN_TOKEN LP bonding programme could be created to deepen liquidity. This would be beneficial to both the chain on which Olas is deployed and Olas network. Since Olas is already deployed on Gnosis Chain and Polygon, it makes sense to launch OLAS-xDAI and OLAS-MATIC LP pairs first. The benefits of such a strategy for the Olas DAO are threefold:
 
 1. deeper liquidity for OLAS across multiple trading pairs
 2. diversified assets in Olas treasury
@@ -56,13 +57,19 @@ Following the adoption of this strategy, the DAO can then focus on identifying n
 
 Furthermore, chains who gain an OLAS-native_token pair would also benefit from the additional token sink this creates for their own token and the benefits that stem from Olas protocol presence on their chain: an ocean of services.
 
-The **Staking Lock** is not currently active, but already supported by the v1 deployment of the protocol. As the first protocol-owned services (PoSe) go live with a decentralized operator set, OLAS or OLAS-ETH LP can be stipulated as the slashable staking asset for operators. This ensures the economic security of the services and allows for a further sink of OLAS.
+In addition to expanding bonding to more chains, the bonding mechanism can be enhanced to be more reactive to market forces and increase alignment between governance/veOLAS holders and bonders.
+
+The **Staking Lock** is not currently active, but already supported by the v1 deployment of the protocol. As the first protocol-owned services (PoSe) go live with a decentralized operator set, OLAS can be stipulated as the slashable staking asset for operators. This ensures the economic security of the services and allows for a further sink of OLAS.
+
+To simplify incentivisation of agent operators, a staking concept is introduced which would extend the protocol functionality and simplify deployment of PoSe and other services with staking for agent operators.
 
 The Olas community is invited to discuss this proposal and its merits.
 
 ### Next steps
 
-There's a crucial element missing in implementing the triple lock: incentivised staking. To address this, we propose a roadmap that includes the deployment of the initial staking module for autonomous service on Gnosis Chain. Additionally, we are proposing a plan to enhance the existing locking and bonding mechanisms. 
+There's a crucial element missing in implementing the triple lock: incentivised staking. To address this, we propose a roadmap that includes the deployment of the initial staking module for autonomous service on Gnosis Chain. Additionally, we are proposing a plan to enhance the existing locking and bonding mechanisms.
+
+We estimate the following roadmap to take 3-6 weeks to implement:
 
 - *Community discussion:* Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
 
@@ -80,7 +87,7 @@ There's a crucial element missing in implementing the triple lock: incentivised 
 
 - *Staking Module Implementation and Audit:* Develop and audit the staking module 
 
-- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a DEX of the DAO’s choice.
+- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a Gnosis Chain DEX of the DAO’s choice.
 
 - *Bonding Campaign for Liquidity Pool:* Launch bonding campaigns to bootstrap liquidity in the Gnosis Chain pool.
 
@@ -101,22 +108,21 @@ In [A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip
 ### Improvement of Autonolas bonding mechanism
 In [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf), we present a proposal for dynamic discount techniques for Autonolas bonding mechanism influenced by four pivotal factors: code contribution, vesting period, program supply, and bonder's veOLAS holdings. The proposal aims to enhance the existing bonding mechanism relying on fixed pricing parameters for security reasons. As a side effect, this approach encourages greater participation in veOLAS, thereby fostering a more resilient and secure ecosystem.
 
-
-
 ## Rationale
 
-TBD
+See above in section Token Sinks.
 
 ## Security Considerations
 
-TBD
+The usual security procedure for Autonolas protocol development will be followed.
 
 ## Test Cases
 
-TBD
+Test cases will be developed as part of each smart contract module.
 
 ## Implementation
-Please refer to the relvenat sections of the following documents for specific implementation details.
+
+Please refer to the relevant sections of the following documents for specific implementation details:
 
 - [Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf)
 
