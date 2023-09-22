@@ -3,9 +3,9 @@ title: Triple Lock
 status: WIP
 author: David Minarsch (@DavidMinarsch)
 shortDescription: Triple Lock - token sinks in v1
-discussions: https://discord.com/channels/899649805582737479/1121019872839729152
+discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-08-15
-updated (*optional): N/A
+updated (*optional): 2023-09-22
 ---
 
 ## Simple Summary
@@ -62,15 +62,46 @@ The Olas community is invited to discuss this proposal and its merits.
 
 ### Next steps
 
-The following steps have to be taken to move towards implementation:
-- Community discussion on [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
-- Governance vote to whitelist new bonding assets
-- Governance vote to add new bonding programmes across all bonding assets
+There's a crucial element missing in implementing the triple lock: incentivised staking. To address this, we propose a roadmap that includes the deployment of the initial staking module for autonomous service on Gnosis Chain. Additionally, we are proposing a plan to enhance the existing locking and bonding mechanisms. 
 
+- *Community discussion:* Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
+
+- *Service Staking Module Development:*  Propose a service staking module ([Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf)).
+
+- *Novel OLAS Top-up distribution:* Propose a new method for OLAS top-ups ([A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf)).
+
+- *Improvement of Autonolas bonding mechanism:*  Propose a dynamic discount mechanism for Autonolas bonding ([Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf))
+
+- *Temperature Check Snapshot:* Create a temperature check on all AIP-1 components.
+
+- *Registries Update on Gnosis Chain:* Update Gnosis Chain Autonolas Registries to support ERC20 staking tokens 
+
+- *Governance vote for registries updates:* vote to finalize updates on Gnosis Chain
+
+- *Staking Module Implementation and Audit:* Develop and audit the staking module 
+
+- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a DEX of the DAO’s choice.
+
+- *Bonding Campaign for Liquidity Pool:* Launch bonding campaigns to bootstrap liquidity in the Gnosis Chain pool.
+
+- *Staking Module Deployment:* Deploy the staking module on the Gnosis Chain.
+
+- *Tokenomics and Depository updates and audit:* change implementation and perform an audit on tokenomics and depository contracts to accommodate the novel OLAS top-ups distribution and the dynamic discount mechanism for the bonding.
+
+- *Governance Vote for new contract version:* Initiate a governance vote to updates to tokenomics and depository contracts on Ethereum mainnet.
 
 ## Specification
 
-TBD
+### Service Staking Module Development
+In [Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf), we introduce a staking module allowing anyone, including OLAS DAO, to deploy staking contracts for autonomous services. This empowers service owners to incentivize agent operators using any ERC20 token or ETH. 
+
+### Novel OLAS Top-up distribution
+In [A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf), we introduce a novel method for distributing OLAS top-ups to incentivise useful code based on their donors’ veOLAS holdings. This approach encourages increased participation in locking OLAS in veOLAS, ultimately enhancing the ecosystem’s robustness and security.
+
+### Improvement of Autonolas bonding mechanism
+In [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf), we present a proposal for dynamic discount techniques for Autonolas bonding mechanism influenced by four pivotal factors: code contribution, vesting period, program supply, and bonder's veOLAS holdings. The proposal aims to enhance the existing bonding mechanism relying on fixed pricing parameters for security reasons. As a side effect, this approach encourages greater participation in veOLAS, thereby fostering a more resilient and secure ecosystem.
+
+
 
 ## Rationale
 
@@ -85,8 +116,13 @@ TBD
 TBD
 
 ## Implementation
+Please refer to the relvenat sections of the following documents for specific implementation details.
 
-TBD
+- [Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf)
+
+- [A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf)
+
+- [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf)
 
 ## Copyright
 
