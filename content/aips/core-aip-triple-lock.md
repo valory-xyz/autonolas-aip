@@ -10,11 +10,11 @@ updated (*optional): 2023-09-22
 
 ## Simple Summary
 
-This proposal suggests implementing Triple Lock, an upgrade to the protocol that improves bonding, dev rewards and staking. Triple Lock creates and reinforces token sinks for OLAS. Furthermore, proposal suggests a bonding strategy whereby the DAO creates bonding products for LP assets which pair OLAS with tokens for each chain on which Olas protocol is deployed.
+This proposal suggests implementing Triple Lock, an upgrade to the protocol that improves bonding, dev rewards and staking. Triple Lock creates and reinforces token sinks for OLAS. Furthermore, the proposal suggests a bonding strategy whereby the DAO creates bonding products for LP assets which pair OLAS with tokens for each chain on which Olas protocol is deployed.
 
 ## Abstract
 
-The proposal suggests that the DAO is to 1) encourage creation of OLAS-GNO and OLAS-MATIC LP pools; 2) whitelist those LP assets for bonding; 3) create bonding products for these LP assets.
+The proposal suggests that the DAO is to 1) encourage creation of OLAS-xDAI and OLAS-MATIC LP pools; 2) whitelist those LP assets for bonding; 3) create bonding products for these LP assets; 4) introduce new updates to developer rewards and bonding mechanisms; 5) create staking modules to incentivise agent operators.
 
 ## Motivation
 
