@@ -1,6 +1,6 @@
 ---
 title: Triple Lock
-status: WIP
+status: Approved
 author: David Minarsch (@DavidMinarsch)
 shortDescription: Triple Lock - token sinks in v1
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
@@ -79,17 +79,17 @@ We have already completed these milestones:
 
 - *Improvement of Autonolas bonding mechanism:*  Propose a dynamic discount mechanism for Autonolas bonding ([Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf))
 
-We estimate the following roadmap to take 3-6 weeks to implement:
-
-- *Temperature Check Snapshot:* Create a temperature check on all AIP-1 components.
+- *Temperature Check Snapshot:* Create a temperature check on all AIP-1 components. This Snapshot passed unanimously: https://snapshot.org/#/autonolas.eth/proposal/0xe4ab1eb3004c0437d8c9890c4a5e04b928c9950a054ff2ad3f7bdce6904dadbb
 
 - *Registries Update on Gnosis Chain:* Update Gnosis Chain Autonolas Registries to support ERC20 staking tokens 
 
-- *Governance vote for registries updates:* vote to finalize updates on Gnosis Chain
+- *Governance vote for registries updates:* vote to finalize updates on Gnosis Chain. This proposal passed unanimously: https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46MTAyNzQ5NDY5Mjc3Njk5MDE4MjM3MzI3MTI4MTc2NjU0NDY2ODc4NDM4MzAwMzg4OTk3MTYwMzk5MDQzOTM0ODE0ODIyMjE4MzMxMjAx
 
-- *Staking Module Implementation and Audit:* Develop and audit the staking module 
+- *Staking Module Implementation and Audit:* Develop and audit the staking module. The contracts are available here: https://github.com/valory-xyz/autonolas-registries/tree/main/contracts/staking. The audit is ongoing.
 
-- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a Gnosis Chain DEX of the DAO’s choice.
+- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a Gnosis Chain DEX of the DAO’s choice. The details are available here: https://www.autonolas.network/blog/olas-liquidity-on-gnosis-chain
+
+-We estimate the remaining roadmap to take 2-5 weeks to implement:
 
 - *Bonding Campaign for Liquidity Pool:* Launch bonding campaigns to bootstrap liquidity in the Gnosis Chain pool.
 
