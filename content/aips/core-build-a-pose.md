@@ -71,7 +71,12 @@ The process of how a PoSe comes to be under this proposal is outlined further be
 - MOTIVATION: profits from a PoSe should flow to those who brought a service into  existence (developers, marketers, chaperone), the operators and the DAO.
 - HOW: the service logic specifies where profits, if any, flow.
 
-![Fig. 1: Process of how a PoSe comes into existence.](../imgs/Build-A-PoSe.png?raw=true "Fig. 1: Process of how a PoSe comes into existence.")
+![Fig. 1: Process of how a PoSe comes into existence.](../imgs/flow-PoSe.png?raw=true "Fig. 1: Process of how a PoSe comes into existence.")
+
+Success criteria for Build-A-PoSe (mostly TBD):
+- [ ] regular (TBD!) launch of new PoSe
+- [ ] PoSe development & launch requires minimal (TBD) governance input
+- [ ] PoSe development & launch heavily utilises Contribute
 
 ## Rationale
 
