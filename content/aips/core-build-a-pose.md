@@ -93,7 +93,7 @@ The proposal implementation will have to undergo multiple audits. Areas that com
 
 Olas Automate is the ideal test case for implementing a first PoSe and all the supporting systems that the DAO requires, in particular upgrades to Contribute.
 
-A full specification of Olas Automate will be available here soon.
+A full specification of Olas Automate is available [here](../../docs/OlasAutomate.pdf).
 
 ## Implementation
 
