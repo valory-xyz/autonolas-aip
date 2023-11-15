@@ -14,7 +14,7 @@ This proposal suggests implementing Build-A-PoSe, a structured programme operate
 
 ## Abstract
 
-TBD
+The "Build-A-PoSe" proposal introduces a structured program for the Autonolas DAO to facilitate the development and deployment of protocol-owned services (PoSes). Utilizing the Contribute service and developer rewards system, this initiative aims to streamline the process of creating PoSes by coordinating efforts among developers and DAO members. The program outlines a comprehensive process from identifying market opportunities to the deployment and operation of PoSes, with "Olas Automate" proposed as the first service to be developed under this new framework. This approach is designed to enhance the DAO's operational efficiency and market responsiveness in a decentralized and scalable manner.
 
 ## Motivation
 
@@ -97,7 +97,15 @@ A full specification of Olas Automate is available [here](../../docs/OlasAutomat
 
 ## Implementation
 
-The proposal shall be considered implemented once the first PoSe has matured from the programme.
+The proposal shall be considered implemented once the first PoSe has matured from the programme. Implementation details will be added as the development progresses.
+
+We have already completed these milestones:
+
+- *Community discussion*: Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
+
+Next steps:
+
+- *Temperature Check Snapshot*: Create a temperature check on all AIP-2 components.
 
 ## Copyright
 
