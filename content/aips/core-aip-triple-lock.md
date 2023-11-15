@@ -73,6 +73,8 @@ We have already completed these milestones:
 
 - *Community discussion:* Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
 
+- *Quantifying Liquidity Provision Costs for AMMs* [Research Article](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/Analysis/Quantifying%20Liquidity%20Provision%20Costs%20for%20Automated%20Market%20Makers_%20An%20Adaptation%20of%20the%20LVR%20Model%20to%20OLAS-ETH%20pool.pdf). The analysis suggests that at the time of writing the OLAS-ETH pool is already in a healthy state when considering the role of the Autonolas DAO as an LP in isolation. Further analysis is needed to arrive at heuristics for when to open new pools.
+
 - *Service Staking Module Development:*  Propose a service staking module ([Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf)).
 
 - *Novel OLAS Top-up distribution:* Propose a new method for OLAS top-ups ([A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf)).
