@@ -18,7 +18,7 @@ The proposal suggests that the DAO is to 1) encourage the creation of OLAS-xDAI 
 
 ## Motivation
 
-Olas’ Season 2 - the current season that started with the OLAS token launch - is all about bootstrapping the dual [useful code](https://www.autonolas.network/blog/code-capital-attracting-code-via-developer-rewards) & [useful capital](https://www.autonolas.network/blog/code-capital-attracting-capital-via-bonding) mechanism. This article recaps this dual mechanism and discusses Olas’ key token sinks.
+Olas’ Season 2 - the current season that started with the OLAS token launch - is all about bootstrapping the dual [useful code](https://www.autonolas.network/blog/code-capital-attracting-code-via-developer-rewards) & [useful capital](https://www.autonolas.network/blog/code-capital-attracting-capital-via-bonding) mechanism. This article recaps this dual mechanism and discusses Olas’ key token sinks. It highlights deficiencies in the protocol design and suggests how they can be resolved through protocol updates and extensions.
 
 ### (Code, Capital)
 
@@ -89,11 +89,13 @@ We have already completed these milestones:
 
 - *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a Gnosis Chain DEX of the DAO’s choice. The details are available here: https://www.autonolas.network/blog/olas-liquidity-on-gnosis-chain
 
--We estimate the remaining roadmap to take 2-5 weeks to implement:
-
 - *Bonding Campaign for Liquidity Pool:* Launch bonding campaigns to bootstrap liquidity in the Gnosis Chain pool.
 
-- *Staking Module Deployment:* Deploy the staking module on the Gnosis Chain.
+- *Staking Module Deployment:* Deploy the first staking module on the Gnosis Chain: Everest (https://x.com/valoryag/status/1720119552238072313?s=20).
+
+-We estimate the remaining roadmap to take 4-6 weeks to implement:
+
+- *Staking Module Deployment:* Deploy additional staking modules on the Gnosis Chain as part of Staker Expeditions (https://x.com/valoryag/status/1717925898144608622?s=20).
 
 - *Tokenomics and Depository updates and audit:* change implementation and perform an audit on tokenomics and depository contracts to accommodate the novel OLAS top-up distribution and the dynamic discount mechanism for the bonding.
 
