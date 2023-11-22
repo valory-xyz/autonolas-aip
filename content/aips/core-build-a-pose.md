@@ -103,9 +103,11 @@ We have already completed these milestones:
 
 - *Community discussion*: Relevant discussion in [Contribute](https://contribute.olas.network) and [Discord](https://discord.com/channels/899649805582737479/1121019872839729152)
 
+- *Temperature Check Snapshot*: Create a temperature check on all AIP-2 components. This Snapshot passed unanimously: https://snapshot.org/#/autonolas.eth/proposal/0x3ed02016d921a5a7e0fcc30ff147323bef9ba35d84c5f3cf0000b3403473c4ee
+
 Next steps:
 
-- *Temperature Check Snapshot*: Create a temperature check on all AIP-2 components.
+- *Coalesce Olas Automate team*: Coalesce a chaperone, group of developers and marketers using Olas Contribute.
 
 ## Copyright
 
