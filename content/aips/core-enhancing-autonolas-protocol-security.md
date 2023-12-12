@@ -27,7 +27,8 @@ To align CM actions with the DAO’s intentand ensure their reversibility, a CM 
 
 The primary motivations driving this improvement proposal are the following:
 
-** Cross-Chain Governance Challenges**: This aspect focuses on overcoming the current implementation’s limitations to ensure that CM actions on Layer 2 networks are reversible and in strict compliance with the DAO’s intent. 
+**Cross-Chain Governance Challenges**: This aspect focuses on overcoming the current implementation’s limitations to ensure that CM actions on Layer 2 networks are reversible and in strict compliance with the DAO’s intent. 
+
 **Optimizing Response Time**: The existing Timelock mechanism, while ensuring security, introduces operational delays also for CM actions. This proposal seeks to reduce CM-actions delays, enabling swift CM responses in urgent scenarios.
 
 
