@@ -1,5 +1,5 @@
 ---
-title: Enhancing Autonolas Protocol Security: Streamlining Community Multisig (CM) Responses and Advancing Cross-Chain Security
+title: Enhancing Autonolas Protocol Security
 status: WIP
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: This AIP outlines progressive security enhancements in Autonolas governance, focusing on improving emergency cross-chain actions and reducing CM-selected governance action delays.
