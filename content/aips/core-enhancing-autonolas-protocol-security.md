@@ -5,7 +5,7 @@ author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, An
 shortDescription: This AIP outlines progressive security enhancements in Autonolas governance, focusing on improving emergency cross-chain actions and reducing CM-selected governance action delays.
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-12-12
-updated (*optional): N/A
+updated (*optional): 2023-12-18
 ---
 
 ## Simple Summary
@@ -29,12 +29,14 @@ The primary motivations driving this improvement proposal are the following:
 
 **Cross-Chain Governance Challenges**: This aspect focuses on overcoming the current implementation’s limitations to ensure that CM actions on Layer 2 networks are reversible and in strict compliance with the DAO’s intent. 
 
+The [new poposed GuardCM implementation](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.8/contracts/multisigs/GuardCM.sol) solves these challenges.
+
 **Optimizing Response Time**: The existing Timelock mechanism, while ensuring security, introduces operational delays also for CM actions. This proposal seeks to reduce CM-actions delays, enabling swift CM responses in urgent scenarios.
 
 
 ## Original Governance Structure and its Evolution
 
-Initially, the CM possessed the authority to schedule, execute, and cancel any action on protocol contracts. While effective in protecting the protocol in urgent security issues,  it also presented potential governance risks. The CM’s ability to act independently raised concerns about potential misalignment with DAO’s intent. To address this, the GuardCM was introduced (current implementation can be found [here]( https://github.com/valory-xyz/autonolas-governance/blob/main/contracts/multisigs/GuardCM.so) and relevant governance proposal is [here]( https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46Nzk2MjA2MzI0OTQ2MDM5NTk5OTE4MzE5NjY0OTgyNzgyNjkxMTgxNzYxNTE5Mzc5NTk4MzkxODgwODEwMzY0NzM3NzE3MTg1MTg1MDg=)).
+Initially, the CM possessed the authority to schedule, execute, and cancel any action on protocol contracts. While effective in protecting the protocol in urgent security issues, it also presented potential governance risks. The CM’s ability to act independently raised concerns about potential misalignment with DAO’s intent. To address this, the GuardCM was introduced (the implementation of deployed GuardCM can be found [here]( https://github.com/valory-xyz/autonolas-governance/blob/main/contracts/multisigs/GuardCM.sol) and relevant governance proposal is [here]( https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46Nzk2MjA2MzI0OTQ2MDM5NTk5OTE4MzE5NjY0OTgyNzgyNjkxMTgxNzYxNTE5Mzc5NTk4MzkxODgwODEwMzY0NzM3NzE3MTg1MTg1MDg=)).
 The key changes brought included:
 
 - **Reversibility of Actions:** The GuardCM restricted CM actions to only specific contracts and methods within the protocol, ensuring any action taken was reversible. For instance, while the CM could pause the Treasury, it was designed so the governance body could reverse this action at any time. This balance of power was critical in preventing irreversible unilateral actions by the CM.
@@ -47,26 +49,23 @@ While this enhancement significantly improved governance security by aligning CM
 
 1) **Limitations on Layer 2 Networks:**
 
-Autonolas employs a cross-chain governance, facilitating governance actions between Ethereum (L1) and L2 networks like Polygon and Gnosis Chain. The bridge uses mechanisms like the FxPortal for Polygon and the Arbitrary Message Bridge (AMB) for Gnosis Chain (details can be found [here]( https://github.com/valory-xyz/autonolas-governance/blob/main/docs/governace_bridge.pdf)). Under the current cross-chain governance design and GuardCM implementation, there are challenges in extending CM capabilities to L2 networks while maintaining strict adherence to DAO’s intent and ensuring reversibility.
+Autonolas employs a cross-chain governance, facilitating governance actions between Ethereum (L1) and L2 networks like Polygon and Gnosis Chain. The bridge uses mechanisms like the [FxPortal](https://github.com/0xPolygon/fx-portal/tree/v1.0.5) for Polygon and the [Arbitrary Message Bridge (AMB)](https://docs.gnosischain.com/bridges/tokenbridge/amb-bridge) for Gnosis Chain (details can be found [here]( https://github.com/valory-xyz/autonolas-governance/blob/main/docs/governace_bridge.pdf)). Under the current cross-chain governance design and the implementation of the [deployed GuardCM](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.6/contracts/multisigs/GuardCM.sol), there are challenges in extending CM capabilities to L2 networks while maintaining strict adherence to DAO’s intent and ensuring reversibility. Therefore, while effective on Ethereum (Layer 1), the deployed GuardCM faces challenges on L2s. 
 
-Therefore, while effective on Ethereum (Layer 1), the current GuardCM faces challenges on L2s. We propose refining the GuardCM's functionalities to ensure that CM actions on L2s are in strict compliance with DAO decisions and remain reversible, thereby maintaining a consistent and secure cross-chain governance model.
+The proposed [new GuardCM implementation](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.8/contracts/multisigs/GuardCM.sol) aims to overcome these limitations. Specifically, here the GuardCM functionality is refined to ensure that CM actions are in strict compliance with DAO decisions and remain reversible also on L2s, thereby maintaining a consistent and secure cross-chain governance model.
 
 2) **Addressing Time Delays:**
 
 While the Timelock mechanism is crucial for governance security, it introduces delays also in CM actions, potentially hindering prompt responses in emergencies. This proposal seeks to explore methods to reduce these delays, allowing for quicker CM actions in urgent situations without compromising on security and compliance.
 
-
-
 ## Specification
-
 
 ### GuardCM modification overcoming cross-chain limitations
 
-Enhance the verifySchedule() method in GuardCM ([GuardCM Code Reference](https://github.com/valory-xyz/autonolas-governance/blob/main/contracts/multisigs/GuardCM.sol#L140)) to perform rigorous checks on callDatas. This will include validating the data against specific criteria to ensure CM actions, especially on L2 networks, are in strict compliance with DAO intent. This modification will not necessitate the redeployment of sensitive contracts like Timelock or GovernorOLAS.
+Enhance the verification logic in the ([deployed GuardCM Implementation](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.6/contracts/multisigs/GuardCM.sol)) to perform rigorous checks on callDatas. Specifically, the proposed [new GuardCM implementaion](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.8/contracts/multisigs/GuardCM.sol), other than verify authorized combinations of target and selector for mainnet, also includes the verification of the bridged data for authorized combinations of targets and selectors on L2 networks. This includes validating the data against specific criteria to ensure CM actions are in strict compliance with DAO intent on all the chains. Note that this modification only necessitate the redeployment the GuardCM and no sensitive contract, like Timelock or GovernorOLAS, needs to be redeployed.
 
 ### Modification Overcoming Time Delay Limitations
 
-Decouple the queueing value process in GovernorOLAS from the Timelock's minimum delay, potentially setting this delay to zero. This adjustment will require redefining the queue() function in GovernorOLAS to facilitate immediate action by the CM via the Timelock, enhancing response times in urgent situations.  Unlike the GuardCM modification, this change will require redeploying sensitive contracts, specifically GovernorOLAS and Timelock.
+Decouple the queueing value process in GovernorOLAS from the Timelock's minimum delay, potentially setting this delay to zero. This adjustment will require redefining the queue() function in GovernorOLAS to facilitate immediate action by the CM via the Timelock, enhancing response times in urgent situations.  Unlike the GuardCM modification, this change will require redeploying a sensitive contract, i.e., GovernorOLAS.
 
 ## Rationale
 
@@ -74,7 +73,7 @@ The proposed modifications stem from the need to enhance cross-chain governance 
 
 ## Security Considerations
 
-The proposed changes are designed to minimize security risks associated with CM's actions, including in cross-chain context. By enduring DAO compliance and reversibility, the proposed modifications aim to fortify the protocol security.
+The proposed changes are designed to minimize security risks associated with CM's actions, including in cross-chain context. By ensuring DAO compliance and reversibility, the proposed modifications aim to fortify the protocol security.
 
 Toward the implementations, the standard security procedures for Autonolas protocol development will be followed.
 
@@ -88,6 +87,8 @@ Details of the implementation will be determined and shared, ensuring adherence 
 Completed:
 
 1) Introduction of original CMGuard: https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46Nzk2MjA2MzI0OTQ2MDM5NTk5OTE4MzE5NjY0OTgyNzgyNjkxMTgxNzYxNTE5Mzc5NTk4MzkxODgwODEwMzY0NzM3NzE3MTg1MTg1MDg=
+
+2)  Introduction of CMGuard implementation overcoming cross-chain limitations: https://github.com/valory-xyz/autonolas-governance/blob/v1.1.8/contracts/multisigs/GuardCM.sol
 
 Next steps:
 
