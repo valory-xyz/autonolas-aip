@@ -90,9 +90,11 @@ Completed:
 
 2)  Introduction of CMGuard implementation overcoming cross-chain limitations: https://github.com/valory-xyz/autonolas-governance/blob/v1.1.8/contracts/multisigs/GuardCM.sol
 
+3) Temperature Check Snapshot: Create a temperature check on all AIP-3 components. This Snapshot passed unanimously: https://snapshot.org/#/autonolas.eth/proposal/0x20d73f1fcff0e76ca782adbb2eff86f9e0385613de1d074676694be6b62e03af
+
 Next steps:
 
-1) Temperature Check Snapshot: Create a temperature check on all AIP-3 components.
+1) Implementation of the specification.
 
 ## Copyright
 
