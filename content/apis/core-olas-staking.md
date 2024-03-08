@@ -55,7 +55,4 @@ Copyright and related rights waived via [CC0](https://creativecommons.org/public
 
 [^1] See the [Olas (Autonolas) whitepaper](https://olas.network/whitepaper) for more information on veOLAS.
 
-[^2] See the [Olas (Autonolas) whitepaper](https://olas.network/whitepaper) for more information on PoSes.
-
-[^3] Olas tokenomics primitives are detailed in the [Tokenomics Paper](https://olas.network/documents/whitepaper/Autonolas_Tokenomics_Core_Technical_Document.pdf).
 
