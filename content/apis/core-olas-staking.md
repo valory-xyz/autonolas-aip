@@ -29,7 +29,7 @@ To have more information on Olas predict KPIs and how the staking mechanism can 
 ## Specification
 The smart contracts that facilitate the implementation of the Olas Staking Mechanism and allow Olas DAO to regulate and allocate OLAS emissions comprises the following: *Staking contracts*, *Staking Contract Factory*, and *Staking Rewards System contracts*. Details on these contracts can be found in sections “On-chain elements”, “Staking contracts”, “Compatible Staking Contract Configuration”, “Staking Contracts Factory”, “Staking reward system”, and “Reward System Contracts Architecture” of the [Olas Staking & Proof of Active Agent whitepaper](https://staking.olas.network/poaa-whitepaper.pdf) 
 
-Information on the off-chain components and their integration with smart contracts can be found in sections “Off-chain elements” and “Combination of off-chain and on-chain elements for active agent verification” [Olas Staking & Proof of Active Agent whitepaper](https://staking.olas.network/poaa-whitepaper.pdf.)
+Information on the off-chain components and their integration with smart contracts can be found in sections “Off-chain elements” and “Combination of off-chain and on-chain elements for active agent verification” of the [Olas Staking & Proof of Active Agent whitepaper](https://staking.olas.network/poaa-whitepaper.pdf.)
 
 ## Rationale
 The Olas Staking Mechanism addresses the need for a decentralized, incentive-driven framework within the Olas ecosystem to bootstrap agent economies. The proposal outlines how the current design of the mechanism extends the Olas Protocol. Furthermore, it mentions specific implementations for Trader and Market Creator agents in the Olas Predict economy, showcasing the versatility and adaptability of the staking mechanism.
