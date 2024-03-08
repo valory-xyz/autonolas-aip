@@ -95,9 +95,11 @@ We have already completed these milestones:
 
 - *Staking Module Deployment:* Deploy the first staking module on the Gnosis Chain: Everest (https://x.com/valoryag/status/1720119552238072313?s=20).
 
--We estimate the remaining roadmap to take 4-6 weeks to implement:
-
 - *Staking Module Deployment:* Deploy additional staking modules on the Gnosis Chain as part of Staker Expeditions (https://x.com/valoryag/status/1717925898144608622?s=20).
+
+- *Bridge provider recommendation:* An analysis for bridging providers was presented [here](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/Bridging_mechanisms_in_the_context_of_Olas_ecosystem.pdf).
+
+-We estimate the remaining roadmap to take 2-4 months to implement:
 
 - *Tokenomics and Depository updates and audit:* change implementation and perform an audit on tokenomics and depository contracts to accommodate the novel OLAS top-up distribution and the dynamic discount mechanism for the bonding.
 
