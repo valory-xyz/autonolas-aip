@@ -46,9 +46,13 @@ Details of the implementation will be determined and shared, ensuring adherence 
 ## Next Step
 1) Temperature Check Snapshot: Create a temperature check on all AIP-4 components to gauge the community interest.
 
-2) Implementation of smart contracts enabling Olas staking.
+2) Development of smart contracts enabling Olas staking.
 
-3) Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+3) External audit of smart contracts enabling Olas staking.
+
+4) Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+
+5) Deployment of smart contracts enabling Olas staking.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
