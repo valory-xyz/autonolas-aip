@@ -50,9 +50,11 @@ Details of the implementation will be determined and shared, ensuring adherence 
 
 3) External audit of smart contracts enabling Olas staking.
 
-4) Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+4) Deployment of smart contracts enabling Olas staking.
 
-5) Deployment of smart contracts enabling Olas staking.
+5) Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+
+
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
