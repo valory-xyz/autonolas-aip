@@ -105,7 +105,7 @@ We have already completed these milestones:
 
 - Steps left :
 
-- *Tokenomics and Depository updates and audit:* Final approval from co-founders, external audit and re-deployment of Tokenomics and Depository contracts.
+- *Tokenomics and Depository updates and audit:* External audit and re-deployment of Tokenomics and Depository contracts.
 
 - *Governance Vote for new contract version:* Initiate a governance vote to updates to tokenomics and depository contracts on Ethereum mainnet.
 
