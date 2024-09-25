@@ -44,6 +44,9 @@ Test cases will be developed as part of each smart contract module.
 Details of the implementation will be determined and shared, ensuring adherence to Olas protocol development standards and security best practices.
 
 ## Next Step
+
+The following steps have been done: 
+
 1) Temperature Check Snapshot: Create a temperature check on all AIP-4 components to gauge the community interest.
 
 2) Development of smart contracts enabling Olas staking.
@@ -53,6 +56,8 @@ Details of the implementation will be determined and shared, ensuring adherence 
 4) Deployment of smart contracts enabling Olas staking.
 
 5) Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+
+Next steps: 
 
 
 
