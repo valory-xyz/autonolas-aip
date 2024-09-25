@@ -109,12 +109,11 @@ Completed:
 
 5) Governance vote to change [the original CMGuard](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.9/contracts/multisigs/GuardCM.sol) with the [GuardCM latest implementation](https://github.com/valory-xyz/autonolas-governance/blob/v1.1.9/contracts/multisigs/GuardCM.sol): https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46NjQ0NzM0NzM2MTExNTQzMzkzMTI3NDM5OTg3OTY3NTExMTY0ODY1MjU2ODg0NjQwMzUyNTg0OTE0MTMyMDMzOTE1MTE1MjQyNTA3NDc=
 
+6) Update of GovernorOLAS to reduce operational delays in CM's emergency responses: fully implemented, internally audited and approved by co-founders. 
 
 Next steps:
 
-1) Implementation of the specification in GovernorOLAS to reduce operational delays in CM's emergency responses.
-
-2) Governance vote to updated the GovernorOLAS to the latest version reducing operational delays in CM's emergency responses.
+1) External audit and redeployment of update of GovernorOLAS to reduce operational delays in CM's emergency responses. 
 
 ## Copyright
 
