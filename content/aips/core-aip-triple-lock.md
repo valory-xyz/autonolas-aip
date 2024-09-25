@@ -99,9 +99,13 @@ We have already completed these milestones:
 
 - *Bridge provider recommendation:* An analysis for bridging providers was presented [here](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/Bridging_mechanisms_in_the_context_of_Olas_ecosystem.pdf).
 
--We estimate the remaining roadmap to take 2-4 months to implement:
+- *Tokenomics and Depository updates and audit:* Modified dev incentives logic and dynamic discount factor are fully implemented as per specs and internally audited.
 
-- *Tokenomics and Depository updates and audit:* change implementation and perform an audit on tokenomics and depository contracts to accommodate the novel OLAS top-up distribution and the dynamic discount mechanism for the bonding.
+- *Deployment:* Triple lock is in place for the following networks: Ethereum, Gnosis, Polygon, Solana, Arbitrum, Optimism, Base, Celo. 
+
+- Steps left :
+
+- *Tokenomics and Depository updates and audit:* Final approval from co-founders, external audit and re-deployment of Tokenomics and Depository contracts.
 
 - *Governance Vote for new contract version:* Initiate a governance vote to updates to tokenomics and depository contracts on Ethereum mainnet.
 
