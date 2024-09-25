@@ -99,7 +99,7 @@ We have already completed these milestones:
 
 - *Bridge provider recommendation:* An analysis for bridging providers was presented [here](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/Bridging_mechanisms_in_the_context_of_Olas_ecosystem.pdf).
 
-- *Tokenomics and Depository updates and audit:* Modified dev incentives logic and dynamic discount factor are fully implemented as per specs and internally audited.
+- *Tokenomics and Depository updates and audit:* Modified dev incentives logic and dynamic discount factor are fully implemented as per specs and internally audited (https://github.com/valory-xyz/autonolas-tokenomics/pull/179/files#diff-9190e14a4e33716e3029c1dbbc7f6a4929e2d2aa2a957b066eff72501e07d717).
 
 - *Deployment:* Triple lock is in place for the following networks: Ethereum, Gnosis, Polygon, Solana, Arbitrum, Optimism, Base, Celo. 
 
