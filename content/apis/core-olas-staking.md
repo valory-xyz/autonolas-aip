@@ -47,13 +47,12 @@ Details of the implementation will be determined and shared, ensuring adherence 
 
 The following steps have been done: 
 
-- Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
+- Temperature Check Snapshot: Create a temperature check on all AIP-4 components to gauge the community interest (https://snapshot.org/#/autonolas.eth/proposal/0x1e83a657148967b395a025f16231031d62eaea3ecf5c947b7a2ee2e963a4eacf)
 
 - Development, external audit and deployment of smart contracts enabling Olas staking (external audit: https://code4rena.com/reports/2024-05-olas).
 
-Steps left:
+- Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
 
-1) Temperature Check Snapshot: Create a temperature check on all AIP-4 components to gauge the community interest.
 
 
 
