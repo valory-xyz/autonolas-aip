@@ -1,6 +1,6 @@
 ---
 title: Olas staking
-status: WIP
+status: Implemented
 author: Mariapia Moscatiello (@mariapiamo)
 shortDescription: Olas Staking Mechanism
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
@@ -53,8 +53,7 @@ The following steps have been done:
 
 - Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
 
-
-
+No further next steps are expected.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
