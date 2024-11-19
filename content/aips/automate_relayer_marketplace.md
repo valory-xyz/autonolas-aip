@@ -6,12 +6,10 @@ shortDescription: Introduction of protocol-owned services in the Olas ecosystem
 created: 2024-17-09 
 updated (*optional): N/A
 ---
-<div style="text-align: center;">
 
 [Simple Summary](#simple-summary)
-[Abstract](#abstract)
 
-</div>
+[Abstract](#abstract)
 
 ## Simple Summary
 
