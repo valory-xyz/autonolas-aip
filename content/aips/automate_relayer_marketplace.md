@@ -8,11 +8,17 @@ updated (*optional): N/A
 ---
 
 [I. Simple Summary](#i-simple-summary)
+
 [II. Abstract](#ii-abstract) 
+
 [III. Motivation](#iii-motivation)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 2 Olas Automate](#iii-2-olas-automate)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 3. Olas Relayer](#iii-3-olas-relayer)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 4. Mech Marketplace](#iii-4-mach-marketplace)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. Protocol-owned services as fee-capture mechanisms](#iii-5-protocol-owned-services-as-fee-capture-mechanisms) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. a. Idea](#iii-5-a-idea) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. Computing activity requirements](#iii-5-b-computing-activity-requirements) 
