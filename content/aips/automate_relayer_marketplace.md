@@ -1,0 +1,432 @@
+  
+**\[RFC\] AIP-5 (Olas Automate & Olas Relayer & Mech Marketplace)**  
+**Summary:** Proposals draft for AIP-5
+
+| Created: Jan 2023 Current Version: 1.0.0    | Status: WIP | In-Review | Approved | Obsolete  Owner: [Silvère Gangloff](mailto:silvere.gangloff@valory.xyz) Approvers: [David Minarsch](mailto:david.minarsch@valory.xyz) |
+| :---- | :---- |
+
+[I. Simple summary](#i.-simple-summary)  
+[II. Abstract](#ii.-abstract)  
+[III. Motivation](#iii.-motivation)  
+[III.1. Section breakdown](#iii.1.-section-breakdown)  
+[III.2. Olas Automate](#iii.2.-olas-automate)  
+[III.3. Olas Relayer](#iii.3.-olas-relayer)  
+[III.4. Mech Marketplace](#iii.4.-mech-marketplace)  
+[III.5. Protocol-owned services as fee-capture mechanisms](#iii.5.-protocol-owned-services-as-fee-capture-mechanisms)  
+[III.5.a) Idea](#iii.5.a\)-idea)  
+[III.5.b) Computing activity requirements](#iii.5.b\)-computing-activity-requirements)  
+[III.5)b)i) Formula](#iii.5\)b\)i\)-formula)  
+[III.5)b)ii) Example computations](#iii.5\)b\)ii\)-example-computations)  
+[III.5.c) Agent instances requirements](#iii.5.c\)-agent-instances-requirements)  
+[III.6. Revenues splitting](#iii.6.-revenues-splitting)  
+[IV. Specification](#iv.-specification)  
+[IV.1. Olas Automate](#iv.1.-olas-automate)  
+[IV.2 Olas Relayer](#iv.2-olas-relayer)  
+[IV.2.a) Subsection Breakdown](#iv.2.a\)-subsection-breakdown)  
+[IV.2.b) RelayerContract](#iv.2.b\)-relayercontract)  
+[IV.2.c) Relayer](#iv.2.c\)-relayer)  
+[IV.2.d) Workflow diagram](#iv.2.d\)-workflow-diagram)  
+[IV.3. Mech Marketplace](#iv.3.-mech-marketplace)  
+[IV.3.a) MechMarketPlace](#iv.3.a\)-mechmarketplace)  
+[IV.3.b) Karma](#iv.3.b\)-karma)  
+[IV.3.c) Workflow](#iv.3.c\)-workflow)  
+[V. Analysis and comparison](#v.-analysis-and-comparison)  
+[V.1. Overlaps](#v.1.-overlaps)  
+[V.1.a) Analysis](#v.1.a\)-analysis)  
+[V.1.b) Potential update: merging](#v.1.b\)-potential-update:-merging)  
+[V.2. Comparison with competitors and other technical solutions](#v.2.-comparison-with-competitors-and-other-technical-solutions)  
+[V.2.a) Account abstraction](#v.2.a\)-account-abstraction)  
+[V.2.b) Gas abstraction](#v.2.b\)-gas-abstraction)  
+[V.2.c) Smart contract automation](#v.2.c\)-smart-contract-automation)  
+[VI. Rationale](#vi.-rationale)  
+[VII. Security Considerations](#vii.-security-considerations)  
+[VIII. Test cases](#viii.-test-cases)  
+[IX. Implementation x](#ix.-implementation)  
+[X. Copyright](#x.-copyright)
+
+# 
+
+\---  
+title: AIP-5 Olas Automate and Olas relayer  
+status: WIP  
+author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)  
+shortDescription:   
+discussions:  
+created: 2024-17-09  
+updated (\*optional):  
+—--
+
+## 
+
+## I. Simple summary  {#i.-simple-summary}
+
+This proposal introduces protocol-owned services into the Olas ecosystem, focusing on three key areas: smart contract automation (Olas Automate), gas abstraction (Olas Relayer), and marketplace for mechs (Mech Marketplace). The Mech Marketplace enables an agent to hire  mechs for specific AI tasks,  incorporating failover mechanisms to ensure another mech can step in if the assigned one fails. These services aim to strengthen the ecosystem by enabling fee-capture from agents, coordinated through staking mechanisms, as shown on the following picture. 
+
+![][image1]
+
+## II. Abstract {#ii.-abstract}
+
+We address diverse aspects of the introduction of these services. In [section III](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.f2hgc34pisrh), we provide the primary motivations for introducing these three services and propose a fee-capturing model for protocol-owned services in general and these three in particular. Additionally, we examine strategies for revenue splitting within the ecosystem. In [section IV](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.fv54ekwm69wu), we provide detailed high level descriptions of these services, their components and workflow. In [section V](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.pcf0ifg050hz), we propose a possible update of these services by reducing the overlaps they exhibit. We provide here as well a comparison with other technical solutions and competitors.  We also detail in [section IX](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.4whqlblmpqiy) the deployment plan for these protocol-owned services, following the system introduced in [AIP-2](https://github.com/valory-xyz/autonolas-aip/pull/2). 
+
+This proposal relies on the idea that *direct* *users* of the protocol shall be mostly autonomous AI agents, while in principle users can be human as well. The role of humans shall be limited to run and monitor these AI agents. 
+
+## III. Motivation {#iii.-motivation}
+
+### III.1. Section breakdown {#iii.1.-section-breakdown}
+
+This section is divided into the following subsections:
+
+* [III.2. Olas Automate](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.3qh649rmtnny): we detail here the benefits of smart contract automation.   
+* [III.3. Olas Relayer](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.y1r3rl1a0udw): we detail here the benefits of gas abstraction.  
+* [III.4. Mech Marketplace](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.77teed1nh2v7): we motivate here the introduction of the mech marketplace.   
+* [III.5. Protocol-owned services as fee-capture mechanisms](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.hoey65qosntd): this part goes beyond the three specific services and considers protocol-owned services in general as potential source of revenues for the protocol. We explain how they could act as fee-capture mechanisms and provide some formula and computations for the potential revenues.  
+* [III.6: Revenues splitting](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit#heading=h.fkm1ihiyv61h): in this part we propose a way to split revenues generated by protocol-owned services between contributors to their creations, as specified in AIP-2. 
+
+Note that specifications are presented for the three components in [section IV](https://docs.google.com/document/d/1vcoOtec9U7RirOn0x9L5Zo4okOEPzFiETNU8RQhQ_Kg/edit?tab=t.0#heading=h.fv54ekwm69wu).. 
+
+### III.2. Olas Automate  {#iii.2.-olas-automate}
+
+***Smart contract automation** refers to the use of automated processes and tools to execute and manage smart contracts on blockchain platforms without the need for human intervention. This automation can enhance efficiency, reduce the likelihood of errors, and enable real-time execution of contracts based on predefined conditions.*
+
+The **benefits** of smart contract automation *in general* are, for end users: improved speed, efficiency and reliability (transactions are executed in a timely manner, avoiding slippage costs for instance); increased security, scalability and user experience. Note that in principle agents could perform smart contract automation themselves. The motivation is here to outsource the task to a service (**Olas Automate**) doing only this type of work. This is beneficial for the Olas ecosystem, as better user experience implies in principle a higher retention rate. 
+
+### III.3. Olas Relayer {#iii.3.-olas-relayer}
+
+***Gas abstraction** refers to a mechanism or system in blockchain networks that abstracts away or simplifies the payment of gas fees (transaction fees) for end users, typically by having a third party or **relayer** handle the gas payments on their behalf. In traditional blockchain systems, users need to pay gas fees (usually in the native cryptocurrency, like ETH on Ethereum and xDAI on Gnosis) to incentivize validators or miners to include their transaction in a block. Gas abstraction is designed to make this process more user-friendly and can be implemented in various ways.*
+
+*Recall that we call Operators the human beings running autonomous AI agents.* 
+
+In general the main **benefits** of gas abstraction is **improved user experience**, leading to increased participation in the network, as end users (here, the Operators) do not need to hold native tokens (for instance xDAI for the Gnosis chain) in order for their autonomous AI agents to pay gas. In particular, gas could be paid with OLAS (or any stablecoin or ETH) only. 
+
+This is particularly meaningful because there are benefits for the Olas ecosystem for functioning across chains, like **chain-optimized agents operations**, meaning running agents on a certain chain for a certain type of work (for instance for data work it would be beneficial to operate on a chain that has higher KB/s).  
+With abstraction, different autonomous AI agents registered on different chains can collaborate (for instance trader agents and mechs through the mech marketplace). In principle, in the mech marketplace, mechs would be registered on the optimal chain for the type of work they do (as this allows them to be competitive by lowering their price), however, in particular in case of work overload, a mech on another chain could be targeted, which is another case when gas abstraction would be useful. 
+
+Furthermore, gas abstraction may **reduce costs** to the Operators, as gas-optimisation techniques can be implemented in the relayer. Furthermore, as it is the case for any manual work, automatisation can reduce costs due to failure (not enough gas token) and thus missed opportunities. 
+
+This motivates the introduction of Olas Relayer. 
+
+### III.4. Mech Marketplace {#iii.4.-mech-marketplace}
+
+Mechs are agents which execute specialized AI work for other autonomous AI agents in exchange for payment. Currently, each trader agent has at most one single mech to use. This is a problem because it may happen that the mech can’t deliver, for instance if it becomes unavailable, or does not support a required tool which is necessary to handle the request by the agent. In any case the agent should be able to use another mech. Otherwise, this can create a bottleneck in operations, leading to inefficiencies and potential downtime. Furthermore it is difficult to build a mech, and their construction should be made more attractive by enabling mechs to receive requests from multiple agents. 
+
+The **Mech Marketplace** solves the first problem, as it acts as a request relay, where requests are stored. This way, when a mech becomes unavailable, another mech can respond to the request and the response is relayed again by the marketplace to the agent. It also solves the second problem by enabling mechs to receive requests from any number of agents. It also implements a reputation score which motivates builders to construct quality mechs (as a higher score implies in principle higher demand). 
+
+### III.5. Protocol-owned services as fee-capture mechanisms {#iii.5.-protocol-owned-services-as-fee-capture-mechanisms}
+
+#### III.5.a) Idea {#iii.5.a)-idea}
+
+**Protocol-owned services** are simply services owned by the protocol. Olas Automate and Olas Relayer would be some examples. 
+
+We expect the activity of these services to be substantial, as these services provide important benefits to users, such as the ones described in the previous sections. This allows these services to charge a markup over their own costs (in particular gas). In turn, this enables the protocol to collect a part of the markup as a fee, which generates **revenues** for the protocol. 
+
+*Note that these revenues would be shared by the persons who brought the service into existence, meaning: Builders, Launchers, Operators and DAO.* 
+
+#### III.5.b) Computing activity requirements {#iii.5.b)-computing-activity-requirements}
+
+![][image2]
+
+##### III.5)b)i) Formula {#iii.5)b)i)-formula}
+
+The fee that the user/agent has to pay is then provided by the following formula (expressed in the currency chosen by the user for gas payment):  
+**user/agent-facing fee \= gas \+ markup**,  
+where **markup \= service\_markup \+ protocol\_markup**.
+
+![][image3]
+
+##### III.5)b)ii) Example computations {#iii.5)b)ii)-example-computations}
+
+Let us provide some rough estimate of revenues for the protocol that automation and gas abstraction can provide. We will assume that the markup is 10% (this is the fee that Gelato applies for smart contract automation) of the abstracted gas:   
+**protocol\_markup \= (abstracted gas)/10**.
+
+For each chain on which the protocol is deployed, we have that the markup is, in $:   
+            **protocol\_markup \= gwei\_to\_dollar \* (abstracted gas)/10**,   
+where **gwei\_to\_dollar \= 0.0088** is the $ equivalent of Gwei (**1 Gwei \= 0.0088 $**). An approximate of the total markup per day, denoted total\_markup is then:   
+**total\_protocol\_markup=average\_protocol\_markup\*number\_of\_transactions\_per\_day**
+
+Suppose that we first ***target 500$*** per day for **total\_markup**. Let us consider the average gas price for different chains and the corresponding number of transactions per day: 
+
+1. Ethereum: **average\_gas\_price \= 25 Gwei**, so that **number\_of\_transactions\_per\_day \= 22727**;  
+2. Gnosis: **average\_gas\_price \= 1.6 Gwei**, so that **number\_of\_transactions\_per\_day \= 355112**;  
+3. Polygon PoS: **average\_gas\_price \= 49 Gwei**, so that **number\_of\_transactions\_per\_day \= 11595**.
+
+Note that for Solana and Arbitrum for instance the gas price is virtually zero. 
+
+In principle the distribution of the funds over multiple chains will depend on other factors than simply the gas price. Let us do an analysis which assumes an average gas of 10 Gwei. We then have   
+                **average\_protocol\_markup \= 0.0088$**  
+This yields the following:   
+                **number\_of\_transactions\_per\_day \= 56818**  
+For comparison, the number of transactions on Ethereum is approximately 1 million per day. One can find transaction data for each chain on which the protocol is deployed: [Ethereum](https://etherscan.io/token/0x0001A500A6B18995B03f44bb040A5fFc28E45CB0), [Gnosis](https://gnosisscan.io/token/0xcE11e14225575945b8E6Dc0D4F2dD4C570f79d9f), [Polygon PoS](https://polygonscan.com/token/0xFEF5d947472e72Efbb2E388c730B7428406F2F95), [Solana](https://solscan.io/token/Ez3nzG9ofodYCvEmw73XhQ87LWNYVRM2s7diB5tBZPyM), [Arbitrum](https://arbiscan.io/token/0x064f8b858c2a603e1b106a2039f5446d32dc81c1), [Optimism](https://optimistic.etherscan.io/token/0xFC2E6e6BCbd49ccf3A5f029c79984372DcBFE527), [Base](https://basescan.org/token/0x54330d28ca3357F294334BDC454a032e7f353416), [Celo](https://celoscan.io/token/0xacffae8e57ec6e394eb1b41939a8cf7892dbdc51). 
+
+#### III.5.c) Agent instances requirements {#iii.5.c)-agent-instances-requirements}
+
+Note that the increase of the number of transactions necessary to generate revenues from gas abstraction and smart contract automation is expected to follow from staking: together with on-chain contracts for gas abstraction and smart contract automation, other contracts will be deployed in order to define KPIs (introduced in AIP-4) for agent economies. These KPIs “force”, by their definition, the use of Automation, Relayer and Mech Marketplace. Anyone can participate in staking and plug in their agents to reach these KPIs, creating the needed activity within these services.
+
+Furthermore, requirements to generate revenues for the protocol from protocol-owned services include, beyond a certain threshold of activity, a threshold in the number of available agents necessary to handle this activity. We provide an approximate of the number x of agent instances (or equivalently operators) needed, for both automation and gas abstraction. For this we assume that none of the agents are faulty. Assume for simplicity that automation tasks involve only one transaction. Estimating the average time for running such an automation task and transaction relay for the transaction to be 1 minute. Since there are 60\*24 \= 1440 minutes in a day, we need   
+                        **56818/1440 \~ 40**  
+instances running. 
+
+### III.6. Revenues splitting {#iii.6.-revenues-splitting}
+
+Once revenues are generated, these revenues need to be split amongst the ones who contributed to these revenues. We restrict the analysis here to protocol-owned services. AIP-2 specifies that these revenues should be shared amongst the developers, marketers, the chaperone, the operators and the DAO. In order to do so, a pool would be created which receives the revenues and tracks the origin of the revenues (which service generated them). They would then  be distributed amongst the contributors to specific services. 
+
+The factors to consider when choosing splitting fractions are the following: 1\. The DAO should have a significant share to incentivize decentralized governance and the continued growth of the protocol’s ecosystem. It can use its portion to fund community-driven projects; 2\. As the technical backbone, Builders and Launchers require a significant portion of the revenue, especially in the early stages where innovation and stability are key. Their share might be larger at first and decrease over time as the protocol matures and requires less technical intervention.
+
+One example breakdown would be: 
+
+1. Builders: 35%   
+2. Launchers: 35%  
+3. Operators: 10%  
+4. DAO: 30%
+
+## IV. Specification  {#iv.-specification}
+
+In this section we present specifications for the three components introduced: [Olas Automate](#iv.1.-olas-automate), [Olas Relayer](#iv.2-olas-relayer) and [Mech Marketplace](#iv.3.-mech-marketplace). 
+
+### IV.1. Olas Automate {#iv.1.-olas-automate}
+
+Olas Automate comprises the following components: 
+
+* **AutomationVault** (on-chain): on-chain contract which implements the logic of adding, deleting and modifications of relays, maintains a whitelist of relay callers, and handles calls for job.  
+* **Job**: on-chain contract which implements a particular job logic; it is provided by the user.   
+* **AutomationVault** (off-chain): off-chain package which wraps the contract AutomationVault.   
+* **EventMonitor**: skill which continuously listens for AutomationTasks chain events (via the WSSConnection) and adds them to a job queue in the agent state (this job queue is not synchronized across agents). It also handles removing jobs once the corresponding event is received.  
+* **RelayerMonitor**: skill which continuously collects incoming relay requests (via the HTTPServer connection) and adds them to a job queue in the agent state (this job queue is not synchronized across agents). It also handles removing requests once the request has been processed by the FSM skills. Validates incoming requests.  
+* **ConditionChecker**: checks the conditions for every job in its local job queue and marks them as executable whenever the conditions are met. Executable jobs are passed to the other agents for synchronization via CollectDifferentUntilThreshold rounds. The intersection of jobs is taken.  
+* **RelayFetcher**: fetches requests from the RelayerGateway skill queue, checks they are paid for and adds them to the pending task queue via CollectDifferentUntilThreshold rounds.  
+* **Executor**: creates a new Task instance for every pending task and adds it to the ThreadPoolExecutor. It also updates the state on settled transactions.
+
+Here is a diagram which represents the relationships between the components of Olas Automate.   
+![][image4]
+
+### IV.2 Olas Relayer {#iv.2-olas-relayer}
+
+Olas Relayer consists of two objects: an off-chain part called Relayer, and its on-chain counterpart, RelayerContract.
+
+#### IV.2.a) Subsection Breakdown {#iv.2.a)-subsection-breakdown}
+
+This section is divided in the following subsections: 
+
+* **RelayerContract**: explains and provides the structure of RelayerContract  
+* **Relayer**: explains and provides the structure of Relayer.  
+* **Description of the relay system**: describes the workflow of the system formed by RelayerContract and Relayer.  
+* **Transaction relay as part of smart contract automation**: this explains the common points and differences between transaction relay and smart contract automation (supported by Olas Automate).  
+* **Comparison with other technical solutions and competitors**: this compares Olas Relayer with other gas abstraction solutions; this is extended to smart contract automation. 
+
+#### IV.2.b) RelayerContract {#iv.2.b)-relayercontract}
+
+The **RelayerContract** is the contract responsible for relaying all the transactions executed by users (agents and operators): whenever such a user has to pay gas (in native token, xDAI for the gnosis chain), the contract reduces the amount of OLAS that it holds on behalf of the user, as it pays the corresponding amount in xDAI instead of the user.
+
+Only calls on this contract by allowlisted off-chain Relayer (component described below) can be executed. 
+
+The contract has the following functions: 
+
+**operatorDeposit()**  
+This function shall be responsible for handling the operators initial deposits, coming in the form of a ERC20 permit. Algorithm for this shall be as follows:   
+1\. Submit the permit  
+2\. Transfer the funds  
+3\. Increase the operator’s balance with the deposit.  
+
+**createSafe()**  
+This function shall be responsible for creating a safe for the operator. This is possible only if the balance on the contract is sufficient. 
+
+**allowlistAddress()**  
+This function allows the operator to add addresses to the allowlist. 
+
+**removeAddress()**  
+This function removes an address from the allowlist. 
+
+**exec()**  
+This function is responsible for the relay of transactions on behalf of the safe address. The algorithm for this is as follows:   
+1\. Execute the transaction   
+2\. Subtract gas from balance   
+3\. Revert if the balance is not enough
+
+**withdrawDeposit()** operatorOnly  
+This function allows the operator to withdraw from balance. 
+
+**depositFor()**  
+This function allows deposits on behalf of another address (this is useful for managing cross-chain transactions).  
+
+#### IV.2.c) Relayer {#iv.2.c)-relayer}
+
+The relayer is a HTTP server which allows users to send signed Gnosis safe transactions, that it forwards on-chain. It has the following endpoints: 
+
+**POST/submit**   
+This endpoint shall be responsible for sending agent transactions. Each transaction is simulated before being submitted. The sent payload has to be a signed transaction in JSON form. After each transaction, some identifier is returned to the user (for instance hash of the transaction). 
+
+**GET/status/:id**  
+This endpoint shall provide the status of the transaction corresponding to the identifier (id). The possible statuses are the following: SETTLED, QUEUED, REVERTED.
+
+**POST/handle\_deposit**  
+This function handles cross-chain relay by bridging OLAS from the “home chain” to other chains. 
+
+#### IV.2.d) Workflow diagram  {#iv.2.d)-workflow-diagram}
+
+The following figure illustrates the workflow of the components introduced above (RelayerContract and Relayer) as part of a system comprising other components: 
+
+![][image5]
+
+The workflow goes as follows: 1\. The user deposits OLAS tokens onto their Operator App (which manages their interactions with agents and smart contracts); 2\. The Operator App deposits part of these OLAS onto the RelayerContract (using the function ***operatorDeposit()*** introduced above); 3\. The other OLAS tokens are staked on the Staking contract; 4\. The Operator App runs the agent; 5\. Each time the agent decides on a transaction, creates a meta-transaction which contains all relevant information (including the address of the recipient and the amount of the transaction) except for gas fee, signs it and sends it to the Relayer (through the endpoint ***POST/Submit***); 6\. The Relayer relays the transaction on-chain, meaning that the meta-transaction is sent to the RelayerContract after the gas fee is paid by the Relayer and added to the meta-transaction. Then the RelayerContract executes the transaction (using the function ***exec()***).
+
+### IV.3. Mech Marketplace  {#iv.3.-mech-marketplace}
+
+The Mech Marketplace system consists mainly of two smart contracts: MechMarketPlace and Karma. Let us provide a description of these contracts. Then we provide a description of the workflow of this system, including registration, staking, reputation tracking (karma) and delivery by the mechs. 
+
+#### IV.3.a) MechMarketPlace {#iv.3.a)-mechmarketplace}
+
+This contract handles the interactions between requesters (sending requests for a job) and mechs (executing the jobs). Its functions are the following ones: 
+
+**request()**  
+This function registers a request that is sent to a target mech called priority mech. This function checks the validity of this mech (via checkMech) as well as the one of the requester (via checkRequester). It executes the function changeRequesterMechKarma of the corresponding Karma contract, which updates reputation score information for the requester, and requestFromMarketplace of the priority mech, which simply registers the request.  
+
+**deliverMarketPlace()**  
+This function is called by a Mech for delivering an answer to a request.  
+If the mech is different from the priority mech, there are two possibilities: if time \< responseTimeout has passed then the function call is reverted; otherwise, the reputation score of the priority mech is decreased by 1 by the function changeMechKarma of the Karma contract. The request is removed from the request list of the priority mech via its function revokeRequest. Finally an event is emitted that the request was delivered and the requester can access the answer.
+
+**checkMech()**  
+Check for validity of the mech
+
+**checkRequester()**  
+Checks validity of the requester
+
+**getRequestId()**  
+Simply gets the identifier of a request.
+
+**checkStakingInstance()**  
+Checks for staking instance contract validity.
+
+**checkRequestStatus()**  
+Returns the status of a request. The possible values for this status are the following ones: DoesNotExist (no request with specified identifier), RequestedPriority (did not reach timeout), RequestedExpired (timeout), Delivered (the request was delivered by a mech). 
+
+**getRequestCount()**  
+Gets the requests count for a specific account.
+
+**getDeliveriesCount()**  
+Gets the deliveries count for a specific account.
+
+**getMechServiceDeliveriesCount()**  
+Gets deliveries count for a specific mech service multisig.
+
+**getMechDeviveryInfo()**  
+Gets mech delivery information. 
+
+#### IV.3.b) Karma {#iv.3.b)-karma}
+
+The Karma contract handles the reputation score of mechs. It has the following functions: 
+
+**changeImplementation()**  
+Changes the karma implementation contract address.
+
+**changeOwner()**  
+Changes contract owner address.
+
+**setMechMarketplaceStatuses()**  
+Sets Marketplace statuses
+
+**changeMechKarma()**  
+Updates the reputation score of a mech (by adding 1 or \-1).
+
+**changeRequesterMechKarma()**  
+Updates information of the requester about the reputation score of mechs. 
+
+#### IV.3.c) Workflow {#iv.3.c)-workflow}
+
+The workflow is as follows, for a single request: 1\. The requester sends a request to the marketplace providing the information of a target mech for responding to the request (priority mech); 2\. The reputation score information of the requester is updated; 3\. The request is sent to the priority mech; 4\. If the priority mech delivers within the allowed period of time, then its karma is increased by 1 and the request is removed from its requests list; 5\. After timeout, any mech is allowed to deliver, its karma is increased by 1 and the one of the priority mech is decreased by 1; 6\. Event is emitted that the request was delivered.
+
+This is illustrated on the following figure: 
+
+![][image6]
+
+Note that the quality of a mech is not assessed directly but indirectly, since, if the mech delivers but the quality of the response is poor, this mech won’t be set again as priority mech by the requesters receiving its responses. Its reputation score will not increase while the one of other mechs will.  
+
+## V. Analysis and comparison {#v.-analysis-and-comparison}
+
+In this section, we analyze overlaps between the three services as they are currently implemented ([section V.1](#v.1.-overlaps)) and then compare Olas Relayer and Olas Automate to competitors and other technical solutions for gas abstraction and smart contract automation ([section V.2](#v.2.-comparison-with-competitors-and-other-technical-solutions)).
+
+### V.1. Overlaps {#v.1.-overlaps}
+
+#### V.1.a) Analysis {#v.1.a)-analysis}
+
+The existing systems (Relayer,Automate,Mech Marketplace) overlap in their implementation, which implies that it is possible to update them by having common components for the parts on which they overlap.
+
+Principle overlaps:
+
+Gas abstraction and smart contract automation are similar in the sense that they are both mechanisms designed to automate interactions with the blockchain (resp. acquisition of tokens to pay gas, contract execution for smart contract automation), which are otherwise done manually. They may overlap in the sense that gas abstraction relies on transaction relay, consisting itself in allowing a third party to handle the payment of gas, and transaction relay can be seen as part of smart contract automation. 
+
+This is reflected in the implementation, as follows.  
+
+Functional overlaps:
+
+We are considering which components of the three systems under consideration, namely Olas Relayer, Olas Automate and Mech Marketplace, have similar functionality, so that they can be constituted as common resources for the three systems. Let us list functionalities and point to corresponding components of these systems: 
+
+1. **Managing funds**: on-chain vaults which hold and manage funds (handling payments); this corresponds to RelayerContract (for Relayer) and AutomationVault (for Automate); in principle there could be a one set of vaults which manage funds for both Relayer and Automation, and Mech Marketplace as well.    
+2. **Transaction relay**: both Automate and Relayer incorporate transaction relay (handled respectively by Executor and RelayerContract).  
+3. **Receiving requests**: this function is handled by EventMonitor and RelayerMonitor (Automate), and Relayer (Relayer); similar “entrypoint” contracts for Mech Marketplace.
+
+#### V.1.b) Potential update: merging {#v.1.b)-potential-update:-merging}
+
+In principle all these systems could be “merged”, in order to have a common request gateway which receives requests and identifies the nature of the request (automation, gas abstraction, mech agent work), and send it to an appropriate target agent instance (by simply checking that this target is valid provided the nature of the request). One contract per chain would handle funds used to pay for answering the request. The reputation score would be extended to all agent types (not only mechs). 
+
+In principle, gas abstraction and smart contract automation could also be performed by specialized mechs then the marketplace would relay requests to the relevant service, as in the following picture. In both cases, fees can be applied whenever a delivery is made to a request. 
+
+![][image7]
+
+### V.2. Comparison with competitors and other technical solutions {#v.2.-comparison-with-competitors-and-other-technical-solutions}
+
+#### V.2.a) Account abstraction  {#v.2.a)-account-abstraction}
+
+Account abstraction (**ERC-4337**) introduces a series of components which are comparable to Olas Relayer presented above. The main difference is that the roles are more decoupled in account abstraction in order to process bundles of meta-transactions (called user operations in account abstraction) instead of single meta-transactions, which makes the transaction relay system of account abstraction more scalable. The components are the following: 1\. Bundler: creates bundles of meta-transactions from a memory pool; 2\. EntryPoint: in charge of the verification and execution of the meta-transactions in bundles; 3\. Paymaster: in charge of gas fee payment only for the meta-transactions in the bundle; 4\. Aggregator: aggregates meta-transactions signatures into an aggregated signature for the bundle. 
+
+#### V.2.b) Gas abstraction  {#v.2.b)-gas-abstraction}
+
+Other solutions are mainly based on the **ERC-2771** standard (as Olas Relayer), which introduces meta-transactions. This architecture involves four main components: transaction signer \- user, who signs transactions and sends them to a third party to be executed); a Gas Relay \- an account which pays the gas fee and forwards the transaction to a trusted forwarder; the forwarder which validates the transaction data and ensures the transaction is sent to the correct recipient; the recipient contract, receiving the transaction. 
+
+The main specificity of Olas ecosystem is that transactions are signed by autonomous agents.  
+
+Main other solutions: Biconomy, Gelato, Infura, OpenZeppelin, Chainlink, Torus, Octane (for Solana).
+
+1. OpenZeppelin: On the top of ERC-2771, uses ERC-2612 (gasless token approvals in ERC-20 tokens), and ERC-3009 (gasless token transfers through off-chain authorizations); OZ relayer allows pausing the Relayer, accepting requests from Whitelisted Addresses, and Gas Price Capping;  
+2. Biconomy: based on ERC-2771.  
+3. Gelato Relay SDK: based on ERC-2771
+
+#### V.2.c) Smart contract automation  {#v.2.c)-smart-contract-automation}
+
+Main other solutions: 
+
+1. Gelato [Web3 functions](https://docs.gelato.network/web3-services/web3-functions) (Automate):   
+* Automation: by allowing developers to manually schedule or trigger transactions based on predefined conditions  
+* Specifics: developer-friendly; multi-chain support (Ethereum, Polygon, Arbitrum, Optimism); gas abstraction.  
+* Usage/traction: strong presence in the DeFi space;   
+2. [Keep3r network](https://keep3r.network/):   
+* Automation: keepers receive incentives to perform transactions.  
+* Specifics: task flexibility (decentralized job market).  
+* Usage/traction: niche adoption in DeFi.  
+3. [Chainlink automation](https://docs.chain.link/chainlink-automation):  
+* Automation: similar to Keeper networks but based on off-chain nodes and transactions are triggered based on off-chain data and operations  
+* Specifics: gas efficient (bundling); integrated with oracles (conditions for trigger can be more complex and specific to real-world events and data).  
+* Usage/traction: wide adoption and utility across the blockchain ecosystem;  
+4. [OpenZeppelin](https://blog.openzeppelin.com/workshop-recap-automate-smart-contract-workflows):  
+* Automation: automation is governance-centric, in the sense that it relies on governor contracts which can be programmed to be executed based on voting results.   
+* Specifics: high security;  
+* Usage/traction: strong community trust, widely used by enterprises.  
+5. [Ethereum alarm clock](https://ethereum-alarm-clock.com/):  
+* Automation: based purely on time, manual execution for reward.   
+* Specifics:  
+* Usage/traction: limited adoption (niche solution);
+
+## VI. Rationale {#vi.-rationale}
+
+## VII. Security Considerations {#vii.-security-considerations}
+
+The proposal implementation will have to undergo multiple audits.
+
+## VIII. Test cases {#viii.-test-cases}
+
+## IX. Implementation {#ix.-implementation}
+
+AIP-2 introduced a system meant to deploy protocol-owned services.  
+This system shall be applied to Olas Relayer, together with a dependent service, Olas automate. The next steps are the following ones: 1\. Developers contribute with code; 2\. Contributors audit code and deploy the service; 3\. Contributors and DEO refine incentive mechanisms and vote on it; 4\. Service ownership is transferred to the DAO; 5\. Contributors bring the service to market; 6\. Profits from the service are partially donated back to contributing developers through the protocol. 
+
+## X. Copyright {#x.-copyright}
+
+Copyright and related rights waived via \[CC0\](([https://creativecommons.org/publicdomain/zero/1.0/](https://creativecommons.org/publicdomain/zero/1.0/)).
