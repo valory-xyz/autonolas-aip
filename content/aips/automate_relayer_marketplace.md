@@ -20,36 +20,65 @@ updated (*optional): N/A
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 4. Mech Marketplace](#iii-4-mach-marketplace)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. Protocol-owned services as fee-capture mechanisms](#iii-5-protocol-owned-services-as-fee-capture-mechanisms) 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. a. Idea](#iii-5-a-idea) 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. Computing activity requirements](#iii-5-b-computing-activity-requirements) 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. i. Formula](#iii-5-b-i-formula)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. ii. Example computations](#iii-5-b-ii-example-computations)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. c. Agent instances requirements](#iii-5-c-agent-instances-requirements) 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 6. Revenues splitting](#iii-6-revenues-splitting)
 
 [IV. Specification](#iv-specification)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 1. Olas Automate](#iv-1-olas-automate)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. Olas Automate](#iv-2-olas-relayer)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. a. Subsection breakdown](#iv-2-a-subsection-breakdown)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. b. RelayerContract](#iv-2-b-relayer-contract)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. c. Relayer](#iv-2-c-relayer)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. d. Workflow Diagram](#iv-2-d-workflow-diagram)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. Mech Marketplace](#iv-3-mech-marketplace)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. a. MechMarketPlace](#iv-3-a-mechmarketplace)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. b. Karma](#iv-3-b-karma)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. c. Workflow](#iv-3-c-workflow)
+
 [V. Analysis and Comparison](#v-analysis-and-comparison)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. Overlaps](#v-1-overlaps)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. a. Analysis](#v-1-a-analysis)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. b. Potential update: merging](#v-1-b-potential-update-merging)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. Comparison with competitors and other technical solutions](#v-2-comparison-with-competitors-and-other-technical-solutions)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. a. Account abstraction](#v-2-a-account-abstraction)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. b. Gas abstraction](#v-2-b-gas-abstraction)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. c. Smart contract automation](#v-2-c-smart-contract-automation)
+
 [VI. Rationale](#vi-rationale)
+
 [VII. Security Considerations](#vii-security-considerations)
+
 [VIII. Test cases](#viii-test-cases)
+
 [IX. Implementation](#ix-implementation)
+
 [X. Copyright](#x-copyright)
 
 ## I. Simple Summary
