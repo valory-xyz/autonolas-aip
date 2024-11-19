@@ -7,7 +7,7 @@ created: 2024-17-09
 updated (*optional): N/A
 ---
 
-[Link to Simple Summary](#simple-summary)
+
 
 ## I. Simple Summary
 
@@ -40,6 +40,8 @@ Note that specifications are presented for the three components in [section IV](
 ***Smart contract automation** refers to the use of automated processes and tools to execute and manage smart contracts on blockchain platforms without the need for human intervention. This automation can enhance efficiency, reduce the likelihood of errors, and enable real-time execution of contracts based on predefined conditions.*
 
 The **benefits** of smart contract automation *in general* are, for end users: improved speed, efficiency and reliability (transactions are executed in a timely manner, avoiding slippage costs for instance); increased security, scalability and user experience. Note that in principle agents could perform smart contract automation themselves. The motivation is here to outsource the task to a service (**Olas Automate**) doing only this type of work. This is beneficial for the Olas ecosystem, as better user experience implies in principle a higher retention rate. 
+
+[Link to Simple Summary](#simple-summary)
 
 ### III.3. Olas Relayer {#iii.3.-olas-relayer}
 
