@@ -156,7 +156,7 @@ The fee that the user/agent has to pay is then provided by the following formula
 **user/agent-facing fee \= gas \+ markup**,  
 where **markup \= service\_markup \+ protocol\_markup**.
 
-![Markup](../imgs/markup.jpg?raw=true "Markup")
+![Markup](../imgs/markup.png?raw=true "Markup")
 
 ##### III. 5. b. ii. Example computations
 
