@@ -7,9 +7,9 @@ created: 2024-17-09
 updated (*optional): N/A
 ---
 
-## 
+[Link to Simple Summary](#simple-summary)
 
-## [I. Simple summary]{#i.-simple-summary}
+## I. Simple Summary
 
 This proposal introduces protocol-owned services into the Olas ecosystem, focusing on three key areas: smart contract automation (Olas Automate), gas abstraction (Olas Relayer), and marketplace for mechs (Mech Marketplace). The Mech Marketplace enables an agent to hire  mechs for specific AI tasks, incorporating failover mechanisms to ensure another mech can step in if the assigned one fails. These services aim to strengthen the ecosystem by enabling fee-capture from agents, coordinated through staking mechanisms, as shown on the following picture. 
 
