@@ -60,9 +60,9 @@ updated (\*optional):
 
 ## I. Simple summary  {#i.-simple-summary}
 
-This proposal introduces protocol-owned services into the Olas ecosystem, focusing on three key areas: smart contract automation (Olas Automate), gas abstraction (Olas Relayer), and marketplace for mechs (Mech Marketplace). The Mech Marketplace enables an agent to hire  mechs for specific AI tasks,  incorporating failover mechanisms to ensure another mech can step in if the assigned one fails. These services aim to strengthen the ecosystem by enabling fee-capture from agents, coordinated through staking mechanisms, as shown on the following picture. 
+This proposal introduces protocol-owned services into the Olas ecosystem, focusing on three key areas: smart contract automation (Olas Automate), gas abstraction (Olas Relayer), and marketplace for mechs (Mech Marketplace). The Mech Marketplace enables an agent to hire  mechs for specific AI tasks, incorporating failover mechanisms to ensure another mech can step in if the assigned one fails. These services aim to strengthen the ecosystem by enabling fee-capture from agents, coordinated through staking mechanisms, as shown on the following picture. 
 
-![][image1]
+![Overview](../imgs/overview.png?raw=true "Overview")
 
 ## II. Abstract {#ii.-abstract}
 
@@ -123,7 +123,7 @@ We expect the activity of these services to be substantial, as these services pr
 
 #### III.5.b) Computing activity requirements {#iii.5.b)-computing-activity-requirements}
 
-![][image2]
+![Numbers](../imgs/numbers.jpg?raw=true "Numbers")
 
 ##### III.5)b)i) Formula {#iii.5)b)i)-formula}
 
@@ -131,7 +131,7 @@ The fee that the user/agent has to pay is then provided by the following formula
 **user/agent-facing fee \= gas \+ markup**,  
 where **markup \= service\_markup \+ protocol\_markup**.
 
-![][image3]
+![Markup](../imgs/markup.jpg?raw=true "Markup")
 
 ##### III.5)b)ii) Example computations {#iii.5)b)ii)-example-computations}
 
@@ -196,7 +196,8 @@ Olas Automate comprises the following components:
 * **Executor**: creates a new Task instance for every pending task and adds it to the ThreadPoolExecutor. It also updates the state on settled transactions.
 
 Here is a diagram which represents the relationships between the components of Olas Automate.   
-![][image4]
+
+![Automate](../imgs/automate.jpg?raw=true "Automate")
 
 ### IV.2 Olas Relayer {#iv.2-olas-relayer}
 
@@ -264,7 +265,7 @@ This function handles cross-chain relay by bridging OLAS from the “home chain�
 
 The following figure illustrates the workflow of the components introduced above (RelayerContract and Relayer) as part of a system comprising other components: 
 
-![][image5]
+![Relayer](../imgs/relayer.png?raw=true "Relayer")
 
 The workflow goes as follows: 1\. The user deposits OLAS tokens onto their Operator App (which manages their interactions with agents and smart contracts); 2\. The Operator App deposits part of these OLAS onto the RelayerContract (using the function ***operatorDeposit()*** introduced above); 3\. The other OLAS tokens are staked on the Staking contract; 4\. The Operator App runs the agent; 5\. Each time the agent decides on a transaction, creates a meta-transaction which contains all relevant information (including the address of the recipient and the amount of the transaction) except for gas fee, signs it and sends it to the Relayer (through the endpoint ***POST/Submit***); 6\. The Relayer relays the transaction on-chain, meaning that the meta-transaction is sent to the RelayerContract after the gas fee is paid by the Relayer and added to the meta-transaction. Then the RelayerContract executes the transaction (using the function ***exec()***).
 
@@ -335,7 +336,7 @@ The workflow is as follows, for a single request: 1\. The requester sends a requ
 
 This is illustrated on the following figure: 
 
-![][image6]
+![Marketplace](../imgs/marketplace.jpg?raw=true "Marketplace")
 
 Note that the quality of a mech is not assessed directly but indirectly, since, if the mech delivers but the quality of the response is poor, this mech won’t be set again as priority mech by the requesters receiving its responses. Its reputation score will not increase while the one of other mechs will.  
 
@@ -369,7 +370,7 @@ In principle all these systems could be “merged”, in order to have a common 
 
 In principle, gas abstraction and smart contract automation could also be performed by specialized mechs then the marketplace would relay requests to the relevant service, as in the following picture. In both cases, fees can be applied whenever a delivery is made to a request. 
 
-![][image7]
+![Redirect](../imgs/redirect.png?raw=true "Redirect")
 
 ### V.2. Comparison with competitors and other technical solutions {#v.2.-comparison-with-competitors-and-other-technical-solutions}
 
