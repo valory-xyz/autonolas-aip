@@ -1,12 +1,11 @@
----  
-title: AIP-5 Olas Automate and Olas relayer  
-status: WIP  
-author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)  
-shortDescription:   
-discussions:  
-created: 2024-17-09  
-updated (\*optional):  
-—--
+---
+title: AIP-5 Olas Automate, Olas relayer and Mech Marketplace
+status: WIP
+author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)
+shortDescription: Introduction of protocol-owned services in the Olas ecosystem
+created: 2024-17-09 
+updated (*optional): N/A
+---
 
 ## 
 
