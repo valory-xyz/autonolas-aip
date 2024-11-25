@@ -92,7 +92,7 @@ In [III. Motivation](#iii-motivation), we discuss advantages of using a rollup, 
 This section discusses the benefits and details of the introduction of a rollup in the Olas ecosystem. 
 
 
-## III.1. Section Breakdown
+## III. 1. Section Breakdown
 
 It is organized into the following subsections:
 
@@ -103,7 +103,7 @@ It is organized into the following subsections:
 - **[III.6. Sequencer revenues](#iii-6-sequencer-revenues)**:  in this subsection, we discuss how fees may be collected from the use of a sequencer provided by a rollup-as-a-service and conditions under which charging a fee for this service would be beneficial for the protocol.  
 - **[III.7. Choice of gas token](#iii-7-choice-of-gas-token)**: here we discuss the respective benefits of using OLAS versus a stablecoin in order to pay gas.   
 
-### III.2. Advantages of using Rollups
+### III. 2. Advantages of using Rollups
 
 The main advantages for introducing a rollup are the following ones for Olas ecosystem:
 
@@ -224,7 +224,7 @@ As Olas ecosystem aims at a broad range of applications, it might be best to con
 However zk-rollups are not production ready and no rollup-as-a-service recommends them at the moment. Hence the choice is oriented towards optimistic rollups. 
 
 
-### III.4. Comparison of Rollup-as-a-Service Solutions
+### III. 4. Comparison of Rollup-as-a-Service Solutions
 
 A **Rollup as a Service** (RaaS) is a cloud-based solution that provides developers with the infrastructure and tools to deploy and manage rollup solutions on blockchains without needing extensive expertise in blockchain technology. RaaS enables projects to leverage the scalability and efficiency of rollups while simplifying the development process through easy-to-use interfaces, pre-configured settings, and ongoing support.
 
@@ -241,7 +241,7 @@ Let us compare the ones which rely on optimistic rollups:
 6. **Zeeve**: Key RaaS provider supporting both Optimistic and ZK Rollup stacks, fully managed Enterprise-grade infrastructure, in-depth expertise with protocol stack-level customizations, and focus on scalability and security. Native integration with Traceye Data Indexing, Tracehawk Block Explorer, Cero decentralized sequencer, RaaS dashboard, Account Abstraction, Decentralized Provers, DAs, etc. Also brings strong KOLs and co-marketing support.
 
 
-### III.5. Incorporating the Rollup in the Protocol
+### III. 5. Incorporating the Rollup in the Protocol
 
 In this section, we compare the possibilities for incorporating the rollup, and argue for the use of rollup-as-a-service. 
 
@@ -298,7 +298,7 @@ Leveraging a Rollup-as-a-Service (RaaS) provider equips rollups with a comprehen
 In particular, account abstraction is highly advantageous for AI agents, as it enables gasless transactions on the OLAS rollup (gas abstraction). This allows for frictionless agent-to-agent communication on the chain through transaction relays and bundlers. 
   
 
-### III.6. Sequencer Revenues
+### III. 6. Sequencer Revenues
 
 In the same way as in [AIP-5](https://github.com/valory-xyz/autonolas-aip/blob/aip-5/content/aips/automate_relayer_marketplace.md), we consider potential revenues that charging users fees for the use of Olas Rollup could bring to the protocol. 
 
@@ -358,7 +358,7 @@ Here is a table of example numbers:
 
 
 
-### III.7. Choice of Gas Token
+### III. 7. Choice of Gas Token
 
 The rollup would need to define a token in order to pay gas for settlement on L1 (Ethereum). There are multiple choices here, including: native token (OLAS), ETH, or a stablecoin (like xDAI). 
 
