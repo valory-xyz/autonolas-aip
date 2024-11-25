@@ -351,6 +351,11 @@ where **n** is the number of transactions per month and **s** is the subscriptio
 
 Here is a table of example numbers: 
 
+| | Low usage (2000$/month deficit) | Medium usage (zero revenue) | High usage (15000$/month revenue) |
+|----------|----------|----------|----------|
+| Conduit subscription fee (3k) + 5% of revenues taken    | 119,318  | 357,956     | 2,147,740 |
+| Standard usage (10k) + 5% of revenues taken    | 954,551 | 1,193,189 | 2,982,973 |
+
 
 
 ### III.7. Choice of Gas Token
