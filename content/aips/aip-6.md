@@ -9,36 +9,70 @@ updated: 2024-15-10
 ---
 
 [I. Simple Summary](#i-simple-summary)
+
 [II. Abstract](#ii-abstract)
+
 [III. Motivation](#iii-motivation)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 1. Section breakdown](#iii-1-section-breakdown)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 2. Advantages of using Rollups](#iii-2-advantages-of-using-rollups)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 3. Comparison between rollup stacks](#iii-3-comparison-between-rollup-stacks)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. Optimistic rollups](#iii-3-a-optimistics-rollups)
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. i. Technical Comparison](#iii-3-a-i-technical-comparison)
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. ii. Brand and Network Effects](#iii-3-a-ii-brand-and-network-effects)
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. iii. Note on usage metrics](#iii-3-a-iii-note-on-usage-metrics)
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 
+&nbsp;[III. 3. a. i. Technical Comparison](#iii-3-a-i-technical-comparison)
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 
+&nbsp;[III. 3. a. ii. Brand and Network Effects](#iii-3-a-ii-brand-and-network-effects)
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 
+&nbsp;[III. 3. a. iii. Note on usage metrics](#iii-3-a-iii-note-on-usage-metrics)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. iv. Developer community](#iii-3-a-iv-developer-community)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. v. Conclusion](#iii-3-a-v-conclusion)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. b. Zero-knowledge rollups](#iii-3-b-zero-knowledge-rollups)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 4. Comparison of rollup-as-a-service solutions](#iii-4-comparison-of-rollup-as-a-service-solutions)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 5. Incorporating the rollup in the protocol](#iii-5-incorporating-the-rollup-in-the-protocol)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 5. a. From scratch](#iii-5-a-from-scratch)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 5. b. Using a rollup framework](#iii-5-b-using-a-rollup-framework)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 5. c. Using a rollup-as-a-service](#iii-5-c-using-a-rollup-as-a-service)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 6. Sequencer revenues](#iii-6-sequencer-revenues)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 6. a. Cost analysis](#iii-6-a-cost-analysis)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 6. b. Transaction-specific costs diagram](#iii-6-b-transaction-specific-costs-diagram)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III.6.c. Computing activity requirements](#)
+
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 7. Choice of gas token](#iii-7-choice-of-gas-token)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 7. a. Factors to consider](#iii-7-a-factors-to-consider)
+
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 7. b. Modelisation](#iii-7-b-modelisation)
+
 [IV. Specification](#iv-specification)
+
 [V. Rationale](#v-rationale)
+
 [VI. Security considerations](#vi-security-considerations)
+
 [VII. Test cases](#vii-test-cases)
+
 [VIII. Implementation](#viii-implementation)
+
 [IX. Next steps](#ix-next-steps)
+
 [X. Copyright](#x-copyright)
 
 # I. Simple Summary
