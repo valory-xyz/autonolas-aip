@@ -9,7 +9,7 @@ updated (*optional): N/A
 
 ## I. Simple Summary
 
-This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables any agent to hire a mech to perform a specific task, which can be of various types, such as *AI work*, *smart contract automation*, and *transaction relay* for instance. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails. Furthermore, any agent can decide to become a mech. This architecture aims to strengthen the ecosystem by enabling fee-capture from agents. In the future these agents will be coordinated through staking mechanisms.
+This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables any agent to hire a mech to perform a specific task, which can be of various types, such as *AI work*, *smart contract automation*, and *transaction relay* for instance. This is summarized in the following figure. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails. Furthermore, any agent can decide to become a mech. This architecture aims to strengthen the ecosystem by enabling fee-capture from agents. In the future these agents will be coordinated through staking mechanisms.
 
 In the remainder of the text, we call requester any agent sending a request through the marketplace and mech any agent answering a request. The marketplace is called *Mech Marketplace*.
 
@@ -284,6 +284,8 @@ Currently, there are two types of payment models for mechs: a fixed price model 
 
 The base payment model for mechs is demonstrated on the following figure: 
 
+![Mech base payment model ](../imgs/mech_payment.png?raw=true "Mech base payment model")
+
 In this model, whenever a requester sends a request, they send funds and request to a contract (Mech contract) which transmits the request to the corresponding off-chain mech service. The service unlocks these funds after it responds to the request. The price is fixed for a mech. 
 
 ### VI. 2. With the Marketplace
@@ -328,9 +330,13 @@ The ***first one*** would be the simplest and most cost-efficient, provided that
 
 Let us illustrate how it would work. For instance if **10%** of the initial subscription deposit is taken by the protocol, the user would pay $111 upfront and from this deposit $11 would be directly sent to a protocol-owned address and $100 would be held in the subscription contract. 
 
+![Fee from deposit](../imgs/fee_deposit.png?raw=true "Fee from deposit")
+
 ### VII. 2. Collecting fees from each transaction 
 
 For the ***second one***, each time a transaction is executed, a share of the amount would be taken by the protocol. 
+
+![Fee from transactions](../imgs/fee_trans.png?raw=true "Fee from transactions")
 
 In practice in this diagram, no micro-payments would be executed: they would be accumulated at the level of the subscription contract, allowing the protocol to withdraw any time.
 
@@ -402,6 +408,8 @@ The fee that the user/agent has to pay is then provided by the following formula
 **<span style="color:#5A8ED8;">user/agent-facing fee = gas + markup</span>**,
 
 where **<span style="color:#5A8ED8;">markup = service_markup + protocol_markup</span>**.
+
+![Markup equation](../imgs/markup_service.png?raw=true "Markup equation")
 
 ##### VII. 4. b. iii. Example computations 
 
@@ -616,6 +624,8 @@ The architecture would be as follows. One marketplace contract is deployed on ea
 
 Requests are sent with the address of the mech and data about the chain it is registered on.
 
+![Cross chain i](../imgs/cross_chain_1.png?raw=true "Cross chain i")
+
 Funds are bridged if necessary and the request is routed to the corresponding marketplace and then to the priority mech. 
 
 ##### IX. 3. b. ii. Taking over
@@ -628,6 +638,8 @@ If the priority mech does not deliver in time, there are two possibilities:
 In the second case, it would be inefficient to bridge funds before the request is delivered, as it may happen that they have to be bridged twice. 
 
 In that case, funds are kept on the marketplace contract where funds are deposited, and request is routed to the other marketplace. When a mech delivers, it specifies as parameter the chain on which the request was made, the funds are bridged from the request marketplace to the delivery marketplace and then sent to the mech: 
+
+![Cross chain ii](../imgs/cross_chain_2.png?raw=true "Cross chain ii")
 
 ##### IX. 3. b. iii. Saving bridging fees
 
@@ -648,6 +660,8 @@ In predictive markets, three mechs could collaborate in order to make prediction
 The flow would go as follows. Mech-1 receives a request from an agent, and sends one request to Mech-2 and one to Mech-3, and waits for the deliveries. When both have answered, Mech-1 does additional work and then delivers the request by the agent. All the requests and deliveries are made through the marketplace. 
 
 In terms of payments, there are two options. 1. They can be made in series: first Mech-1 takes payment after delivering and then Mech-2 and Mech-3 are paid by Mech-1; 2. Otherwise, counts are kept at the level of the marketplaces and then one transaction is made for each of the mechs 1,2,3. 
+
+![Cross chain iii](../imgs/cross_chain_3.png?raw=true "Cross chain iii")
 
 The reputation score update for this kind of case should be: that if Mech-2 or Mech-3 is faulty, only them have a decrease in reputation score and not Mech-1. This should be handled at the level of the marketplaces, which would record “request chains” instead of only requests, and whenever the request is not delivered by the priority mech, the mechs at the “origin” of the fault have reputation score decreased by 1 (the others score don’t change). 
 
@@ -706,6 +720,8 @@ Currently, the requester specifies the deadline for the priority mech to deliver
 
 Also, if a mech is overloaded with requests, the karma of the mech should not decrease after a certain period of time from receiving the request. We should be careful that the request is sent to a mech only when it is "ready" to take care of it. Request queues should be handled at the level of the marketplace, and a mech can decide manually to take the request, and time starts counting from this time. The information of the workload of each mech should be public so that agents can decide to wait or not (and go for a less reputable and less loaded mech).
 
+![Queue system](../imgs/queue_system.png?raw=true "Queue system")
+
 Furthermore, the Karma system leaves the possibility of the priority mech to deliver after the deadline has passed. In that case, the Karma of the priority mech should still decrease (potentially not by 1, but 0.5 for instance): 
 
 1. Delivery by priority mech and **t_delivery > timeOut**:   Karma += -0.5
@@ -731,6 +747,8 @@ Note that when the marketplace implements a reputation score, the ***cold-start 
 Eventually the price of a service should vary depending on the work, and this price should be agreed upon by the requester and the mech/service before the request is received. The same applies to the deadline. 
 
 The way this would work is that a request would specify a type of work (on the top of the type of service). For instance: “ai_work” or “quote” for a mech. The mech delivers a “quote” request by sending back two parameters: **deadline** and **price**. There are two possibilities here: this proposal is rejected and the request is canceled; or the proposal is accepted and the request is sent to the mech. 
+
+![Quote system](../imgs/quote_2.png?raw=true "Quote system")
 
 Note that for this to make sense, the price of the quote should be significantly lower than the typical price of a work and should be fixed. 
 
@@ -864,6 +882,8 @@ The workflow would be as follows:
 3. The contract transmits the request to the priority service. 
 4. Service takes action, and for each action takes payment from the funds available for the requester on the marketplace contract, in a specific subscription whenever there is one, or from the marketplace contract otherwise. 
 5. If the requester does not have a subscription with the service, if the priority service does not deliver in time, any other service of the same type on the same chain can take over and take payment. The karma is updated accordingly. Fee is taken at the moment of the payment and sent to a protocol-owned address. 
+
+!["Overview Specification"](../imgs/final.png?raw=true "Overview Specification")
 
 ## XI. Front-end 
 
