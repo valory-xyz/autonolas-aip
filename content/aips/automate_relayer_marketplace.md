@@ -7,82 +7,6 @@ created: 2024-17-09
 updated (*optional): N/A
 ---
 
-[I. Simple Summary](#i-simple-summary)
-
-[II. Abstract](#ii-abstract) 
-
-[III. Motivation](#iii-motivation)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 2 Olas Automate](#iii-2-olas-automate)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 3. Olas Relayer](#iii-3-olas-relayer)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 4. Mech Marketplace](#iii-4-mach-marketplace)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. Protocol-owned services as fee-capture mechanisms](#iii-5-protocol-owned-services-as-fee-capture-mechanisms) 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. a. Idea](#iii-5-a-idea) 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. Computing activity requirements](#iii-5-b-computing-activity-requirements) 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. i. Formula](#iii-5-b-i-formula)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. ii. Example computations](#iii-5-b-ii-example-computations)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. c. Agent instances requirements](#iii-5-c-agent-instances-requirements) 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 6. Revenues splitting](#iii-6-revenues-splitting)
-
-[IV. Specification](#iv-specification)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 1. Olas Automate](#iv-1-olas-automate)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. Olas Automate](#iv-2-olas-relayer)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. a. Subsection breakdown](#iv-2-a-subsection-breakdown)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. b. RelayerContract](#iv-2-b-relayer-contract)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. c. Relayer](#iv-2-c-relayer)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. d. Workflow Diagram](#iv-2-d-workflow-diagram)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. Mech Marketplace](#iv-3-mech-marketplace)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. a. MechMarketPlace](#iv-3-a-mechmarketplace)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. b. Karma](#iv-3-b-karma)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. c. Workflow](#iv-3-c-workflow)
-
-[V. Analysis and Comparison](#v-analysis-and-comparison)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. Overlaps](#v-1-overlaps)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. a. Analysis](#v-1-a-analysis)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 1. b. Potential update: merging](#v-1-b-potential-update-merging)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. Comparison with competitors and other technical solutions](#v-2-comparison-with-competitors-and-other-technical-solutions)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. a. Account abstraction](#v-2-a-account-abstraction)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. b. Gas abstraction](#v-2-b-gas-abstraction)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[V. 2. c. Smart contract automation](#v-2-c-smart-contract-automation)
-
-[VI. Rationale](#vi-rationale)
-
-[VII. Security Considerations](#vii-security-considerations)
-
-[VIII. Test cases](#viii-test-cases)
-
-[IX. Implementation](#ix-implementation)
-
-[X. Copyright](#x-copyright)
-
-
-
 ## I. Simple Summary
 
 This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables any agent to hire a mech to perform a specific task, which can be of various types, such as *AI work*, *smart contract automation*, and *transaction relay* for instance. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails. Furthermore, any agent can decide to become a mech. This architecture aims to strengthen the ecosystem by enabling fee-capture from agents. In the future these agents will be coordinated through staking mechanisms.
@@ -145,7 +69,7 @@ As we will see below, we will allow any agent in Olas to register as a Mech on t
 
 In this section we present specifications for the automation service, the gas abstraction service and the Mech Marketplace, in the corresponding subsections: [IV. 1. Smart contract automation](#iv-1-smart-contract-automation), [IV. 2. Gas abstraction](#iv-2-gas-abstraction), [IV. 3. Mech Marketplace](#iv-3-mech-marketplace).
 
-### IV. 1. Olas Automate 
+### IV. 1. Smart contract automation 
 
 Olas Automate will comprise the following components: 
 
@@ -162,7 +86,7 @@ Here is a diagram which represents the relationships between the components of O
 
 ![Automate](../imgs/automate.jpg?raw=true "Automate")
 
-### IV. 2. Olas Relayer
+### IV. 2. Gas abstraction
 
 Olas Relayer will consist of two objects: an off-chain part called Relayer, and its on-chain counterpart, RelayerContract.
 
@@ -513,6 +437,11 @@ instances running, if on Solana for instance, and
 **971/1440 ~ 1**
 on Ethereum.
 
+|  | Transaction/day requirement (for $500 per day) | Agent instances requirement (for $500 per day) |
+|----------|----------|----------|
+| Solana    | 59524    | 41     |
+| Ethereum | 971     | 1  |
+
 ### VII. 5. Numbers for protocol shares
 
 In this section, we study other marketplaces and the fee that they apply (which can be a base for the fees taken in the Mech Marketplace). 
@@ -560,6 +489,10 @@ Ideally, the computation of these fees would be determined by machine-learning a
 For the sake of proposing a model for now, let us denote by **activity_mech** the number of requests that a mech has received in the last **T= 7 days**, and max_activity the maximum of this number over all mechs currently running. Then we would apply the following fee (on the top of the base fee above of 10%) on each payment taken by a mech depending on the value of  
 
 **<span style="color:#5A8ED8;">r_mech = activity_mech / max_activity</span>** 
+
+| **Low demand** (<span style="color:#5A8ED8;">r_mech < 0.3</span>) | **Medium demand** (<span style="color:#5A8ED8;">0.3 < r_mech < 0.6</span> | **High demand** (<span style="color:#5A8ED8;">r_mech > 0.6</span>) |
+|----------|----------|----------|
+| <span style="color:#5A8ED8;">0%</span>   | <span style="color:#5A8ED8;">2.5%</span>     | <span style="color:#5A8ED8;">7.5%</span>     |
 
 Such numbers could be adjusted a posteriori (or repeatedly) based on observed dynamics. 
 
@@ -950,6 +883,14 @@ As the choice of these parameters depends on the dynamics of the whole system, s
 
 Here is a table summarizing the different fees discussed. Each of them may in principle depend on the service (AI work, gas abstraction, automation), which means that they would correspond to as many parameters as types of services in the marketplace. 
 
+| Fee name | Description | Hyperlink |
+|:-----------|:------------:|------------:|
+| deposit_fee       | Fee taken when the requester deposits funds         | [section VII. 1.](#vii-1-collecting-fees-from-initial-deposits)        |
+| delivery_fee       | Fee taken when the request is routed to a mech (or service in general).        | [section VII. 2.](#vii-2-collecting-fees-from-each-transaction)        |
+| low_demand_fee,medium_demand_fee, high_demand_fee       | Fee which is applied to payment taken by a mech (or service in general) when it has low/medium/high demand          | [section VIII. 1.](#viii-1-demand-dependant-fees)        |
+| priority_access_fee       | Applied on payment surcharge when the requester wants their request to be treated with higher priority.        | [section IX. 4.)](#ix-4-service-specific-payment-models)        |
+| cross_chain_fee       | Fee applied for cross-chain optimized mech operations         | [section IX. 3. b. iii.](#ix-3-b-iii-saving-bridging-fees)    |
+
 ## XIII. Execution timeline considerations
 
 The possibility will be left to the protocol to decide if certain fees are taken or not via a “fee switch” that can be turned on or off in order to adjust this trade-off. 
@@ -960,7 +901,7 @@ Ultimately the payment model should depend partially on the fee model. In the im
 
 All the fees should be implemented in a modular way in order to manipulate them separately. 
 
-In the immediate future, changes suggested in [section VII. 3.](#vii-3-in-practice)) can be implemented first, with experimental parameters. Provided that deposit fees can be prohibitive in early stages, we would fix deposit_share and deposit_switch to zero. Only deliver_switch will be 1. In order to fix the value of the constants deliver_share, there are three reasonable options: 
+In the immediate future, changes suggested in [[section VII. 3.](#vii-3-in-practice)] can be implemented first, with experimental parameters. Provided that deposit fees can be prohibitive in early stages, we would fix deposit_share and deposit_switch to zero. Only deliver_switch will be 1. In order to fix the value of the constants deliver_share, there are three reasonable options: 
 
 1. Rely on early users/community feedback
 2. A/B testing - study responses to fee changes (elasticity of demand and supply). 
@@ -988,3 +929,221 @@ The proposal implementation will have to undergo multiple audits.
 ## XVIII. Copyright
 
 Copyright and related rights waived via \[CC0\](([https://creativecommons.org/publicdomain/zero/1.0/](https://creativecommons.org/publicdomain/zero/1.0/)).
+
+---
+
+## Table of contents
+
+[I. Simple Summary](#i-simple-summary)
+
+[II. Abstract](#ii-abstract) 
+
+[III. Motivation](#iii-motivation)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 2 Olas Automate](#iii-2-olas-automate)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 3. Olas Relayer](#iii-3-olas-relayer)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 4. Mech Marketplace](#iii-4-mach-marketplace)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. Protocol-owned services as fee-capture mechanisms](#iii-5-protocol-owned-services-as-fee-capture-mechanisms) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. a. Idea](#iii-5-a-idea) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. Computing activity requirements](#iii-5-b-computing-activity-requirements) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. i. Formula](#iii-5-b-i-formula)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. b. ii. Example computations](#iii-5-b-ii-example-computations)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 5. c. Agent instances requirements](#iii-5-c-agent-instances-requirements) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[III. 6. Revenues splitting](#iii-6-revenues-splitting)
+
+[IV. Specification](#iv-specification)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 1. Olas Automate](#iv-1-olas-automate)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. Olas Automate](#iv-2-olas-relayer)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. a. Subsection breakdown](#iv-2-a-subsection-breakdown)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. b. RelayerContract](#iv-2-b-relayer-contract)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. c. Relayer](#iv-2-c-relayer)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 2. d. Workflow Diagram](#iv-2-d-workflow-diagram)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. Mech Marketplace](#iv-3-mech-marketplace)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. a. MechMarketPlace](#iv-3-a-mechmarketplace)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. b. Karma](#iv-3-b-karma)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IV. 3. c. Workflow](#iv-3-c-workflow)
+
+[V. Generalized Mech Marketplace](#v-generalized-mech-marketplace)
+
+&nbsp;&nbsp;&nbsp;[V. 1. Presentation](#v-1-presentation)
+
+&nbsp;&nbsp;&nbsp;[V. 2. Key performance indicators (KPIs)](#v-2-key-performance-indicators-kpis)
+
+&nbsp;&nbsp;&nbsp;[V. 3. General design considerations](#v-3-general-design-considerations)
+
+[VI. Description of the current payment models for mechs](#vi-description-of-the-current-payment-models-for-mechs)
+
+&nbsp;&nbsp;&nbsp;[VI. 1. Base model](#vi-1-base-model)
+
+&nbsp;&nbsp;&nbsp;[VI. 2. With the Marketplace](#vi-2-with-the-marketplace)
+
+&nbsp;&nbsp;&nbsp;[VI. 3. Subscriptions](#vi-3-subscriptions)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VI. 3. a. Principle](#vi-3-a-principle)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VI. 3. b. Implementation](#vi-3-b-implementation)
+
+[VII. A simple fee model](#vii-a-simple-fee-model)
+
+&nbsp;&nbsp;&nbsp;[VII. 1. Collecting fees from initial deposits](#vii-1-collecting-fees-from-initial-deposits)
+
+&nbsp;&nbsp;&nbsp;[VII. 2. Collecting fees from each transaction](#vii-2-collecting-fees-from-each-transaction)
+
+&nbsp;&nbsp;&nbsp;[VII. 3. In practice](#vii-3-in-practice)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 3. a. Without subscription](#vii-3-a-without-subscription)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 3. b. With subscriptions](#vii-3-b-with-subscriptions)
+
+&nbsp;&nbsp;&nbsp;[VII. 4. Computing turnover and total fees](#vii-4-computing-turnover-and-total-fees)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. a. Current turnover data](#vii-4-a-current-turnover-data)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. b. Activity requirements](#vii-4-b-activity-requirements)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. b. i.  Principle](#vii-4-b-i-principle)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. b. ii. Formula for transaction requirements](#vii-4-b-ii-formula-for-transaction-requirements)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. b. iii. Example computations](#vii-4-b-iii-example-computations)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 4. b. iv. Agent instances requirements](#vii-4-b-iv-agent-instances-requirements)
+
+&nbsp;&nbsp;&nbsp;[VII. 5. Numbers for protocol shares](#vii-5-numbers-for-protocol-shares)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 5. a. Freelance work marketplaces: Fiverr and Upwork](#vii-5-a-freelance-work-marketplaces)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VII. 5. b. Other AI agents marketplaces](#vii-5-b-other-ai-agents-marketplaces)
+
+[VIII. Adding other fees](#viii-adding-other-fees)
+
+&nbsp;&nbsp;&nbsp;[VIII. 1. Demand-dependant fees](#viii-1-demand-dependant-fees)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 1. a. Description](#viii-1-a-description)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 1. b. In practice](#viii-1-b-in-practice)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. c. Remarks](#viii-2-c-remarks)
+
+&nbsp;&nbsp;&nbsp;[VIII. 2. Remarks](#viii-2-remarks)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. a. Time-based subscriptions](#viii-2-a-time-based-subscriptions)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. a. i. Description and advantages](#viii-2-a-i-description-and-advantages)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. a. ii. Modelisation](#viii-2-a-ii-modelisation)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. b. Automated deposits](#viii-2-b-automated-deposits)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VIII. 2. c. Other fees](#viii-2-c-other-fees)
+
+[IX. Adaptation of the payment model and funds architecture](#ix-adaptation-of-the-payment-model-and-funds-architecture)
+
+&nbsp;&nbsp;&nbsp;[IX. 1. n-sided and hybrids marketplaces](#ix-1-n-sided-and-hybrids-marketplaces)
+
+&nbsp;&nbsp;&nbsp;[IX. 2. Common vault contract](#ix-2-common-vault-contract)
+
+&nbsp;&nbsp;&nbsp;[IX. 3. Cross-chain considerations](#ix-3-cross-chain-considerations)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. a. Discussion](#ix-3-a-discussion)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. b. Implementation](#ix-3-b-implementation)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. b. i. Cross-chain workflow](#ix-3-b-i-cross-chain-workflow)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. b. ii. Taking over](#ix-3-b-ii-taking-over)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. b. iii. Saving bridging fees](#ix-3-b-iii-saving-briding-fees)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. b. iv. Remarks](#ix-3-b-iv-remarks)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 3. c. Examples of use cases](#ix-3-c-examples-of-use-cases)
+
+&nbsp;&nbsp;&nbsp;[IX. 4. Service-specific payment models](#ix-4-service-specific-payment-models)
+
+&nbsp;&nbsp;&nbsp;[IX. 5. Commonized features](#ix-5-commonized-features)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. a. Request handling](#ix-5-a-request-handling)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. a. i. Description](#ix-5-a-i-description)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. a. ii. Special cases](#ix-5-a-ii-special-cases)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b. Reputation score](#ix-5-b-reputation-score)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b. i. Extending to other services](#ix-5-b-i-extending-to-other-services)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b. ii. Queue system](#ix-5-b-ii-queue-system)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b) iii) On the cold-start problem](#ix-5-b-iii-on-the-cold-start-problem)
+
+&nbsp;&nbsp;&nbsp;[IX. 6. Quote system](#ix-6-quote-system)
+
+&nbsp;&nbsp;&nbsp;[IX. 7. Security considerations](#ix-7-security-considerations)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 7. a. With the current implementation](#ix-7-a-with-the-current-implementation)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 7. b. In the generalized marketplace](#ix-7-b-in-the-generalized-marketplace)
+
+&nbsp;&nbsp;&nbsp;[IX. 8. Registries](#ix-8-registries)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 8. a. Enabling agents to become-mechs](#ix-8-a-enabling-agents-to-become-mechs)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 8. b. Staking requirements](#ix-8-b-staking-requirements)
+
+[X. Generalized marketplace and its workflow](#x-generalized-marketplace-and-its-workflow)
+
+&nbsp;&nbsp;&nbsp;[X. 1. Generalized Marketplace specification](#x-1-generalized-marketplace-specification)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. a. Funds holding](#x-1-a-funds-holding)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. b. Requests and delivers handling](#x-1-b-requests-and-delivers-handling)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. c. Payments management](#x-1-c-payments-management)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. d. Fee management](#x-1-d-fee-management)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. e. Reputation scoring](#x-1-e-reputation-scoring)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. f. Handling cross-chain](#x-1-f-handling-cross-chain)
+
+&nbsp;&nbsp;&nbsp;[X. 2. Workflow and diagram](#x-2-workflow-and-diagram)
+
+[XI. Front-end](#xi-front-end)
+
+[XII. Fee table](#xii-fee-table)
+
+[XIII. Execution timeline considerations](#xiii-execution-timeline-consideration)
+
+&nbsp;&nbsp;&nbsp;[XIII. 1. Implementation](#xiii-1-implementation)
+
+&nbsp;&nbsp;&nbsp;[XIII. 2. Fee schedule]($xiii-2-fee-schedule)
+
+[XIV. Rationale](#xiv-rationale)
+
+[XV. Security Considerations](#xv-security-consideration)
+
+[XVI. Test cases](#xvi-test-cases)
+
+[XVII. Implementation](#xvii-implementation)
+
+[XVIII. Copyright](#xviii-copyright)
+
+
+
