@@ -1094,7 +1094,7 @@ Copyright and related rights waived via \[CC0\](([https://creativecommons.org/pu
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b. ii. Queue system](#ix-5-b-ii-queue-system)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b) iii) On the cold-start problem](#ix-5-b-iii-on-the-cold-start-problem)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IX. 5. b. iii. On the cold-start problem](#ix-5-b-iii-on-the-cold-start-problem)
 
 &nbsp;&nbsp;&nbsp;[IX. 6. Quote system](#ix-6-quote-system)
 
@@ -1119,8 +1119,11 @@ Copyright and related rights waived via \[CC0\](([https://creativecommons.org/pu
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. b. Requests and delivers handling](#x-1-b-requests-and-delivers-handling)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. c. Payments management](#x-1-c-payments-management)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. d. Fee management](#x-1-d-fee-management)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. e. Reputation scoring](#x-1-e-reputation-scoring)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[X. 1. f. Handling cross-chain](#x-1-f-handling-cross-chain)
 
 &nbsp;&nbsp;&nbsp;[X. 2. Workflow and diagram](#x-2-workflow-and-diagram)
