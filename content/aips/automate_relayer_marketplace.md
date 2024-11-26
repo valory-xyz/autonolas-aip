@@ -20,7 +20,10 @@ In the remainder of the text, we call requester any agent sending a request thro
 Let us break down the document structure. We first discuss in [[III. Motivation](#iii-motivation)] the motivation for introducing a marketplace for mechs, as well as smart contract automation and gas abstraction in the Olas ecosystem (these two will take the form of tasks that mechs can perform, on top of the existing task of AI workflow).
 In [[IV. Specification](#iv-specification)], we provide details for how the automation and gas abstraction services could work, as well as a first implementation of the Mech Marketplace. 
 
-In terms of deployment of these services, we considered two possible routes: 1) implement them as protocol-owned services, following the procedure described in [AIP-2](https://github.com/valory-xyz/autonolas-aip/pull/2); 2) or enable operators to run these services in the same way as they run [sovereign agents services](https://olas.network/learn). 
+In terms of deployment of these services, we considered two possible routes: 
+
+1. Implement them as protocol-owned services, following the procedure described in [AIP-2](https://github.com/valory-xyz/autonolas-aip/pull/2); 
+2. Enable operators to run these services in the same way as they run [sovereign agents services](https://olas.network/learn). 
  
 We argue for rejecting the first option in [[V. Generalized Mech Marketplace](#v-generalized-mech-marketplace)]. Following the second option, we also argue for enabling any agent to register as a mech, allowing them to provide whatever type of service they choose to offer.
 
@@ -231,7 +234,10 @@ Note that the quality of a mech is not assessed directly but indirectly, since, 
 
 ### V. 1. Presentation 
 
-As written in the abstract, we envisioned two routes for deploying these services: 1) implement them as protocol-owned services, following the procedure described in [AIP-2](https://github.com/valory-xyz/autonolas-aip/pull/2); 2) or enable operators to run these services as sovereign agents. 
+As written in the abstract, we envisioned two routes for deploying these services: 
+
+1. Implement them as protocol-owned services, following the procedure described in [AIP-2](https://github.com/valory-xyz/autonolas-aip/pull/2); 
+2. Enable operators to run these services as sovereign agents. 
 
 Since the deployment of a PoSe requires a lot of effort (in particular a consortium running the PoSe), we choose the second option. Furthermore, this has the advantage of putting into competition different service providers proposing the same type of service, through the same reputation score system for mechs, and taking fees from the services in a uniform (and thus simpler) way through the marketplace. 
 
@@ -272,7 +278,7 @@ The marketplace is currently two-sided: users are separated into two types, whic
 
 ## VI. Description of the current payment models for mechs
 
-Currently, there are two types of payment models for mechs: a fixed price model [[VI. 1. Base model](#vi-1-base-model)]) and task-based subscription model [[VI. 3. Subscriptions](#vi-3-subscriptions)]), that we discuss here. 
+Currently, there are two types of payment models for mechs: a fixed price model [[VI. 1. Base model](#vi-1-base-model)] and task-based subscription model [[VI. 3. Subscriptions](#vi-3-subscriptions)], that we discuss here. 
 
 ### VI. 1. Base model 
 
@@ -566,7 +572,7 @@ We should envision the following features, which may incur additional protocol f
 
 ## IX. Adaptation of the payment model and fund architecture
 
-We have discussed the overlaps between the three components. One overlap is the payment system: all three would rely on vault-like systems. One possibility, in order to simplify the whole architecture, is to use only one vault (one per chain) in order to handle all the payments. Furthermore, the additional fees presented in [[VIII. Adding other fees](#viii-adding-other-fees)] would also require modifications. We discuss here the possibility of refactoring the components by integrating gas abstraction and smart contract automation in the marketplace, leading to a ***“Generalized Mech Marketplace”***. We first discuss other possible models for marketplaces than the current two-sided model [[IX. 1. n-sided and hybrids marketplaces](#ix-1-n-sided-and-hybrid-marketplaces)]). We then discuss the various factors which may affect the design of the system, such as: unique vs multiple vault [[IX. 2. Common Vault contract](#ix-2-common-vault-contract)]; cross-chain optimization of operations [[IX. 3. Cross-chain considerations](#ix-3-cross-chain-considerations)]); the possibility by the service providers to specify a payment structure [[IX. 4. Service-specific payment models](#ix-4-service-specific-payment-models)]; cross-application of each component’s features (such as the reputation score of mechs for instance) in [[IX. 5. Commonized features](#ix-5-commonized-features)]; quote system for deadline and price [[IX. 6. Quote system](#ix-6-quote-system)]; security [[IX. 7. Security considerations](#ix-7-security-considerations)]; enabling any agent to become a mech [[IX. 8. Registries](#ix-8-registries)]).
+We have discussed the overlaps between the three components. One overlap is the payment system: all three would rely on vault-like systems. One possibility, in order to simplify the whole architecture, is to use only one vault (one per chain) in order to handle all the payments. Furthermore, the additional fees presented in [[VIII. Adding other fees](#viii-adding-other-fees)] would also require modifications. We discuss here the possibility of refactoring the components by integrating gas abstraction and smart contract automation in the marketplace, leading to a ***“Generalized Mech Marketplace”***. We first discuss other possible models for marketplaces than the current two-sided model [[IX. 1. n-sided and hybrids marketplaces](#ix-1-n-sided-and-hybrid-marketplaces)]). We then discuss the various factors which may affect the design of the system, such as: unique vs multiple vault [[IX. 2. Common Vault contract](#ix-2-common-vault-contract)]; cross-chain optimization of operations [[IX. 3. Cross-chain considerations](#ix-3-cross-chain-considerations)]; the possibility by the service providers to specify a payment structure [[IX. 4. Service-specific payment models](#ix-4-service-specific-payment-models)]; cross-application of each component’s features (such as the reputation score of mechs for instance) in [[IX. 5. Commonized features](#ix-5-commonized-features)]; quote system for deadline and price [[IX. 6. Quote system](#ix-6-quote-system)]; security [[IX. 7. Security considerations](#ix-7-security-considerations)]; enabling any agent to become a mech [[IX. 8. Registries](#ix-8-registries)].
 
 Based on this discussion, we present a first specification in [[X. Generalized Marketplace and its workflow](#x-generalized-marketplace-and-its-workflow)].
 
