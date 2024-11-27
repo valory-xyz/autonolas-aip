@@ -9,9 +9,9 @@ updated (*optional): N/A
 
 ## I. Simple Summary
 
-This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables any agent to hire a mech to perform a specific task, which can be of various types, such as *AI work*, *smart contract automation*, and *transaction relay* for instance. This is summarized in the following figure. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails. Furthermore, any agent can decide to become a mech. This architecture aims to strengthen the ecosystem by enabling fee-capture from agents. In the future these agents will be coordinated through staking mechanisms.
+This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables two benefits: first, any Olas agent registered on Olas ServiceRegistry can register as a mech on the mech marketplace to offer task based services; second, any agent can request task execution from mechs on the mech marketplace. Tasks can be of various types, such as *AI workflows*, *smart contract automation*, and *transaction relay* for instance. This is conceptualised in the following figure. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails, as well as a reputation score system (karma) that allows mech usage to be tracked. The mech marketplace is compatible with the existing Olas staking mechanism.
 
-In the remainder of the text, we call requester any agent sending a request through the marketplace and mech any agent answering a request. The marketplace is called *Mech Marketplace*.
+In the remainder of the text, we call requester any agent sending a task request through the marketplace and mech any agent answering a task request. The marketplace is called *Mech Marketplace*.
 
 ![Overview](../imgs/overview.png?raw=true "Overview")
 
