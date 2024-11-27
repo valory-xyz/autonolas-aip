@@ -260,7 +260,7 @@ Note that the interest of the turnover is to account for the usefulness of the s
 
 Clearly the design of the fee model should be made so that ***ultimately*** the ***revenue generated is maximal***. Note that the fees affect the turnover: if the fees are too high, end users (Operators here) may be discouraged to use the agent services which rely on the marketplace (and go to a marketplace with lower fees), and in return a lower turnover means lower generated revenue; on the other hand a turnover increase implies higher revenue. 
 
-Maximization of revenue implies maximization of the turnover, thus we must keep in mind these two indicators when designing the fee model. In practice we will need to define when turnover increase is high enough so that fees may be increased (this is discussed in [[VI. Description of the current payment models for mechs](#vi-description-of-the-current-payment-models-for-mehcs)]).
+Maximization of revenue implies maximization of the turnover, thus we must keep in mind these two indicators when designing the fee model. In practice we will need to define when turnover increase is high enough so that fees may be increased (this is discussed in [[VI. Description of the current payment models for mechs](#vi-description-of-the-current-payment-models-for-mechs)]).
 
 ### V. 3. General design considerations
 
@@ -578,13 +578,13 @@ We should envision the following features, which may incur additional protocol f
 1. **Listing fees**: charged for “advertising” a service provider; it is relevant when the number of service providers gets high and requesters have to search through a long list; in this case there would be two options there: a service which searches for the service most adapted to the task, or a search engine; in any case, services may pay in order to appear higher in the search engine or to be considered first among equivalent services (identified by the special service). Here we should weight the reputation score and the visibility charge, with higher weight on the reputation score. 
 2. **Subscription fees**: the requesters would pay one common subscription for any service included in a list of services accepting this offer. Note that the interest of this is to show the value provided by the services within the marketplace. Along with this, a free trial can be implemented for a short period of time (again for listed services).  
 
-## IX. Adaptation of the payment model and fund architecture
+## IX. Adaptation of the payment model and funds architecture
 
-We have discussed the overlaps between the three components. One overlap is the payment system: all three would rely on vault-like systems. One possibility, in order to simplify the whole architecture, is to use only one vault (one per chain) in order to handle all the payments. Furthermore, the additional fees presented in [[VIII. Adding other fees](#viii-adding-other-fees)] would also require modifications. We discuss here the possibility of refactoring the components by integrating gas abstraction and smart contract automation in the marketplace, leading to a ***“Generalized Mech Marketplace”***. We first discuss other possible models for marketplaces than the current two-sided model [[IX. 1. n-sided and hybrids marketplaces](#ix-1-n-sided-and-hybrid-marketplaces)]). We then discuss the various factors which may affect the design of the system, such as: unique vs multiple vault [[IX. 2. Common Vault contract](#ix-2-common-vault-contract)]; cross-chain optimization of operations [[IX. 3. Cross-chain considerations](#ix-3-cross-chain-considerations)]; the possibility by the service providers to specify a payment structure [[IX. 4. Service-specific payment models](#ix-4-service-specific-payment-models)]; cross-application of each component’s features (such as the reputation score of mechs for instance) in [[IX. 5. Commonized features](#ix-5-commonized-features)]; quote system for deadline and price [[IX. 6. Quote system](#ix-6-quote-system)]; security [[IX. 7. Security considerations](#ix-7-security-considerations)]; enabling any agent to become a mech [[IX. 8. Registries](#ix-8-registries)].
+We have discussed the overlaps between the three components. One overlap is the payment system: all three would rely on vault-like systems. One possibility, in order to simplify the whole architecture, is to use only one vault (one per chain) in order to handle all the payments. Furthermore, the additional fees presented in [[VIII. Adding other fees](#viii-adding-other-fees)] would also require modifications. We discuss here the possibility of refactoring the components by integrating gas abstraction and smart contract automation in the marketplace, leading to a ***“Generalized Mech Marketplace”***. We first discuss other possible models for marketplaces than the current two-sided model [[IX. 1. n-sided and hybrid marketplaces](#ix-1-n-sided-and-hybrid-marketplaces)]). We then discuss the various factors which may affect the design of the system, such as: unique vs multiple vault [[IX. 2. Common Vault contract](#ix-2-common-vault-contract)]; cross-chain optimization of operations [[IX. 3. Cross-chain considerations](#ix-3-cross-chain-considerations)]; the possibility by the service providers to specify a payment structure [[IX. 4. Service-specific payment models](#ix-4-service-specific-payment-models)]; cross-application of each component’s features (such as the reputation score of mechs for instance) in [[IX. 5. Commonized features](#ix-5-commonized-features)]; quote system for deadline and price [[IX. 6. Quote system](#ix-6-quote-system)]; security [[IX. 7. Security considerations](#ix-7-security-considerations)]; enabling any agent to become a mech [[IX. 8. Registries](#ix-8-registries)].
 
 Based on this discussion, we present a first specification in [[X. Generalized Marketplace and its workflow](#x-generalized-marketplace-and-its-workflow)].
 
-### IX. 1. n-sided and hybrids marketplaces
+### IX. 1. n-sided and hybrid marketplaces
 
 In this section we discuss marketplaces in general. This will give us an idea of how the implemented marketplace could evolve, and a general idea of what fees are taken by marketplaces in order to apply similar ideas. 
 
@@ -1084,7 +1084,7 @@ Copyright and related rights waived via \[CC0\](([https://creativecommons.org/pu
 
 [IX. Adaptation of the payment model and funds architecture](#ix-adaptation-of-the-payment-model-and-funds-architecture)
 
-&nbsp;&nbsp;&nbsp;[IX. 1. n-sided and hybrids marketplaces](#ix-1-n-sided-and-hybrids-marketplaces)
+&nbsp;&nbsp;&nbsp;[IX. 1. n-sided and hybrid marketplaces](#ix-1-n-sided-and-hybrids-marketplaces)
 
 &nbsp;&nbsp;&nbsp;[IX. 2. Common vault contract](#ix-2-common-vault-contract)
 
