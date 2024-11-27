@@ -3,7 +3,7 @@ title: Generating revenue from Mech Marketplace including transaction relay and 
 status: WIP
 author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)
 shortDescription: Introduction of Mech Marketplace from which fees may be taken by Olas Protocol and where any agent can provide services
-created: 2024-09-17
+created: 2024-11-27
 updated (*optional): N/A
 ---
 
