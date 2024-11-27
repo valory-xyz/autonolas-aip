@@ -85,9 +85,11 @@ In [III. Motivation](#iii-motivation), we discuss advantages of using a rollup, 
 
 # III. Motivation
 
-**Rollups** are Layer 2 solutions designed to improve scalability by processing transactions in bundles, off-chain. Validation of these bundles of transactions is done when settling on Layer 1. This general principle is illustrated in the following figure. This helps reduce gas fees and increase throughput. 
+**Rollups** are Layer 2 solutions designed to improve scalability by processing transactions in bundles, off-chain. Validation of these bundles of transactions is done when settling on Layer 1. This general principle is illustrated in the following figure. 
 
+!["Rollup illustration"](../imgs/rollup.png)
 
+This helps reduce gas fees and increase throughput. 
 
 This section discusses the benefits and details of the introduction of a rollup in the Olas ecosystem. 
 
@@ -107,12 +109,13 @@ It is organized into the following subsections:
 
 The main advantages for introducing a rollup are the following ones for Olas ecosystem:
 
-1. Revenues for the protocol, taking on the profit margin of sequencer fees (where the sequence is the key component responsible for ordering and processing transactions off-chain before they are batched and submitted to the underlying L1 blockchain); 
-2. Native Olas mechanisms (like developers rewards for instance) would be more cost-efficient since: there would be more frequent and cost-efficient rewards, as gas costs are lower with rollup and because of the possibility to create fully OLAS native dev rewards; there would be no need for ETH donations, providing better user experience and saving resources); 
+1. Revenues for the protocol, taking on the profit margin of sequencer fees (where the sequencer is the key component responsible for ordering and processing transactions off-chain before they are batched and submitted to the underlying L1 blockchain); 
+2. Native Olas mechanisms (like developers rewards for instance) would be more cost-efficient since: there would be more frequent and cost-efficient rewards (in particular by ordering the flow of transactions in such a way that throughput and/or gas cost is optimal), as gas costs are lower with rollup and because of the possibility to create fully OLAS native dev rewards; there would be no need for ETH donations, providing better user experience and saving resources; 
 3. Capture gas from usage of Olas Predict (as opposed to fees paid to Gnosis miners and validators on L1) and similar future use cases;
 4. Increased scalability (handling more transactions per second);
 5. Strengthening of OLAS utility token status if OLAS is used as a gas token.
 
+In the following, we shall distinguish between **rollups** and **optimiums**. While the second ones are sometimes also referred to as rollups, they differ strictly speaking from rollups in terms of security. Consider the definitions which can be found [here](https://l2beat.com/glossary#one-time-pad). While rollups *“inherit consensus and data availability”* from the L1 chain, optimiums are *“off-chain solutions that use fraud proofs for settlement and publish the data off-chain”*. In particular, rollups favor security over finality speed. In the following, we will keep the term *”rollup”* and specify which solutions should be considered as optimiums. 
 
 ### III. 3. Comparison between Rollup Stacks
 
@@ -125,29 +128,19 @@ Arbitrum and Optimism are the two main rollups solutions. Most new dApps choose 
 
 ##### III. 3. a. i. Technical Comparison
 
-1. Main technical difference between the two: Optimism uses **single-round fraud proofs** while Arbitrum uses **multi-round fraud proofs**. The latter is a more advanced technology which is meant to minimize on-chain computation and optimize off-chain computations, making it more scalable (reduced gas cost). Whenever a dispute arises, updates are smaller and faster. Furthermore, when the network is idle (meaning that no transaction is currently executed), no (empty) batch of transactions is executed, optimizing resource (in particular gas) usage. 
+1. Initially, the main technical difference between the two was that Optimism used *single-round fraud proofs* while Arbitrum used *multi-round fraud proofs*. The latter is a more advanced technology which is meant to minimize on-chain computation and optimize off-chain computations, making it more scalable (reduced gas cost). Whenever a dispute arises, updates are smaller and faster. Furthermore, when the network is idle (meaning that no transaction is currently executed), no (empty) batch of transactions is executed, optimizing resource (in particular gas) usage. **However this difference no longer exists, as both Optimism and Arbitrum use multi-round proofs**.
 
-   The following lists the advantages and disadvantages of the two different optimistic rollups solutions: 
-
-   Advantages of single-round fraud proofs: 1. Simple process; 2. Faster resolution; 3. Less communication overhead. 
-
-   Disadvantages of single-round fraud proofs: 1. Expensive for large computations; 2. Gas costs. 
-
-   Advantages of multiple-round fraud proofs: 1. Lower gas costs; 2. Efficient for large disputes; 3. Scalable for Complex Rollups. 
-
-   Disadvantages of multiple-round fraud proofs: 1. Longer dispute process; 2. More communication overhead. 
-
-1. Feature comparison: 
+2. Feature comparison: 
     - **Native gas token support**: both Arbitrum and Optimism use by default ETH for gas fees, but offer the possibility to use ERC-20 tokens (for instance xDAI) for gas (see doc [here](https://research.arbitrum.io/t/security-and-governance-considerations-for-chain-clusters/9560) and [here](https://medium.com/offchainlabs/your-chain-your-rules-offchain-labs-technical-roadmap-to-fuel-arbitrum-innovation-f787f2e85966)). Note that many orbit chains implementing custom gas tokens are live, but OP chains with custom gas tokens cannot participate in the first batch of the interoperability set (although they can participate in the superchain) - by first batch we meaning the initial group of chains, which are fully interoperable [Base, Zora, etc];
-    - **Throughput**: Arbitrum, which executes 40000 transactions per second (TPS), has a higher throughput than Optimism, which executes 20000 transactions per second. 
+    - **Throughput**: This varies with the chain. The higher throughput chains range from around 10 TPS to around 130 TPS. The highest is 130 TPS for Base on the Optimism side, and 60 TPS for Xai on the Arbitrum side (see data [here](https://rollup.wtf/)).  
     - **Path to decentralization**: 
         - Arbitrum: decentralizing the sequencer, introducing community governance through the DAO (already existing and robust on-chain governance system, see here), decentralizing validators and fraud-proof mechanisms, and enabling permissionless participation;
-        - Optimism: decentralizing its governance (via the Optimism Collective), the sequencer, security through fraud proofs, and validators. Optimism aims to decentralize the network by enabling a broader range of chains to join the ecosystem via the superchain. Currently centralized. 
-    - **Block times**: The standard block time on Arbitrum chains is 0.25s with the option to bring them as low as 0.1s , while it is 2s for Optimism.  
-    - **Behavior when network is idle**: while Arbitrum does not create any block when the network is idle (waiting for transactions), Optimism continuously produces blocks even if these blocks are empty (system transactions, which include ensuring cross-chain communication between L1 and L2, maintenance tasks, fee adjustments for instance). This creates continuous overhead costs for the chain, even if there are no transactions in a block.
-    - **Governance structures**: while chains in the superchain are subject to governance decisions of Optimism (OP governance has control over the sequencer/node design, on the core protocol and contracts, the chain must be governed by the OP token), chains based on Arbitrum have more governance freedom: this means complete autonomy over the sequencer/node design, the core protocol and contracts.  Furthermore, chains based on Arbitrum can settle to any parent chain or L2 (including OP, Base, or Ethereum), and if an orbit elects to settle to arbitrum one or arbitrum nova, they do not have to share sequencer revenues with the DAO. Finally, these chains are free to be governed by any token and contract structure. 
+        - Optimism: decentralizing its governance (via the Optimism Collective), the sequencer, security through fraud proofs, and validators. Optimism aims to decentralize the network by enabling a broader range of chains to join the ecosystem via the superchain.
+    - **Block times**: The standard block time on Arbitrum chains is 0.25s when using the “Time boost” mechanism (which enables priority wallets to have lower block time), with the option to bring them as low as 0.1s. Otherwise, the block time is 0.45s. The standard block time is 1s for Optimism, with the option to bring it to 0.25s with “Rollup Boost”.
+    - **Behavior when network is idle**: while Arbitrum does not create any block when the network is idle (waiting for transactions), Optimism continuously produces blocks even if these blocks are empty (system transactions, which include ensuring cross-chain communication between L1 and L2, maintenance tasks, fee adjustments for instance). This creates continuous overhead costs for the chain, even if there are no transactions in a block. However, this does not incur any cost. 
+    - **Governance structures**: Optimism has a decentralized governance framework (Optimism collective) in which can opt-in or not. When choosing to do so, the chain benefits from common architecture and higher interoperability. This implies on the other hand some rigidity of the sequencer/node design, core protocol and contracts, and that the chain must be governed by the OP token. Chains based on Arbitrum or OP Stack chains not governed by Optimism collective have more governance freedom: this means complete autonomy over the sequencer/node design, the core protocol and contracts.  Any OP Stack and Orbit chain can settle to any parent chain or L2 (including OP, Base, or Ethereum). For Orbit chains, iif an orbit elects to settle to Arbitrum One or Arbitrum Nova, they do not have to share sequencer revenues with the DAO. Finally, OP Stack chains not governed by Optimism collective and Orbit chains are free to be governed by any token and contract structure. 
     - **Revenues share**: If an Arbitrum Orbit chain decides to settle on a chain other than Arbitrum One or Nova, they are mandated to share 10% of sequencer profits with the DAO. The OP Stack chains who join the superchain choose between sending 2.5% of their sequencer revenues to the collective or 15% of net profit (revenues - costs).
-    - **Speed of withdrawal/finality**: Orbit chains can use a DAC (data availability committee); such a committee provides data storage off-chain, making data, used to verify withdrawals, retrievable faster, compared to data stored on-chain. This leads to faster withdrawal (as low as 15s) and transaction finality on the parent chain, and also faster cross-chain state synchronization (see here) 
+    - **Speed of withdrawal/finality**: Orbit chains can use a DAC (data availability committee); such a committee provides data storage off-chain, making data, used to verify withdrawals, retrievable faster, compared to data stored on-chain. This leads to faster withdrawal (as low as 15s) and transaction finality on the parent chain, and also faster cross-chain state synchronization (see here). Note that using a DAC lowers security in comparison with using ETH DA makes any such chain an optimium (see definition above).  
     - **Development costs**: Abitrum Stylus allows developers to write EVM (Ethereum virtual machine) equivalent smart contracts in programming languages that compile to Wasm (WebAssembly) - for instance, Rust, C, C++. This makes memory and computations cheaper than a traditional EVM. Note that this is interesting for Olas, as this lowers the entry barriers for developers (see here). Note also that Stylus offers access to several AI libraries in C, C++ and Rust (for instance TensorFlow, OpenCV, FANN, Darknet in C, TensorFlow, Pytorch, Caffe, MLpack, Dlib, OpenCV, Shark, Armadillo in C++ and tch-rs, rust-bert,linfa,smartcore,ndarray, burn in Rust) which is also interesting for Olas. Arbitrum Foundation has also initiated a Grant Program for Arbitrum Stylus, for the development of high quality smart contracts and tooling (funded up to $2.5 millions).   
 
 ##### III. 3. a. ii. Brand and Network Effects:
@@ -162,17 +155,19 @@ Both aim at creating a network of interconnected blockchains that communicate an
 
 The specificities of the two approaches are the following ones: 
 
-1. **Optimism**: interoperability is achieved through the ***Superchain*** model, in which multiple Optimistic rollups can interoperate seamlessly. However only those can interoperate. This creates a cohesive ecosystem but limits interoperability with external blockchains. The Superchain model ensures high security and efficiency for the chains involved, as they share resources and governance, but it can be restrictive for developers who wish to connect with chains outside this ecosystem. This model also limits customizability and sovereignty of the chains – making customizations less feasible and introduces shared security assumptions across all Superchain chains. This means that a security vulnerability on one chain can potentially impact all the other chains that are part of the Superchain. This vulnerability with regard to interoperability design is the reason that OP governance has control over the sequencer/node design, the core protocol and contracts, and that the chain must be governed by the OP token. 
-2. **Arbitrum**: In contrast, Arbitrum has introduced a ***chain mesh*** approach, allowing any chain to choose its interoperability partners freely (see here and here). This grants developers and users greater flexibility to connect with a wider range of blockchains. Each chain can engage with others based on mutual agreements, which could lead to a more diverse ecosystem. This flexibility may encourage innovation and collaboration across various chains, as developers are not confined to a specific set of interoperable chains and can establish connections with any chain they deem beneficial. This also allows for unlimited customization and governance sovereignty for the chain. Note that Olas targets in principle a wide range of services, which makes this approach more interesting. 
+1. **Optimism**: interoperability is achieved through the ***Superchain*** model, in which multiple Optimistic rollups can interoperate seamlessly. However only those can interoperate. This creates a cohesive ecosystem but limits interoperability with external blockchains. The Superchain model ensures high security and efficiency for the chains involved, as they share resources and governance. This can be restrictive for developers who wish to connect with chains outside this ecosystem, however such chains can opt for application-level interoperability, using for instance LayerZero (which is a cross-chain messaging protocol which facilitates interoperability by allowing data and assets to move seamlessly between chains). This model also limits customizability and sovereignty of the chains – making customizations less feasible and necessitating shared security assumptions across all Superchain chains (when they are connected). This means that a security vulnerability on one chain can potentially impact all the other chains that are part of the Superchain. This vulnerability with regard to interoperability design is the reason that OP governance has control over the sequencer/node design, the core protocol and contracts, and that the chain must be governed by the OP token. 
+2. **Arbitrum**: In contrast, Arbitrum has introduced a ***chain mesh*** approach, allowing any chain to choose its interoperability partners freely (see here and here). This grants developers and users greater flexibility to connect with a wider range of blockchains. Each chain can engage with others based on mutual agreements, which could lead to a more diverse ecosystem. This flexibility may encourage innovation and collaboration across various chains, as developers are not confined to a specific set of interoperable chains and can establish connections with any chain they deem beneficial. This also allows for unlimited customization and governance sovereignty for the chain. Note that Olas targets in principle a wide range of services, which makes this approach more interesting. Arbitrum also has a long-term plan for opt-in interoperability in clusters, a short term plan for intent-based interoperability (users can move funds/swap in 1-3 seconds). 
 
-Let us list here adopters of each technology (the list is probably not exhaustive. We should distinguish projects using their rollups and rollups built upon each stack.  
+Specifications for OP Stack interoperability can be found [here](https://specs.optimism.io/interop/overview.html).
+
+Let us list here adopters of each technology (the list is probably not exhaustive). We should distinguish projects using their rollups and rollups built upon each stack.  
 
 - Projects using the rollups: 
     1. Optimism: 
     2. Arbitrum: GMX, The Graph (see article here), Uniswap v3, Alchemy, Chainlink
 - Rollups built upon the stacks: 
     1. OP Stack: [Kraken](https://www.kraken.com/), [Lisk](https://lisk.com/), [Mode](https://l2beat.com/scaling/projects/mode), [Zora](https://support.zora.co/en/articles/1367745#:~:text=Zora%20Network%20is%20built%20on,Zora%20does%20not%20operate%20it.), [Base](https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I) (by Coinbase), [World Chain](https://blockworks.co/news/worldcoin-teases-world-chain-layer-2) (by Worldcoin), [Unichain](https://cryptoslate.com/uniswap-introduces-unichain-sparking-a-12-surge-in-uni-token/) (by Uniswap), [Redstone](https://redstone.xyz/), [opBNB](https://docs.bnbchain.org/bnb-opbnb/core-concepts/why-opstack/), [DeBank](https://decrypt.co/152202/ethereum-defi-dashboard-debank-launches-layer-2-on-optimisms-op-stack)
-    2. Arbitrum Orbit: Ecosystem of 36 orbit chains on mainnet, and 30+ on testnet. This includes [Proof of Play](https://www.proofofplay.com/)’s Apex Chain and Boss Chain [to support its crypto game Pirate Nation, with throughput of 18mgas/s], [Ape Chain](https://apechain.com/) [gaming,entertainment], [Xai](https://xai.games/) [gaming chain,L3], [Anime Chain](https://x.com/Azuki/status/1772973156254253079) (Azuki) [entertainment], [Gravity](https://gravity.xyz/), [Degen](https://www.degen.tips/) [decentralized social media], Sanko, [Superposition](https://superposition.so/) [DeFi]. [Reya](https://www.reya.network/), [re.al](http://re.al).
+    2. Arbitrum Orbit: Ecosystem of 36 orbit chains on mainnet, and 30+ on testnet. This includes [Proof of Play](https://www.proofofplay.com/)’s Apex Chain and Boss Chain [to support its crypto game Pirate Nation, with throughput of 18mgas/s], [Ape Chain](https://apechain.com/) [gaming,entertainment], [Xai](https://xai.games/) [gaming chain,L3], [Anime Chain](https://x.com/Azuki/status/1772973156254253079) (Azuki) [entertainment], [Gravity](https://gravity.xyz/), [Degen](https://www.degen.tips/) [decentralized social media], Sanko, [Superposition](https://superposition.so/) [DeFi]. [Reya](https://www.reya.network/), [re.al](http://re.al). Note that strictly speaking, several of these should be considered as optimiums rather than rollups.
 
 Note that 70+ chains have publicly announced using the Orbit stack.
 
@@ -329,32 +324,36 @@ Let us list here the subscription models:
 
 The following picture illustrates transaction-specific costs: 
 
+!["Transaction specific costs"](../imgs/transaction_specific_costs.png)
+
 #### III. 6. c. Computing activity requirements 
 
-Suppose revenues for the protocol correspond to 10% of gas fees (rate similar to gas abstraction, see AIP-5), and that 5% of the revenues are taken by the RaaS. The gas paid for one transaction would be: 
+Suppose revenues for the protocol correspond to 10% of gas fees (rate similar to gas abstraction, see AIP-5), and that a share **r** of the revenues are taken by the RaaS. The gas paid for one transaction would be: 
 
-**gwei_to_dollar * (average_gas_price_per_batch/number_of_transaction_per_batch)+gwei_to_dollar * average_gas_on_L2**
+**(average_usd_per_tx_L1/number_of_transaction_per_batch)+ average_usd_per_tx_L2**
 
 The total revenue per month would be: 
 
-**95/100 * number_of_transactions_per_month * gwei_to_dollar * [(average_gas_price_per_batch/number_of_transaction_per_batch)/10+ average_gas_on_L2/10] - subscription_fee**, 
-          
-where we assume the average L2 gas price to be **10 Gwei**. Recall that 
+**(1-r)*number_of_transactions_per_month* [(average_usd_per_tx_L1/number_of_transaction_per_batch) + average_usd_per_tx_L2]/10 - subscription_fee**, 
 
-**gwei_to_dollar=0.0088**.
+Assume a number of transactions per batch equal to 2000. With an average gas fee of $0.05 on L2 and $4.623 on L1 (ETH, see here) we get the following: 
 
-Assume a number of transactions per batch equal to 2000, and a gas cost per batch on L1 equal to 50 Gwei, and average gas on L2 equal to 10 Gwei. We get the following: 
+**total_revenue = (1-r)*n *[(4.623/2000)+0.05]/10 - s = (1-r) * 0.00523115 * n - s**,
 
-**total_revenue = 95/100 * n * 0.0088 * [(50/2000)/10+10/10]-s=0.0083809 * n-s,**
+where **n** is the number of transactions per month and **s** is the subscription fee. Thus:
 
-where **n** is the number of transactions per month and **s** is the subscription fee. 
+**n = (total_revenue + s)/((1-r) * 0.00523115)**
 
 Here is a table of example numbers: 
 
 | | Low usage (2000$/month deficit) | Medium usage (zero revenue) | High usage (15000$/month revenue) |
 |----------|----------|----------|----------|
-| Conduit subscription fee (3k) + 5% of revenues taken    | 119,318  | 357,956     | 2,147,740 |
-| Standard usage (10k) + 5% of revenues taken    | 954,551 | 1,193,189 | 2,982,973 |
+| Base subscription fee (3k) + 5% of revenues taken   | 201,223  | 603,671   | 3,622,027 |
+| Standard usage (10k) + 5% of revenues taken   | 1,609,689 | 2,012,237 | 5,030,593 |
+
+| Base subscription fee (3k tx) + 1% of revenues taken   | 193,093 | 579,280 | 3,475,682 |
+
+| Standard usage (10k) + 1% of revenues taken   | 1,544,747 | 1,930,934 | 4,827,337 |
 
 
 
