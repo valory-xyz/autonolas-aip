@@ -35,7 +35,9 @@ updated: 2024-15-10
 
 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. a. v. Conclusion](#iii-3-a-v-conclusion)
 
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. b. Zero-knowledge rollups](#iii-3-b-zero-knowledge-rollups)
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. b. Abundance](#iii-3-b-abundance)
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;[III. 3. c. Zero-knowledge rollups](#iii-3-c-zero-knowledge-rollups)
 
 &nbsp; &nbsp; &nbsp; &nbsp;[III. 4. Comparison of rollup-as-a-service solutions](#iii-4-comparison-of-rollup-as-a-service-solutions)
 
@@ -99,7 +101,7 @@ This section discusses the benefits and details of the introduction of a rollup 
 It is organized into the following subsections:
 
 - **[III.2. Advantages of using Rollups](#iii-2-advantages-of-using-rollups)**: lists the advantages of using rollups, in particular generating revenues for the protocol.   
-- **[III.3. Comparison between rollup stacks](#iii-3-comparison-between-rollup-stacks)**: compares the two main optimistic rollups technologies, namely Optimism and Arbitrum, and zk-rollups.  
+- **[III.3. Comparison between rollup stacks](#iii-3-comparison-between-rollup-stacks)**: we compare here the two main optimistic rollups technologies and stacks, namely Optimism, Arbitrum,zk-rollups and a sovereign rollup stack with ABC Stack (Abundance).  
 - **[III.4. Comparison of rollup-as-a-service solutions](#iii-4-comparison-of-rollup-as-a-service-solutions)**: compares roll-up-as-a-service solutions which are based on optimistic rollups. 
 - **[III.5. Incorporating the rollup in the protocol](#iii-5-incorporating-the-rollup-in-the-protocol)**:  this section compares approaches for constructing a rollup and incorporating it; from scratch, using a rollup framework, or using a rollup-as-a-service.
 - **[III.6. Sequencer revenues](#iii-6-sequencer-revenues)**:  in this subsection, we discuss how fees may be collected from the use of a sequencer provided by a rollup-as-a-service and conditions under which charging a fee for this service would be beneficial for the protocol.  
@@ -119,9 +121,11 @@ In the following, we shall distinguish between **rollups** and **optimiums**. Wh
 
 ### III. 3. Comparison between Rollup Stacks
 
+We first propose a comparison between Arbitrum and Optimism, which are the two leading rollups solutions. Most new dApps choose one of them for their fast development compared to other solutions. Then we present a recently released sovereign alternative: Abundance. We discuss zk-knowledge rollups at the end. 
+
 #### III. 3. a. Optimistic Rollups
 
-Arbitrum and Optimism are the two main rollups solutions. Most new dApps choose one of them for their fast development compared to other solutions. Here are some sources of information respectively for Arbitrum and Optimism rollups: 
+Here are some sources of information respectively for Arbitrum and Optimism rollups:
 
 [Arbitrum rollups](https://medium.com/offchainlabs/how-arbitrum-rollup-works-39788e1ed73f)
 [Optimism rollups](https://docs.optimism.io/stack/protocol/rollup/overview)
@@ -203,7 +207,21 @@ Let us compare Arbitrum and Optimism in terms of developer community. We compare
 
 *Optimism* is more suitable for projects: valuing simplicity;; prioritizing reputation and community focus (as effect of Optimism branding).
 
-#### III. 3. b. Zero-knowledge rollups 
+#### III. 3. b. Abundance
+
+As it has been recently released, less information (which can be found [here](https://x.com/abundance_xyz/status/1858921342902694108?s=46&t=NATCilm7q2bEmmsSlKSEfg)) is available for Abundance. We thus present it separately and explain here its main original design features. 
+
+1. Sovereignty: ABC Stack is based on a new blockchain design, called "Sovereign rollups”, which means that rollups are not just an L2 with an enshrined bridge to another L1 like Ethereum, but a “modular L1” that outsources DA & Consensus. ABC uses Celestia with its upcoming 1GB blocks of bandwidth to handle data availability & consensus. Celestia also provides single slot finality which is important for interoperability in a zk-world. 
+2. Performance: ABC Stack rollups enable the highest throughput of any rollup stack today. The stack offers blocks with gas limits of 1 billion,  a throughput of 1 gigagas/s and up to 50k TPS (100x more than e.g Base, see https://www.gigagas.life/ for a live throughput comparison). This enables rollups to process a massive number of transactions and execute highly complex computations in a single block. -> This is particularly interesting for the Olas ecosystem, as it aims at managing large AI agent economies, involving highly complex computations. 
+3. Interoperability: Rather than enshrining a settlement layer and using slow fault proofs, ABC Stack chains enable rollups to leverage modular bridging via in LayerZero or Hyperlane. This enables ABC stack chains to interoperate not only with Ethereum, but with any chain such as Solana, Base or Arbitrum using the same security and messaging protocol -> This is interesting for Olas ecosystem, as it aims to interoperate with many chains and not just Ethereum
+4. Virtual Machine: ABC stack is fully EVM-compatible. 
+5. No governance: ABC Stack chains are sovereign chains that are solely owned and governed by the project themselves. Like in a Layer-1, communities can implement forks to change the codebase or the sequencer without relying on any governance.
+6. Native gas token: ABC Stack supports adding a custom gas token.
+7. Zk-ready: ABC Stack chains are 100% zk-forward compatible, meaning that if desired and when zk technology matures, rollups can switch on zk to enhance their bridging security using Celestia’s lazy bridging. 
+8. Additional features: ABC stacks already implement next-generation EIPs such as EIP7702 which will significantly enhance the User Experience of interacting with agents. 
+
+
+#### III. 3. c. Zero-knowledge rollups 
 
 In opposition to optimistic rollups, **zero-knowledge rollups** (or zk-rollups), instead of assuming by default that transactions are valid, use zero-knowledge proofs in order to validate transactions.
 
@@ -236,7 +254,7 @@ Let us compare the ones which rely on optimistic rollups:
 2. **Ankr**:  leading web3 infrastructure provider powering leading chain-native infra like Optimism's default RPC endpoint [https://mainnet.optimism.io], delivering the same robust infrastructure support for each chain launch; full CDN network deployment with a focus on high-throughput scaling; benchmarked as the fastest global RPC provider, battle-tested with over 8B+ RPC calls served daily across 60+ networks; infrastructure provider since 2016, offering a complete stack and feature customization, and full-service support;
 3. **Caldera**: high throughput, low latency, and customizable features for optimizing the performance and user experience;
 4. **Conduit**: emphasis on developer ease of use, automation capabilities, and focus on gas efficiency; Key facts: first rollup-as-a-service in terms of market share (according to public data (I2beat) over 55% of market share, and at least 70% based on private data) and performance/features (most performant and scalable rollups, in particular with the G2 sequencer which is 10x more performant than other existing ones, with 100Mgas/s of throughput, see [here](https://cryptonewsland.com/conduit-g2s-100-mgas-s-sets-new-standard-for-onchain-games-and-dexs/)); history of pioneering in incorporating new technological advancements (OP succinct for instance, developed by Optimism and leverages “succinct proofs”, enabling faster transaction verification and reduced costs for users); 
-5. **Gelato**: enterprise-grade infrastructure including unique microservices that help with connecting to chains and making agent-to-agent communication fast, seamless, gasless and reliable while being uniquely positioned to help decentralize the stack over time through working with some of the best teams in the space including Kraken or Fox News. Gelato’s RaaS solution uniquely offers native account abstraction, including the leading transaction relay service. This service provides efficient, reliable, and scalable transaction relaying across 30+ blockchains, with reduced latency compared to other RaaS providers, enhancing the overall performance and responsiveness of the rollup.
+5. **Gelato**: the only RaaS that provides rollups with 1 gigagas/s in throughput, 100x compared to other rollups. With over 500 projects using Gelato, including Kraken, Aave, Sky, Infinex, Reya and Fox News, it is known for its reliable, enterprise-grade infrastructure with excellent customer service. Gelato is also the only RaaS that offers an industry-standard suite of native modules to its rollups, including Account Abstraction, VRF and Oracles. These services can for example make agent-to-agent communication fast, seamless and gasless. 
 6. **Zeeve**: Key RaaS provider supporting both Optimistic and ZK Rollup stacks, fully managed Enterprise-grade infrastructure, in-depth expertise with protocol stack-level customizations, and focus on scalability and security. Native integration with Traceye Data Indexing, Tracehawk Block Explorer, Cero decentralized sequencer, RaaS dashboard, Account Abstraction, Decentralized Provers, DAs, etc. Also brings strong KOLs and co-marketing support.
 
 
