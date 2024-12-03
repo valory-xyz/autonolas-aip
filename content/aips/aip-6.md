@@ -77,11 +77,11 @@ updated: 2024-15-10
 
 # I. Simple Summary
 
-The purpose of this proposal is to introduce the use of a ***rollup*** - which shall be called Olas Rollup - in order to scale Olas ecosystem and generate additional revenues by capturing fees from the use of the rollup. 
+The purpose of this proposal is to discuss choices regarding the potential creation of a ***rollup*** - which shall be called Olas chain - in order to scale Olas ecosystem and generate additional revenues by capturing fees from the use of the rollup. 
 
 # II. Abstract
 
-In [III. Motivation](#iii-motivation), we discuss advantages of using a rollup, and provide a detailed discussion of the diverse ways to incorporate a rollup in the Olas ecosystem. We compare rollup stacks (optimistic rollups and zk-rollups), then rollup-as-a-service solutions, and the advantages of developing a rollup from scratch, using a rollup framework or a rollup-as-a-service. We also discuss possible revenues for the protocol via the rollup and the conditions under which actual revenues would be generated (taking into account the costs of building and running it). We end this section with a discussion on the diverse possibilities for gas token definition (ETH, stablecoin, OLAS).  
+We discuss the diverse possible routes for this. This discussion includes considerations about the choice of stack [mainly Optimism, Arbitrum and Abundance], the choice of rollup-as-a-service, and the choice of the gas token on the rollup [OLAS, stablecoin or ETH]. Furthermore, we discuss as well the (activity) conditions under which revenues can be generated, taking into account the incurred costs. All the discussion is contained in [III. Motivation](#iii-motivation). 
 
 # III. Motivation
 
