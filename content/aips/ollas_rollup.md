@@ -2,10 +2,10 @@
 title: AIP-6 Olas Rollup  
 status: WIP  
 author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)  
-shortDescription:  
+shortDescription: proposal discussing possible routes for creating a rollup for Olas ecosystem 
 discussions:  
-created: 2024-17-09  
-updated: 2024-15-10  
+created: 2024-04-12  
+updated:   
 ---
 
 [I. Simple Summary](#i-simple-summary)
