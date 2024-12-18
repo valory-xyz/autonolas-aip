@@ -3,10 +3,9 @@ title: AIP-6 Buy-Back-And-Burn
 status: WIP
 author: Aleksandr Kuperman (@Aleksandr Kuperman), Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)
 shortDescription: proposal discussing the introduction of a mechanism for buying back OLAS from DEX in order to reduce inflation
-discussions:
-created: 2024-04-12
-updated (*optional): 
-—--
+created: 2024-20-27
+updated (*optional): N/A
+---
 
 
 ## Simple summary
