@@ -65,14 +65,13 @@ The **BuyBackBurner** contract has the following main functions:
 3. **updateOraclePrice**: triggers the oracle to update its data
 4. **sendToBurn**: sends OLAS to the TokenRelayer contract and calls its function bridgeToL1.
 
-
 #### TokenRelayer (L2)
 
 
 The **TokenRelayer** contract has one main function:
 
 
-**bridgeToL1**: burns token representation on L2 and redeems L1 token equivalent on mainnet. (It can be used by any entity on L2 as well to send OLAS for burning).
+**bridgeToL1**: burns token representation on L2 and redeems L1 token equivalent on mainnet (it can be used by any entity on L2 as well to send OLAS for burning).
 
 
 #### Burner (L1)
@@ -81,7 +80,7 @@ The **TokenRelayer** contract has one main function:
 The **Burner** contract has one main function:
 
 
-**burn**: burns OLAS tokens. (It can be used by any entity on L1 as well to send OLAS for burning).
+**burn**: burns OLAS tokens (it can be used by any entity on L1 as well to send OLAS for burning).
 
 
 #### Workflow
@@ -89,10 +88,10 @@ The **Burner** contract has one main function:
 
 The workflow is as follows: 
 
-1. various applications send native tokens or OLAS to the **BuyBackBurner** contract; 
+1. various applications send native tokens to the **BuyBackBurner** contract; 
 2. with the native tokens received, OLAS is bought by **BuyBackBurner** on the protocol-owned liquidity pool; 
-3. All copies of OLAS are burnt and original tokens are redeemed by **TokenRelayer**; 
-4. All OLAS is sent by **Burner** contract to Ethereum mainnet and burnt.
+3. All bridged versions of OLAS are burnt and original tokens are redeemed by **TokenRelayer**; 
+4. All OLAS is burnt by the **Burner** contract.
 
 This is illustrated in the following figure. ![Image](../imgs/img.png "Buy-Back-And-Burn")
 
