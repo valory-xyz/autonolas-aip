@@ -20,9 +20,9 @@ This proposal introduces a universal buy-back-and-burn module designed to reduce
 ## Take-away points
 
 
-1. AIP-6 proposes a mechanism in order to use the fees generated within Olas ecosystem in order to strengthen OLAS;
+1. AIP-6 proposes a mechanism in order to use the fees generated within Olas ecosystem (including the ones introduced in AIP-5) in order to strengthen OLAS;
 2. This is done via a buy-back-and-burn mechanism which receives all the fees in order to buy back OLAS and then burn it, reducing the total supply;
-3. This module is partially implemented, and used in a restricted context. AIP-6 proposes to generalize it to all fees within the Olas ecosystem.
+3. This module is partially implemented and live on Base and Celo. AIP-6 proposes to generalize it to all fees within the Olas ecosystem and to all chains. 
 
 
 ## Motivation
@@ -34,7 +34,7 @@ The buy-back-and-burn module provides a mechanism to reduce the total supply of 
 The Olas ecosystem has multiple existing and potential fee-generating use cases:
 
 
-1. Fees from dApps built on the Olas Protocol;
+1. Fees from dApps built on the Olas Protocol, e.g. revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs); 
 2. Revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs);
 3. Fees from payments through the mech marketplace, where autonomous AI agents hire other agents (mechs) for specific tasks;
 4. Fees from protocol-owned liquidity;
