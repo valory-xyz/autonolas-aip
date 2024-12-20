@@ -8,45 +8,52 @@ updated (*optional): N/A
 ---
 
 
-
 [AIP-5](https://github.com/valory-xyz/autonolas-aip/blob/aip-5/content/aips/automate_relayer_marketplace.md) discussed how fees can be earned from the mech marketplace. This proposal discusses how these fees may be used. We propose the introduction of a module available across all chains where the Olas Protocol is deployed. This module will accept both the chain's native token and OLAS and includes a mechanism for using native tokens to buy OLAS. The module furthermore supports the transfer of all accumulated OLAS to the Ethereum mainnet for burning.
+
 
 ## Introduction
 
+
 This proposal introduces a universal buy-back-and-burn module designed to reduce the total supply of OLAS tokens. The module is deployable across all chains where Olas operates, and it allows for the seamless collection of fees in both native tokens and OLAS. Native tokens collected are utilized to purchase OLAS via decentralized exchanges (DEXs), ensuring price stability through time-weighted average price (TWAP) checks. Accumulated OLAS is subsequently transferred to Ethereum mainnet for burning, ensuring a consistent and transparent reduction in token supply. The mechanism is flexible and universal, accommodating current and future fee-generating use cases on Olas, such as dApp fees, protocol-owned liquidity, mech marketplace transactions, and developer rewards. By aligning economic incentives and fostering long-term sustainability, the module serves as a scalable solution for strengthening the Olas ecosystem.
 
-## Take-away points 
+
+## Take-away points
 
 
 1. AIP-6 proposes a mechanism in order to use the fees generated within Olas ecosystem in order to strengthen OLAS;
 2. This is done via a buy-back-and-burn mechanism which receives all the fees in order to buy back OLAS and then burn it, reducing the total supply;
-3. This makes OLAS token more scarce and therefore appropriate;
-4. This module is partially implemented, and used in a restricted context. It will then be generalized to use all fees within the Olas ecosystem. 
+3. This module is partially implemented, and used in a restricted context. AIP-6 proposes to generalize it to all fees within the Olas ecosystem.
 
 
 ## Motivation
 
 
-The buy-back-and-burn module provides a mechanism to reduce the total supply of OLAS by burning tokens accumulated from various use cases. Its universal design allows any new dApp or mechanism deployed on Olas to use it. 
+The buy-back-and-burn module provides a mechanism to reduce the total supply of OLAS by burning tokens accumulated from various use cases. Its universal design allows any new dApp or mechanism deployed on Olas to use it.
+
 
 The Olas ecosystem has multiple existing and potential fee-generating use cases:
 
+
 1. Fees from dApps built on the Olas Protocol;
-2. Revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs); 
-3. Fees from payments through the mech marketplace, where autonomous AI agents hire other agents (mechs) for specific tasks; 
+2. Revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs);
+3. Fees from payments through the mech marketplace, where autonomous AI agents hire other agents (mechs) for specific tasks;
 4. Fees from protocol-owned liquidity;
 5. Fees from dev rewards in ETH, when the DAO decides to turn on the fee switch;
-6. fees from protocol-owned services (as per [AIP-2](https://github.com/valory-xyz/autonolas-aip/blob/aip-2/content/aips/core-build-a-pose.md)); 
+6. fees from protocol-owned services (as per [AIP-2](https://github.com/valory-xyz/autonolas-aip/blob/aip-2/content/aips/core-build-a-pose.md));
 
 
 One can envision the possibility of further fee drivers:
 
+
 1. Large-scale use cases like Olas Predict and Olas native mechanisms (e.g. dev rewards) could lead to the creation of Olas’ own L2 chain, generating sequencer fees;
 2. Staking mechanisms could include a registration fee in OLAS, disincentivising Operators to not remain active or leaving slots unused.
 
+
 This is not an exhaustive list but it should become clear at this point that a generic mechanism for facilitation of buy-back-and-burn is needed.
 
+
 ## Technical details
+
 
 ### Specification
 
@@ -64,6 +71,7 @@ The **BuyBackBurner** contract has the following main functions:
 2. **checkPoolPrices**: checks the condition that the current price on the DEX does not deviate too much from the TWAP.
 3. **updateOraclePrice**: triggers the oracle to update its data
 4. **sendToBurn**: sends OLAS to the TokenRelayer contract and calls its function bridgeToL1.
+
 
 #### TokenRelayer (L2)
 
@@ -86,14 +94,17 @@ The **Burner** contract has one main function:
 #### Workflow
 
 
-The workflow is as follows: 
+The workflow is as follows:
 
-1. various applications send native tokens to the **BuyBackBurner** contract; 
-2. with the native tokens received, OLAS is bought by **BuyBackBurner** on the protocol-owned liquidity pool; 
-3. All bridged versions of OLAS are burnt and original tokens are redeemed by **TokenRelayer**; 
+
+1. various applications send native tokens to the **BuyBackBurner** contract;
+2. with the native tokens received, OLAS is bought by **BuyBackBurner** on the protocol-owned liquidity pool;
+3. All bridged versions of OLAS are burnt and original tokens are redeemed by **TokenRelayer**;
 4. All OLAS is burnt by the **Burner** contract.
 
+
 This is illustrated in the following figure. ![Image](../imgs/img.png "Buy-Back-And-Burn")
+
 
 Notice that both **TokenRelayer** and **Burner** can also receive OLAS directly from anywhere.
 
@@ -109,7 +120,9 @@ Adoption of new agents and apps built and operated on Olas leads to a continuous
 
 The system is decoupled from the rest of the Olas Protocol. It does not directly use any existing Olas Protocol mechanism and plugs nicely into existing protocol-owned liquidity pools and the OLAS burn method.
 
+
 Care must be taken in implementing the buy-back logic to avoid MEV and flashloan exploits. The bridging mechanism also requires careful implementation and audits.
+
 
 ### Test cases
 
