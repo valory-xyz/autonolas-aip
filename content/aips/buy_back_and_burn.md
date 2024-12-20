@@ -35,11 +35,10 @@ The Olas ecosystem has multiple existing and potential fee-generating use cases:
 
 
 1. Fees from dApps built on the Olas Protocol, e.g. revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs); 
-2. Revenue from agents.fun, a launchpad for autonomous AI agent-affiliated meme coins, generated through liquidity providers (LPs);
-3. Fees from payments through the mech marketplace, where autonomous AI agents hire other agents (mechs) for specific tasks;
-4. Fees from protocol-owned liquidity;
-5. Fees from dev rewards in ETH, when the DAO decides to turn on the fee switch;
-6. fees from protocol-owned services (as per [AIP-2](https://github.com/valory-xyz/autonolas-aip/blob/aip-2/content/aips/core-build-a-pose.md));
+2. Fees from payments through the mech marketplace, where autonomous AI agents hire other agents (mechs) for specific tasks;
+3. Fees from protocol-owned liquidity;
+4. Fees from dev rewards in ETH, when the DAO decides to turn on the fee switch;
+5. fees from protocol-owned services (as per [AIP-2](https://github.com/valory-xyz/autonolas-aip/blob/aip-2/content/aips/core-build-a-pose.md));
 
 
 One can envision the possibility of further fee drivers:
