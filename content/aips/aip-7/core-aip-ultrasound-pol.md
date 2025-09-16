@@ -37,7 +37,7 @@ The first rollout will target **Ethereum, Base, and Optimism** chains.
 
 - On **Base**, [OLAS-USDC Balancer liquidity](https://balancer.fi/pools/base/v2/0x5332584890d6e415a6dc910254d6430b8aab7e69000200000000000000000103) will be withdrawn and fully redeposited via LiquidityManager.  
 
-- On **Optimism**, [WETH-OLAS Balancer liquidity]()https://balancer.fi/pools/optimism/v2/0x5bb3e58887264b667f915130fd04bbb56116c27800020000000000000000012a will be withdrawn and fully redeposited via LiquidityManager.  
+- On **Optimism**, [WETH-OLAS Balancer liquidity](https://balancer.fi/pools/optimism/v2/0x5bb3e58887264b667f915130fd04bbb56116c27800020000000000000000012a) will be withdrawn and fully redeposited via LiquidityManager.  
 
 Exact values for liquidity ranges will be proposed with further analysis.  
 
