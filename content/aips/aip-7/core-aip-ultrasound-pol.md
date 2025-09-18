@@ -51,7 +51,6 @@ This upgrade will:
 
 ## Problem
 
-## Problem
 
 The Olas protocol has already demonstrated strong resource accrual with [over $26.2m in PoL and $2.7m in fees](https://olas.network/bond).  
 However, most of this liquidity is still deployed in v2-style pools ([bond.olas.network](https://bond.olas.network/paths)), which suffer from several inefficiencies:
