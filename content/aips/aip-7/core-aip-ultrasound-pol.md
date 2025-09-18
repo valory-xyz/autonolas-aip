@@ -19,7 +19,7 @@ The rollout begins with **Ethereum** (largest TVL), followed by **Base** and **O
 
 
 ## Abstract
-As of today, the Olas protocol has acquired more than **$26.2m in PoL** and **$2.7m in fees** ([source](https://olas.network/bond)).  
+As of today, the Olas protocol has acquired more than **$6.2m in PoL** and **$2.7m in fees** ([source](https://olas.network/bond)).  
 However, PoL currently sits in Uniswap v2-style pools, which are capital-inefficient:
 
 - Most liquidity sits idle outside active trading ranges.  
