@@ -142,6 +142,12 @@ Please refer to the relevant sections of the following documents for specific im
 
 - [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf)
 
+### PRs
+
+- [AIP-1 bonding approach](https://github.com/valory-xyz/autonolas-tokenomics/pull/170)
+
+- [AIP-1 top-ups approach](https://github.com/valory-xyz/autonolas-tokenomics/pull/179)
+
 ## Copyright
 
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
