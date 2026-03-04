@@ -6,15 +6,15 @@ Before you jump into contributing with your AIP, we recommend you to read the do
 
 ## Existing AIPs
 
-| AIP | Title | Status |
-|-----|-------|--------|
-| [AIP-1](content/aips/aip-1/core-aip-triple-lock.md) | Triple Lock | Approved |
-| [AIP-2](content/aips/aip-2/core-build-a-pose.md) | Build-A-PoSe | WIP |
-| [AIP-3](content/aips/aip-3/core-enhancing-autonolas-protocol-security.md) | Enhancing Autonolas Protocol Security | WIP |
+| AIP | Title | Status      |
+|-----|-------|-------------|
+| [AIP-1](content/aips/aip-1/core-aip-triple-lock.md) | Triple Lock | Approved    |
+| [AIP-2](content/aips/aip-2/core-build-a-pose.md) | Build-A-PoSe | WIP         |
+| [AIP-3](content/aips/aip-3/core-enhancing-autonolas-protocol-security.md) | Enhancing Autonolas Protocol Security | Implemented |
 | [AIP-4](content/aips/aip-4/core-olas-staking.md) | Olas Staking | Implemented |
-| [AIP-5](content/aips/aip-5/automate_relayer_marketplace.md) | Generating Revenue from Mech Marketplace | WIP |
-| [AIP-6](content/aips/aip-6/buy_back_and_burn.md) | Buy-Back-And-Burn | WIP |
-| [AIP-7](content/aips/aip-7/core-aip-ultrasound-pol.md) | Ultrasound PoL | WIP |
+| [AIP-5](content/aips/aip-5/automate_relayer_marketplace.md) | Generating Revenue from Mech Marketplace | WIP         |
+| [AIP-6](content/aips/aip-6/buy_back_and_burn.md) | Buy-Back-And-Burn | Implemented |
+| [AIP-7](content/aips/aip-7/core-aip-ultrasound-pol.md) | Ultrasound PoL | WIP         |
 
 ## Contributing
 
