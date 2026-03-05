@@ -35,7 +35,7 @@ However, Olas v1 can be pushed further by creating what can be called a **Triple
 - Staking
 - Governance
 
-![Triple Lock](../imgs/triple_lock.png?raw=true "Triple Lock")
+![Triple Lock](imgs/triple_lock.png?raw=true "Triple Lock")
 
 The **Governance Lock** is in place since day 1 of the DAO’s existence, in the form of the veOLAS governance contract. Holders of veOLAS benefit from the following:
 
@@ -141,6 +141,12 @@ Please refer to the relevant sections of the following documents for specific im
 - [A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf)
 
 - [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf)
+
+### PRs
+
+- [AIP-1 bonding approach](https://github.com/valory-xyz/autonolas-tokenomics/pull/170)
+
+- [AIP-1 top-ups approach](https://github.com/valory-xyz/autonolas-tokenomics/pull/179)
 
 ## Copyright
 
