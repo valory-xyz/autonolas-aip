@@ -302,7 +302,7 @@ Currently, such contracts have been implemented in the Olas ecosystem on diverse
 
 #### VI. 3. b. Implementation 
 
-In practice, in the current implementation, a mech with a subscription is an [AgentMechSubscription](https://github.com/valory-xyz/ai-registry-mech/blob/main/contracts/integrations/nevermined/AgentMechSubscription.sol) which extends the contract AgentMech, adding a constant **subscriptionNFT**, a function **setSubscription**, and overrides the functions **_preDeliver** and **_preRequest**. This works as follows: 
+In practice, in the current implementation, a mech with a subscription is an [AgentMechSubscription](https://github.com/valory-xyz/autonolas-marketplace/blob/main/contracts/integrations/nevermined/AgentMechSubscription.sol) which extends the contract AgentMech, adding a constant **subscriptionNFT**, a function **setSubscription**, and overrides the functions **_preDeliver** and **_preRequest**. This works as follows: 
 
 1. **subscriptionNFT** is a contract managing a subscription, with which the requester interacts by subscribing and adding deposit.
 2. **setSubscription** allows changing **subscriptionNFT**. 
@@ -346,7 +346,7 @@ In practice in this diagram, no micro-payments would be executed: they would be 
 
 Although, as discussed below, we will mostly want to take fees dependent on payments, we might also want to change the fee model dynamically. In practice we would want to implement this simple model first, following the two approaches at the same time, adding a fee switch allowing to combine or alternate the two approaches described in [[VII. 1. Collecting fees from initial deposits](#vii-1-collecting-fees-from-initial-deposits)] and [[VII. 2. Collecting fees from each transaction](#vii-2-collecting-fees-from-each-transaction)]. 
 
-We suggest here changes on the **[MechMarketPlace](https://github.com/valory-xyz/ai-registry-mech/blob/main/contracts/MechMarketplace.sol)** contract as implemented currently, as follows. 
+We suggest here changes on the **[MechMarketPlace](https://github.com/valory-xyz/autonolas-marketplace/blob/main/contracts/MechMarketplace.sol)** contract as implemented currently, as follows. 
 
 1. The contract would declare four public constants **deposit_share**, **deposit_switch**, **delivery_share**, **delivery_switch**, and two private variables **protocol_balance**, **protocol_adress**. 
 2. A function **withdraw()** which can be called only by **protocol_address** (done by access control), sends the amount of protocol_balance to this address using call(), and sets the protocol_balance to zero: 
@@ -768,7 +768,7 @@ In the second case, the contract holds a mapping which basically associates a ba
 
 Anyone can call the function, but if the caller address is not among the registered service addresses, the call is reverted.  
 
-Note that currently, the payment is made directly on the mech contract through the wrap **request()** of the function **_request()** via the keyword payable (see the code [here](https://github.com/valory-xyz/ai-registry-mech/blob/main/contracts/AgentMech.sol)). 
+Note that currently, the payment is made directly on the mech contract through the wrap **request()** of the function **_request()** via the keyword payable (see the code [here](https://github.com/valory-xyz/autonolas-marketplace/blob/main/contracts/AgentMech.sol)). 
 
 Furthermore, one can add multi-signatures requirements. 
 
@@ -786,7 +786,7 @@ Note that handling these subscriptions at the level of the marketplace would mak
 
 In this model, any agent which is registered in the Service Registry can become a mech. Let us provide details on how to do this. 
 
-At the moment, there are two registries: the [AgentRegistry](https://github.com/valory-xyz/ai-registry-mech/blob/main/contracts/AgentRegistry.sol) (for agents acting as mechs) and [ServiceRegistry](https://github.com/valory-xyz/autonolas-registries/blob/main/contracts/ServiceRegistry.sol) (for all agents). The aim of the first one is to register mechs, which can deliver incoming requests from the mech marketplace. In order to simplify the architecture, we envision the possibility of merging these two registries into one. This implies that any agent registered in the ServiceRegistry can register on the MechMarketplace, thus becoming a mech. 
+At the moment, there are two registries: the [AgentRegistry](https://github.com/valory-xyz/autonolas-marketplace/blob/main/contracts/AgentRegistry.sol) (for agents acting as mechs) and [ServiceRegistry](https://github.com/valory-xyz/autonolas-registries/blob/main/contracts/ServiceRegistry.sol) (for all agents). The aim of the first one is to register mechs, which can deliver incoming requests from the mech marketplace. In order to simplify the architecture, we envision the possibility of merging these two registries into one. This implies that any agent registered in the ServiceRegistry can register on the MechMarketplace, thus becoming a mech. 
 
 The registration process on the MechMarketplace must create a Mech contract for the agent, so that it can interact with the MechMarketplace (this is the only requirement).  
 
