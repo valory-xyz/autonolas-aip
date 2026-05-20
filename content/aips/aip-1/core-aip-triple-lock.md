@@ -1,11 +1,11 @@
 ---
 title: Triple Lock
-status: Approved
+status: Implemented
 author: David Minarsch (@DavidMinarsch)
 shortDescription: Triple Lock - token sinks in v1
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-08-15
-updated (*optional): 2023-09-22
+updated (*optional): 2026-05-20
 ---
 
 ## Simple Summary
@@ -14,7 +14,7 @@ This proposal suggests implementing Triple Lock, an upgrade to the protocol that
 
 ## Abstract
 
-The proposal suggests that the DAO is to 1) encourage the creation of OLAS-xDAI and OLAS-MATIC LP pools; 2) whitelist those LP assets for bonding; 3) create bonding products for these LP assets; 4) introduce new updates to developer rewards and bonding mechanisms; 5) create staking modules to incentivize agent operators.
+The proposal suggests that the DAO is to 1) encourage the creation of LP pools pairing OLAS with the native token (or a major asset) of each chain where the Olas protocol is deployed; 2) whitelist those LP assets for bonding; 3) create bonding products for these LP assets; 4) introduce new updates to developer rewards and bonding mechanisms; 5) create staking modules to incentivize agent operators.
 
 ## Motivation
 
@@ -67,7 +67,7 @@ The Olas community is invited to discuss this proposal and its merits.
 
 ### Next steps
 
-There is a crucial element missing in implementing the triple lock: incentivized staking. To address this, we propose a roadmap that includes the deployment of the initial staking module for autonomous service on Gnosis Chain. Additionally, we are proposing a plan to enhance the existing locking and bonding mechanisms.
+The triple lock has been fully realized, including its previously missing element — incentivized staking. The roadmap below has been completed: the initial staking module for autonomous services was deployed on Gnosis Chain, and the existing locking and bonding mechanisms were enhanced as proposed.
 
 We have already completed these milestones:
 
@@ -87,9 +87,9 @@ We have already completed these milestones:
 
 - *Governance vote for registries updates:* vote to finalize updates on Gnosis Chain. This proposal passed unanimously: https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46MTAyNzQ5NDY5Mjc3Njk5MDE4MjM3MzI3MTI4MTc2NjU0NDY2ODc4NDM4MzAwMzg4OTk3MTYwMzk5MDQzOTM0ODE0ODIyMjE4MzMxMjAx
 
-- *Staking Module Implementation and Audit:* Develop and audit the staking module. The contracts are available here: https://github.com/valory-xyz/autonolas-registries/tree/main/contracts/staking. The audit is ongoing.
+- *Staking Module Implementation and Audit:* The staking module has been developed and audited; the contracts are available [here](https://github.com/valory-xyz/autonolas-registries/tree/main/contracts/staking).
 
-- *xDAI-xOLAS LP Pair Creation:* Establish an xDAI-xOLAS liquidity pool pair on a Gnosis Chain DEX of the DAO’s choice. The details are available here: https://www.autonolas.network/blog/olas-liquidity-on-gnosis-chain
+- *LP Pair Creation across chains:* The initial xDAI-OLAS pool was established on a Gnosis Chain DEX ([details](https://www.autonolas.network/blog/olas-liquidity-on-gnosis-chain)); OLAS LP pools have since been created and whitelisted for bonding on every chain where Olas is deployed — Ethereum (OLAS-WETH), Gnosis (OLAS-WXDAI), Polygon (OLAS-POL), Solana (WSOL-OLAS), Arbitrum (OLAS-WETH), Optimism (WETH-OLAS), Base (OLAS-USDC and WETH-OLAS), and Celo (CELO-OLAS). LP token addresses and L2→L1 bridge routes are listed in the [LP token bridging table](https://github.com/valory-xyz/autonolas-tokenomics/blob/main/docs/lp_token_bridging.md).
 
 - *Bonding Campaign for Liquidity Pool:* Launch bonding campaigns to bootstrap liquidity in the Gnosis Chain pool.
 
@@ -103,22 +103,28 @@ We have already completed these milestones:
 
 - *Deployment:* Triple lock is in place for the following networks: Ethereum, Gnosis, Polygon, Solana, Arbitrum, Optimism, Base, Celo. 
 
-- Steps left :
+- *Tokenomics and Depository external audit and deployment:* The updated Tokenomics and Depository contracts were externally audited (Code4rena) and deployed.
 
-- *Tokenomics and Depository updates and audit:* External audit and re-deployment of Tokenomics and Depository contracts.
+- *Governance Vote for new contract version:* The governance vote(s) to adopt the updated tokenomics and depository contracts on Ethereum mainnet were carried out.
 
-- *Governance Vote for new contract version:* Initiate a governance vote to updates to tokenomics and depository contracts on Ethereum mainnet.
+All AIP-1 components — the Bonding, Staking, and Governance locks — have been implemented, audited, and deployed across the chains where Olas operates; no further steps remain.
 
 ## Specification
 
 ### Service Staking Module Development
-In [Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf), we introduce a staking module allowing anyone, including OLAS DAO, to deploy staking contracts for autonomous services. This empowers service owners to incentivize agent operators using any ERC20 token or ETH. 
+In [Service Staking](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ServiceStaking.pdf), we introduce a staking module allowing anyone, including OLAS DAO, to deploy staking contracts for autonomous services. This empowers service owners to incentivize agent operators using any ERC20 token or ETH.
+
+This realizes the **Staking Lock** and is implemented in the [autonolas-registries](https://github.com/valory-xyz/autonolas-registries) repository under `contracts/staking/`: `StakingBase` holds the core staking logic, with `StakingToken` and `StakingNativeToken` covering ERC20-token and native-token deposits; instances are deployed permissionlessly by `StakingFactory` (each behind a `StakingProxy`) and gated by `StakingVerifier`, while `StakingActivityChecker` verifies service activity.
 
 ### Novel OLAS Top-up distribution
 In [A new approach for OLAS top-ups](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/ANewApproachForOLASTopUps.pdf), we introduce a novel method for distributing OLAS top-ups to incentivize useful code based on their donors’ veOLAS holdings. This approach encourages increased participation in locking OLAS in veOLAS, ultimately enhancing the ecosystem’s robustness and security.
 
+This reinforces the **Governance Lock** and is implemented in the [autonolas-tokenomics](https://github.com/valory-xyz/autonolas-tokenomics) repository: the `Tokenomics` contract computes per-epoch OLAS top-ups for component and agent owners from service donations, with a configurable `veOLASThreshold` that ties eligibility to the donors’ veOLAS holdings. The veOLAS lock contract itself resides in the [autonolas-governance](https://github.com/valory-xyz/autonolas-governance) repository (`contracts/veOLAS.sol`).
+
 ### Improvement of Autonolas bonding mechanism
 In [Dynamic Discounting for Autonolas bonding mechanism](https://github.com/valory-xyz/autonolas-aip/blob/aip-1/docs/DynamicsDiscountFactor.pdf), we present a proposal for dynamic discount techniques for Autonolas bonding mechanism influenced by four pivotal factors: code contribution, vesting period, program supply, and bonder's veOLAS holdings. The proposal aims to enhance the existing bonding mechanism relying on fixed pricing parameters for security reasons. As a side effect, this approach encourages greater participation in veOLAS, thereby fostering a more resilient and secure ecosystem.
+
+This realizes the **Bonding Lock** and is implemented in the [autonolas-tokenomics](https://github.com/valory-xyz/autonolas-tokenomics) repository: the `Tokenomics` contract derives a per-epoch inverse discount factor (IDF, where `idf = 1 + epsilonRate`), which the `Depository` applies through `GenericBondCalculator` when pricing LP-token bonds and computing the OLAS payout.
 
 ## Rationale
 
