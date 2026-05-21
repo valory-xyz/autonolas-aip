@@ -944,13 +944,27 @@ We could also imagine a system which updates automatically the fee parameters by
 
 ## XIV. Rationale
 
+The rationale for introducing the Mech Marketplace, the payment and fee models, and the generalized cross-chain design is developed throughout sections III–XIII above.
+
 ## XV. Security Considerations
 
-The proposal implementation will have to undergo multiple audits.
+The marketplace implementation must undergo multiple audits. The deployed Mech Marketplace contracts have completed a series of internal audits (see the [`audits/`](https://github.com/valory-xyz/autonolas-marketplace/tree/main/audits) directory in `autonolas-marketplace`) and an external audit by [Cantina](https://cantina.xyz/portfolio/ff3a291b-4cdd-4ebb-9828-c0ebc7f21edf) (February 2025).
 
 ## XVI. Test cases
 
-## XVII. Implementation 
+The Mech Marketplace contracts are covered by the test suite in the [autonolas-marketplace](https://github.com/valory-xyz/autonolas-marketplace) repository.
+
+## XVII. Implementation
+
+The Mech Marketplace is implemented and deployed from the [autonolas-marketplace](https://github.com/valory-xyz/autonolas-marketplace) repository:
+
+- **MechMarketplace** – the core marketplace contract (behind `MechMarketplaceProxy`) where requesters post task requests and mechs deliver them; it handles request/delivery routing, the priority/failover mechanism, and payment orchestration.
+- **Karma** – the on-chain reputation score for mechs and requesters (behind `KarmaProxy`).
+- **BalanceTracker** contracts – payment and fee tracking per payment model: `BalanceTrackerFixedPriceNative` / `BalanceTrackerFixedPriceToken` for fixed-price payments (native, ERC-20 and USDC, with a Celo-specific variant) and `BalanceTrackerNvmSubscription*` for Nevermined subscription payments. The BalanceTracker collects marketplace fees and drains them (native, OLAS, USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
+- **MechFactory** contracts – `MechFactoryBase` and the per-payment-model factories that deploy individual mechs.
+- **Mech** contracts – `OlasMech` / `MechFixedPriceBase` and their fixed-price and subscription implementations, run by Olas agents registered as mechs.
+
+The fee mechanism is modular: a per-payment-type `BalanceTracker` allows each fee to be enabled and tuned independently, and protocol fees can be switched on or off as discussed in section XIII.
 
 ## XVIII. Copyright
 

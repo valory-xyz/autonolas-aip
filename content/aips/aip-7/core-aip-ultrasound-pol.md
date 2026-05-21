@@ -1,10 +1,10 @@
 ---
 title: Ultrasound PoL
-status: WIP
+status: Approved
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: Liquidity that fuels revenue, burns OLAS, and amplifies sustainability
 created: 2025-09-16
-updated (*optional): 
+updated (*optional): 2026-05-21
 ---
 
 ## Simple summary
@@ -123,12 +123,20 @@ However, most of this liquidity is still deployed in v2-style pools ([bond.olas.
 
 
 ## Implementation
-The **LiquidityManager** contract will be a governance-controlled proxy.  
+The **LiquidityManager** is implemented in the [autonolas-tokenomics](https://github.com/valory-xyz/autonolas-tokenomics) repository under `contracts/pol/`: a `LiquidityManagerCore` base with the chain-specific `LiquidityManagerETH` and `LiquidityManagerOptimism` implementations (the latter also covering Base), deployed behind a governance-controlled `LiquidityManagerProxy`; a `NeighborhoodScanner` helper supports the optimal-tick search.
 
-**Suggested Functions:**  
-- `convertToV3(address lpToken, uint256 conversionRate)` – Liquidate v2 LPs, create/use v3 pool, split liquidity.  
-- `changeRanges(address pool, uint256 position)` – Governance sets custom ranges.  
-- `collectFees(address pool, uint256 position)` – Anyone can trigger; OLAS burned, non-OLAS sent to Treasury.  
+**Main functions:**
+- `convertToV3(address[] tokens, bytes32 v2Pool, int24 feeTierOrTickSpacing, int24[] tickShifts, uint16 olasBurnRate, bool scan)` – converts token balances and/or withdrawn v2 liquidity into a concentrated v3 position; `olasBurnRate` burns a share of OLAS and routes the matching share of the other token to the Treasury.
+- `changeRanges(address[] tokens, int24 feeTierOrTickSpacing, int24[] tickShifts, bool scan)` – the owner (governance) repositions a v3 position to new ranges.
+- `collectFees(address[] tokens, int24 feeTierOrTickSpacing)` – anyone can trigger; collected OLAS is burned and the non-OLAS token is sent to the Treasury.
+
+A TWAP-based price guard protects `convertToV3` and `changeRanges` against flash-loan manipulation. The contracts were audited as part of the [Code4rena 2026-01](https://code4rena.com/reports/2026-01-olas) external audit together with a series of internal audits, and have been deployed on the three rollout chains:
+
+| Chain    | LiquidityManager (proxy)                   |
+| -------- | ------------------------------------------ |
+| Ethereum | 0x83Adc54B2828E99a6DA3A11263C75E38E0A1a215 |
+| Optimism | 0x1f84F8F70dE0651C2d51Bf8850FE9D0289Ba3B3A |
+| Base     | 0x2ACD313B892C9922E470e4950e907d5EAa70fC2a |
 
 
 ## Rationale
@@ -141,9 +149,9 @@ This ensures OLAS trading remains healthy and visible, while protocol resources 
 
 ## Next Steps
 
-1. **Liquidity analysis** – determine ranges for Ethereum, Optimism, and Base, and liquidity allocation on Uniswap v3 (Ethereum) for <1% slippage at realistic trade sizes.  
-2. **Smart contract development** – build and deploy LiquidityManager as governance-controlled proxy.  
-3. **Bonding mechanism analysis** –  
-   - Short term: bonding continues with Uniswap v2-style pools, LiquidityManager reallocates liquidity.  
-   - Long term: explore wrappers for v3 full-range positions or a new v3-native bonding mechanism.  
-4. **Governance approval & migration** – execute liquidity migration for Ethereum, Optimism, Base, and extend to other chains on demand.  
+1. **Liquidity analysis** – completed: liquidity ranges and v3 allocation parameters (cardinality, slippage) were determined for Ethereum, Optimism, and Base.
+2. **Smart contract development** – completed: `LiquidityManager` was built, audited, and deployed as a governance-controlled proxy on Ethereum, Optimism, and Base.
+3. **Bonding mechanism analysis** –
+   - Short term: bonding continues with Uniswap v2-style pools, LiquidityManager reallocates liquidity.
+   - Long term: explore wrappers for v3 full-range positions or a new v3-native bonding mechanism.
+4. **Governance approval & migration** – pending: execute the on-chain governance vote to migrate liquidity on Ethereum, Optimism, and Base, and extend to other chains on demand.
