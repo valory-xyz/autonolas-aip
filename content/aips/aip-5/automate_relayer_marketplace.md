@@ -4,7 +4,7 @@ status: WIP
 author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)
 shortDescription: Introduction of Mech Marketplace from which fees may be taken by Olas Protocol and where any agent can provide services
 created: 2024-11-27
-updated (*optional): N/A
+updated (*optional): 2026-05-22
 ---
 
 ## I. Simple Summary
@@ -966,7 +966,19 @@ The Mech Marketplace is implemented and deployed from the [autonolas-marketplace
 
 The fee mechanism is modular: a per-payment-type `BalanceTracker` allows each fee to be enabled and tuned independently, and protocol fees can be switched on or off as discussed in section XIII.
 
-## XVIII. Copyright
+## XVIII. Next Steps
+
+The following steps have been completed:
+
+- The Mech Marketplace, Karma, BalanceTracker, MechFactory and mech contracts have been developed, internally audited, externally audited by [Cantina](https://cantina.xyz/portfolio/ff3a291b-4cdd-4ebb-9828-c0ebc7f21edf) (February 2025), and deployed from the [autonolas-marketplace](https://github.com/valory-xyz/autonolas-marketplace) repository.
+
+- Fee-capture plumbing is in place: the BalanceTracker contracts collect marketplace fees and drain them (native, OLAS, USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
+
+The following next step is planned:
+
+- Activate the Mech Marketplace protocol fee via a governance vote so the protocol begins capturing revenue, and tune the fee parameters over time using the marketplace growth indicators discussed in section XIII.
+
+## XIX. Copyright
 
 Copyright and related rights waived via \[CC0\](([https://creativecommons.org/publicdomain/zero/1.0/](https://creativecommons.org/publicdomain/zero/1.0/)).
 
@@ -1186,7 +1198,9 @@ Copyright and related rights waived via \[CC0\](([https://creativecommons.org/pu
 
 [XVII. Implementation](#xvii-implementation)
 
-[XVIII. Copyright](#xviii-copyright)
+[XVIII. Next Steps](#xviii-next-steps)
+
+[XIX. Copyright](#xix-copyright)
 
 
 

@@ -5,7 +5,7 @@ author: David Minarsch (@DavidMinarsch)
 shortDescription: Triple Lock - token sinks in v1
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-08-15
-updated (*optional): 2026-05-20
+updated (*optional): 2026-05-22
 ---
 
 ## Simple Summary
@@ -103,9 +103,9 @@ We have already completed these milestones:
 
 - *Deployment:* Triple lock is in place for the following networks: Ethereum, Gnosis, Polygon, Solana, Arbitrum, Optimism, Base, Celo. 
 
-- *Tokenomics and Depository external audit and deployment:* The updated Tokenomics and Depository contracts were externally audited (Code4rena) and deployed.
+- *Tokenomics and Depository external audit and deployment:* The updated Tokenomics and Depository contracts were externally audited ([Code4rena 2024-05](https://code4rena.com/reports/2024-05-olas)) and deployed.
 
-- *Governance Vote for new contract version:* The governance vote(s) to adopt the updated tokenomics and depository contracts on Ethereum mainnet were carried out.
+- *Governance Vote for new contract version:* The governance votes to adopt the updated tokenomics and depository contracts on Ethereum mainnet were carried out: [updating the Tokenomics implementation to v1.2.0 (maxBond and staking fractions)](https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46MjY1MDQyNTM5Nzk5Njc5NzIxMDQwMzMyMjgwNzIwMjAxNzk0Nzk4MTc3MjExMzEzNjU1NTg2NDQ0NTY1OTc5ODAwMzAzNzU5MzgzOA==) and [switching to the new Dispenser and disabling the old one](https://boardroom.io/autonolas/proposal/cHJvcG9zYWw6YXV0b25vbGFzOm9uY2hhaW46NTM4NDI3ODEyNTAwOTEzNzQ4MjczMzIzMjMxMjk5MzY5NTcyNTAyMDI4MjU0MDk1MjM1OTkzNDEzMzM4ODgwNzczMTk0NzczODcxMzc=).
 
 All AIP-1 components — the Bonding, Staking, and Governance locks — have been implemented, audited, and deployed across the chains where Olas operates; no further steps remain.
 

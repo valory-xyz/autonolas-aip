@@ -5,7 +5,7 @@ author: Mariapia Moscatiello (@mariapiamo)
 shortDescription: Olas Staking Mechanism
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2024-03-06
-updated (*optional): 2026-05-20
+updated (*optional): 2026-05-22
 ---
 
 ## Simple Summary
@@ -60,7 +60,7 @@ The following steps have been done:
 
 The following next step is planned:
 
-- Deploy a new staking contract implementation with a more flexible reward distribution model and hold a governance vote for its adoption by the DAO.
+- Deploy the new staking contract implementation that adds a configurable reward-distribution model — staking rewards can be directed to the service owner, split equally between the service owner and the agent operator(s), sent to the service multisig, or follow a custom split. This new implementation was externally audited as part of the [Code4rena 2026-01](https://code4rena.com/reports/2026-01-olas) audit but is not yet deployed; deployment will be followed by a governance vote for its adoption by the DAO.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

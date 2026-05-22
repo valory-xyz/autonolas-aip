@@ -1,11 +1,11 @@
 ---
 title: Enhancing Autonolas Protocol Security
-status: WIP
+status: Implemented
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: This AIP outlines progressive security enhancements in Autonolas governance, focusing on improving emergency cross-chain actions and reducing CM-selected governance action delays.
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-12-12
-updated (*optional): 2026-05-20
+updated (*optional): 2026-05-22
 ---
 
 ## Simple Summary
