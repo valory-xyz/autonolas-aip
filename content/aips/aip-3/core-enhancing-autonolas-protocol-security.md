@@ -1,11 +1,11 @@
 ---
 title: Enhancing Autonolas Protocol Security
-status: WIP
+status: Implemented
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: This AIP outlines progressive security enhancements in Autonolas governance, focusing on improving emergency cross-chain actions and reducing CM-selected governance action delays.
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-12-12
-updated (*optional): 2023-12-18
+updated (*optional): 2026-05-22
 ---
 
 ## Simple Summary
@@ -90,12 +90,15 @@ The proposed changes are designed to minimize security risks associated with CM'
 
 Toward the implementations, the standard security procedures for Autonolas protocol development will be followed.
 
-## Test Cases
-Test cases will be developed as part of each smart contract module.
-
 ## Implementation
 
-Details of the implementation will be determined and shared, ensuring adherence to Autonolas protocol development standards and security best practices.
+The contracts are implemented in the [autonolas-governance](https://github.com/valory-xyz/autonolas-governance) repository, mainly under `contracts/multisigs/`:
+
+- **GuardCM** ([GuardCM.sol](https://github.com/valory-xyz/autonolas-governance/blob/main/contracts/multisigs/GuardCM.sol)) — the community-multisig guard. It verifies authorized target/selector combinations for mainnet actions and, for cross-chain actions, validates the bridged payload destined for L2 networks; it also disables CM `delegatecall` operations to any contract.
+- **Bridge payload verifiers** ([bridge_verifier/](https://github.com/valory-xyz/autonolas-governance/tree/main/contracts/multisigs/bridge_verifier)) — `VerifyData` and `VerifyBridgedData`, together with the chain-specific `ProcessBridgedDataArbitrum`, `ProcessBridgedDataGnosis`, `ProcessBridgedDataOptimism`, `ProcessBridgedDataPolygon`, and `ProcessBridgedDataWormhole` modules, which decode and validate cross-chain governance payloads against authorized target/selector combinations before they reach L2.
+- **GovernorOLAS** ([GovernorOLAS.sol](https://github.com/valory-xyz/autonolas-governance/blob/main/contracts/GovernorOLAS.sol)) — updated to decouple the queueing delay from the Timelock minimum delay, enabling faster CM emergency responses.
+
+The new GuardCM, the bridge payload verifiers, and the updated GovernorOLAS were audited as part of the [Code4rena 2026-01](https://code4rena.com/reports/2026-01-olas) external audit; the single governance-scope finding — retryable-ticket refund/value validation on the Arbitrum and Wormhole bridge paths — has been addressed, and the changes were re-verified by a series of internal audits.
 
 Completed:
 
@@ -111,9 +114,15 @@ Completed:
 
 6) Update of GovernorOLAS to reduce operational delays in CM's emergency responses: fully implemented, internally audited (audit: https://github.com/valory-xyz/autonolas-governance/tree/main/audits/internal10)
 
+7) External audit of the new GuardCM, bridge payload verifiers, and updated GovernorOLAS as part of the [Code4rena 2026-01](https://code4rena.com/reports/2026-01-olas) audit, with the governance-scope finding addressed and re-verified by internal audits.
+
 Next steps:
 
-1) External audit and redeployment of update of GovernorOLAS to reduce operational delays in CM's emergency responses. 
+1) Deployment of the new GuardCM, the bridge payload verifiers, and the updated GovernorOLAS, followed by a governance vote for their adoption by the DAO.
+
+## Test Cases
+
+The governance contracts are covered by a test suite in the [autonolas-governance](https://github.com/valory-xyz/autonolas-governance) repository. `GuardCM` together with its cross-chain bridge payload verification logic is exercised by the `test/GuardCM.js` Hardhat tests, and the Forge deployment scripts for `GuardCM`, the `ProcessBridgedData{Arbitrum,Gnosis,Optimism,Polygon}` verifiers, and `GovernorOLAS` are validated against mainnet state by the `ForkDeployGovernance` Forge fork test (`test/forge/ForkDeployGovernance.t.sol`).
 
 ## Copyright
 

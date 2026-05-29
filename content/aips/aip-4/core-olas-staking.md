@@ -5,7 +5,7 @@ author: Mariapia Moscatiello (@mariapiamo)
 shortDescription: Olas Staking Mechanism
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2024-03-06
-updated (*optional): 
+updated (*optional): 2026-05-22
 ---
 
 ## Simple Summary
@@ -35,13 +35,18 @@ Information on the off-chain components and their integration with smart contrac
 The Olas Staking Mechanism addresses the need for a decentralized, incentive-driven framework within the Olas ecosystem to bootstrap agent economies. The proposal outlines how the current design of the mechanism extends the Olas Protocol. Furthermore, it mentions specific implementations for Trader and Market Creator agents in the Olas Predict economy, showcasing the versatility and adaptability of the staking mechanism.
 
 ## Security Considerations
-Toward the implementations, the standard security procedures for Olas protocol development will be followed.
+The Olas staking smart contracts follow the standard Olas security practices: an upgrade-safe minimal-proxy pattern (each staking instance is a `StakingProxy` cloned by the `StakingFactory`), a `StakingVerifier` that whitelists which staking implementations and parameter ranges the factory may deploy, reentrancy locks, and the Checks-Effects-Interactions pattern.
+
+The contracts have undergone external audits by Code4rena ([2024-05](https://code4rena.com/reports/2024-05-olas) and [2026-01](https://code4rena.com/reports/2026-01-olas)) as well as a continuous series of internal audits. Findings are tracked and addressed in the [autonolas-registries](https://github.com/valory-xyz/autonolas-registries) repository.
 
 ## Test Cases
-Test cases will be developed as part of each smart contract module.
+The staking contracts are covered by an extensive test suite in the [autonolas-registries](https://github.com/valory-xyz/autonolas-registries) repository, combining Hardhat tests (`test/ServiceStaking.js`, `test/ServiceStakingFactory.js`) with Foundry unit, fuzz, coverage, and security-regression tests (`StakingFuzz.t.sol`, `StakingBaseCoverage.t.sol`, `StakingSecurityFixes.t.sol`, `StakingDerivativeReentrancy.t.sol`, `ServiceStaking.t.sol`, `ServiceStakingGasLimit.t.sol`). They are run with `npx hardhat test` and `forge test --match-contract Staking -vvv`.
 
 ## Implementation
-Details of the implementation will be determined and shared, ensuring adherence to Olas protocol development standards and security best practices.
+The Olas staking mechanism is implemented across two repositories:
+
+- **Staking contracts** — [autonolas-registries](https://github.com/valory-xyz/autonolas-registries), under `contracts/staking/`: `StakingBase` (core staking logic), `StakingNativeToken` and `StakingToken` (native-token and ERC20-token deposit variants), `StakingFactory` (deploys staking instances), `StakingProxy` (per-instance proxy), `StakingVerifier` (implementation and parameter whitelist), and `StakingActivityChecker` (service activity verification).
+- **Reward distribution** — [autonolas-tokenomics](https://github.com/valory-xyz/autonolas-tokenomics): the `Dispenser` distributes the OLAS staking incentives computed by `Tokenomics` each epoch, routing them cross-chain to staking contracts on supported networks via per-chain deposit processors and target dispensers.
 
 ## Next Step
 
@@ -53,7 +58,9 @@ The following steps have been done:
 
 - Governance vote to update old protocol contracts related to OLAS staking mechanism and integrate the new smart contracts in Olas protocol.
 
-No further next steps are expected.
+The following next step is planned:
+
+- Deploy the new staking contract implementation that adds a configurable reward-distribution model — staking rewards can be directed to the service owner, split equally between the service owner and the agent operator(s), sent to the service multisig, or follow a custom split. This new implementation was externally audited as part of the [Code4rena 2026-01](https://code4rena.com/reports/2026-01-olas) audit but is not yet deployed; deployment will be followed by a governance vote for its adoption by the DAO.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
