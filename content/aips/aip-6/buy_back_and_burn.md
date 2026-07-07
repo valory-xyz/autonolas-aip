@@ -4,7 +4,7 @@ status: Implemented
 author: Aleksandr Kuperman (@Aleksandr Kuperman), Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch), Mariapia Moscatiello (@mariapiamo)
 shortDescription: proposal discussing the introduction of a mechanism for buying back OLAS from DEX in order to reduce total supply.
 created: 2024-20-27
-updated (*optional): 2026-05-20
+updated (*optional): 2026-07-07
 ---
 
 
@@ -20,7 +20,7 @@ This proposal introduces a universal buy-back-and-burn module designed to reduce
 ## Take-away points
 
 
-1. AIP-6 proposes a mechanism in order to use the fees generated within Olas ecosystem (including the ones introduced in AIP-5) in order to strengthen OLAS;
+1. AIP-6 proposes a mechanism that recycles the fees generated within the Olas ecosystem (including the ones introduced in AIP-5) into supply management;
 2. This is done via a buy-back-and-burn mechanism which receives all the fees in order to buy back OLAS and then burn it, reducing the total supply;
 3. The module is implemented, audited, and live across all major Olas chains (Ethereum, Polygon, Gnosis, Arbitrum, Optimism, Base, and Celo), generalizing the mechanism to all fees within the Olas ecosystem.
 
@@ -45,7 +45,7 @@ One can envision the possibility of further fee drivers:
 
 
 1. Large-scale use cases like Olas Predict and Olas native mechanisms (e.g. dev rewards) could lead to the creation of Olas’ own L2 chain, generating sequencer fees;
-2. Staking mechanisms could include a registration fee in OLAS, disincentivising Operators to not remain active or leaving slots unused.
+2. Staking mechanisms could include a registration fee, disincentivising Operators from remaining inactive or leaving slots unused.
 
 
 This is not an exhaustive list but it should become clear at this point that a generic mechanism for facilitation of buy-back-and-burn is needed.
