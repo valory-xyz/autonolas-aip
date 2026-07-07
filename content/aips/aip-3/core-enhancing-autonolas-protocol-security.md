@@ -5,7 +5,7 @@ author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, An
 shortDescription: This AIP outlines progressive security enhancements in Autonolas governance, focusing on improving emergency cross-chain actions and reducing CM-selected governance action delays.
 discussions: https://discord.com/channels/899649805582737479/1121019872839729152 
 created: 2023-12-12
-updated (*optional): 2026-05-22
+updated (*optional): 2026-07-07
 ---
 
 ## Simple Summary
@@ -118,7 +118,9 @@ Completed:
 
 Next steps:
 
-1) Deployment of the new GuardCM, the bridge payload verifiers, and the updated GovernorOLAS, followed by a governance vote for their adoption by the DAO.
+All steps have been completed:
+
+1) The new GuardCM, the bridge payload verifiers, and the updated GovernorOLAS were deployed and adopted by the DAO via governance vote in June 2026, completing the on-chain activation of the updated governance and Community Multisig guard setup.
 
 ## Test Cases
 
