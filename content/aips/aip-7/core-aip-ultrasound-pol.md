@@ -2,9 +2,9 @@
 title: Ultrasound PoL
 status: Approved
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
-shortDescription: Liquidity that fuels revenue, burns OLAS, and amplifies sustainability
+shortDescription: Migrating protocol-owned liquidity to concentrated-liquidity DEXes with systematic fee handling
 created: 2025-09-16
-updated (*optional): 2026-05-21
+updated (*optional): 2026-07-07
 ---
 
 ## Simple summary
@@ -44,7 +44,7 @@ Exact values for liquidity ranges will be proposed with further analysis.
 This upgrade will:  
 
 - Make liquidity utilisation significantly more efficient.  
-- Introduce a continuous burn-and-accrual revenue model.  
+- Introduce continuous, systematic fee collection.  
 - Build a diversified Treasury in blue-chip assets.  
 - Preserve governance flexibility to adjust liquidity ranges over time.  
 
@@ -112,8 +112,8 @@ However, most of this liquidity is still deployed in v2-style pools ([bond.olas.
 
 - **Sustainable revenue model**  
   
-    - Fees programmatically split: OLAS burned (benefiting all OLAS holders proportionally); non-OLAS sent to the Treasury for future productive use.  
-    - Establishes a continuous burn-and-accrual mechanism.  
+    - Fees programmatically split: OLAS burned, reducing outstanding supply in line with network usage; non-OLAS sent to the Treasury for future productive use.  
+    - Establishes continuous fee collection and supply management.  
 
 - **Treasury diversification**  
   Builds reserves in ETH and stablecoins, strengthening protocol market exposure.  
