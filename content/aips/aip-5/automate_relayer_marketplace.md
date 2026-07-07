@@ -4,10 +4,12 @@ status: WIP
 author: Silvere Gangloff (@silvere), David Minarsch (@DavidMinarsch)
 shortDescription: Introduction of Mech Marketplace from which fees may be taken by Olas Protocol and where any agent can provide services
 created: 2024-11-27
-updated (*optional): 2026-05-22
+updated (*optional): 2026-07-07
 ---
 
 ## I. Simple Summary
+
+> **Implementation note (July 2026).** Parts of this document describe exploratory designs — in particular the transaction-relay / gas-abstraction concept in sections III.3 and IV.2 — which have not been implemented. The Mech Marketplace as deployed is described in the Implementation and Next Steps sections below.
 
 This proposal discusses the introduction of a mech marketplace in the Olas ecosystem which enables two benefits: first, any Olas agent registered on Olas ServiceRegistry can register as a mech on the mech marketplace to offer task based services; second, any agent can request task execution from mechs on the mech marketplace. Tasks can be of various types, such as *AI workflows*, *smart contract automation*, and *transaction relay* for instance. This is conceptualised in the following figure. This marketplace incorporates various features such as a failover mechanism which ensures that another agent can step in if the assigned one fails, as well as a reputation score system (karma) that allows mech usage to be tracked. The mech marketplace is compatible with the existing Olas staking mechanism.
 
@@ -55,7 +57,7 @@ The **benefits** of smart contract automation in general are, for direct users (
 
 Recall that we call Operators the human beings running autonomous AI agents. 
 
-In general the main **benefits** of gas abstraction is **improved user experience**, leading to increased participation in the network, as end users (here, the Operators) do not need to hold native tokens (for instance xDAI for the Gnosis chain) in order for their autonomous AI agents to pay gas. In particular, gas could be paid with OLAS (or any stablecoin or ETH) only. 
+In general the main **benefits** of gas abstraction is **improved user experience**, leading to increased participation in the network, as end users (here, the Operators) do not need to hold native tokens (for instance xDAI for the Gnosis chain) in order for their autonomous AI agents to pay gas. In particular, gas could be paid with a stablecoin or ETH only. 
 
 This is particularly meaningful because there are benefits for the Olas ecosystem for functioning across chains, like **chain-optimized agents operations**, meaning running agents on a certain chain for a certain type of work (for instance for data work it would be beneficial to operate on a chain that has higher data throughput). With abstraction, different autonomous AI agents registered on different chains can collaborate (for instance trader agents and mechs through the mech marketplace). In principle, in the mech marketplace, mechs would be registered on the optimal chain for the type of work they do (as this allows them to be competitive by lowering their price), however, in particular in case of work overload, a mech on another chain could be targeted, which is another case when gas abstraction would be useful. 
 
@@ -105,7 +107,7 @@ This section is divided in the following subsections:
 
 #### IV. 2. b. RelayerContract
 
-The **RelayerContract** is the contract responsible for relaying all the transactions executed by users (agents and operators): whenever such a user has to pay gas (in native token, xDAI for the gnosis chain), the contract reduces the amount of OLAS that it holds on behalf of the user, as it pays the corresponding amount in xDAI instead of the user.
+The **RelayerContract** is the contract responsible for relaying all the transactions executed by users (agents and operators): whenever such a user has to pay gas (in native token, xDAI for the gnosis chain), the contract reduces the funding balance (e.g. a stablecoin) that it holds on behalf of the user, as it pays the corresponding amount in xDAI instead of the user.
 
 Only calls on this contract by allowlisted off-chain Relayer (component described below) can be executed. 
 
@@ -157,7 +159,7 @@ The following figure illustrates the workflow of the components introduced above
 
 ![Relayer](imgs/relayer.png?raw=true "Relayer")
 
-The workflow goes as follows: 1\. The user deposits OLAS tokens onto their Operator App (which manages their interactions with agents and smart contracts); 2\. The Operator App deposits part of these OLAS onto the RelayerContract (using the function ***operatorDeposit()*** introduced above); 3\. The other OLAS tokens are staked on the Staking contract; 4\. The Operator App runs the agent; 5\. Each time the agent decides on a transaction, creates a meta-transaction which contains all relevant information (including the address of the recipient and the amount of the transaction) except for gas fee, signs it and sends it to the Relayer (through the endpoint ***POST/Submit***); 6\. The Relayer relays the transaction on-chain, meaning that the meta-transaction is sent to the RelayerContract after the gas fee is paid by the Relayer and added to the meta-transaction. Then the RelayerContract executes the transaction (using the function ***exec()***).
+The workflow goes as follows: 1\. The user deposits funding tokens (e.g. a stablecoin) onto their Operator App (which manages their interactions with agents and smart contracts); 2\. The Operator App deposits part of these funds onto the RelayerContract (using the function ***operatorDeposit()*** introduced above); 3\. Any OLAS required for staking is staked on the Staking contract separately; 4\. The Operator App runs the agent; 5\. Each time the agent decides on a transaction, creates a meta-transaction which contains all relevant information (including the address of the recipient and the amount of the transaction) except for gas fee, signs it and sends it to the Relayer (through the endpoint ***POST/Submit***); 6\. The Relayer relays the transaction on-chain, meaning that the meta-transaction is sent to the RelayerContract after the gas fee is paid by the Relayer and added to the meta-transaction. Then the RelayerContract executes the transaction (using the function ***exec()***).
 
 ### IV. 3. Mech Marketplace
 
@@ -649,7 +651,7 @@ It is possible to take a fee from the requester for this debt system, and is tak
 
 ##### IX. 3. b. iv. Remarks
 
-Note that in the gas of gas abstraction, we should expect the service to be available on all chains, so that it is optimal for the requesters to send gas abstraction requests on the chain corresponding to the token they pay with (including gas tokens, OLAS, and stable coins). 
+Note that in the gas of gas abstraction, we should expect the service to be available on all chains, so that it is optimal for the requesters to send gas abstraction requests on the chain corresponding to the token they pay with (gas tokens or stablecoins). 
 
 With subscriptions, this would work in a similar way. When creating a subscription, after funds are routed to the marketplace contract on the other chain, a subscription is created on this other chain.
 
@@ -960,7 +962,7 @@ The Mech Marketplace is implemented and deployed from the [autonolas-marketplace
 
 - **MechMarketplace** – the core marketplace contract (behind `MechMarketplaceProxy`) where requesters post task requests and mechs deliver them; it handles request/delivery routing, the priority/failover mechanism, and payment orchestration.
 - **Karma** – the on-chain reputation score for mechs and requesters (behind `KarmaProxy`).
-- **BalanceTracker** contracts – payment and fee tracking per payment model: `BalanceTrackerFixedPriceNative` / `BalanceTrackerFixedPriceToken` for fixed-price payments (native, ERC-20 and USDC, with a Celo-specific variant) and `BalanceTrackerNvmSubscription*` for Nevermined subscription payments. The BalanceTracker collects marketplace fees and drains them (native, OLAS, USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
+- **BalanceTracker** contracts – payment and fee tracking per payment model: `BalanceTrackerFixedPriceNative` / `BalanceTrackerFixedPriceToken` for fixed-price payments (native, ERC-20 and USDC, with a Celo-specific variant) and `BalanceTrackerNvmSubscription*` for Nevermined subscription payments. The BalanceTracker collects marketplace fees and drains them (native and USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
 - **MechFactory** contracts – `MechFactoryBase` and the per-payment-model factories that deploy individual mechs.
 - **Mech** contracts – `OlasMech` / `MechFixedPriceBase` and their fixed-price and subscription implementations, run by Olas agents registered as mechs.
 
@@ -972,11 +974,14 @@ The following steps have been completed:
 
 - The Mech Marketplace, Karma, BalanceTracker, MechFactory and mech contracts have been developed, internally audited, externally audited by [Cantina](https://cantina.xyz/portfolio/ff3a291b-4cdd-4ebb-9828-c0ebc7f21edf) (February 2025), and deployed from the [autonolas-marketplace](https://github.com/valory-xyz/autonolas-marketplace) repository.
 
-- Fee-capture plumbing is in place: the BalanceTracker contracts collect marketplace fees and drain them (native, OLAS, USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
+- Fee-capture plumbing is in place: the BalanceTracker contracts collect marketplace fees and drain them (native and USDC) to the buy-back-and-burn module described in [AIP-6](https://github.com/valory-xyz/autonolas-aip/blob/main/content/aips/aip-6/buy_back_and_burn.md).
 
-The following next step is planned:
+- The universal Mech Marketplace protocol fee (15%) was activated across all supported networks via governance vote in June 2026.
 
-- Activate the Mech Marketplace protocol fee via a governance vote so the protocol begins capturing revenue, and tune the fee parameters over time using the marketplace growth indicators discussed in section XIII.
+The following next steps are planned:
+
+- Tune the fee parameters over time using the marketplace growth indicators discussed in section XIII.
+- Consolidate production payment models on native-token and USDC fixed-price payments plus Nevermined subscriptions; the OLAS-denominated mech factories are being removed from the marketplace whitelist via governance as part of this consolidation.
 
 ## XIX. Copyright
 
