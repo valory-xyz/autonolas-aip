@@ -1,6 +1,6 @@
 ---
 title: Ultrasound PoL
-status: Approved
+status: Proposed
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: Migrating protocol-owned liquidity to concentrated-liquidity DEXes with systematic fee handling
 created: 2025-09-16
