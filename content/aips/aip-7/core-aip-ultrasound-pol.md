@@ -1,5 +1,5 @@
 ---
-title: Efficient PoL
+title: Ultrasound PoL
 status: Approved
 author: Mariapia Moscatiello (@mariapiamo), David Minarsch, Aleks Kuppermind, Andrey Lebedev
 shortDescription: Migrating protocol-owned liquidity to concentrated-liquidity DEXes with systematic fee handling
